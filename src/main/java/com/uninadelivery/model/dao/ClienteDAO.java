@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ClienteDAO {
-    private static final Logger LOGGER = Logger.getLogger(CorriereDAO.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ClienteDAO.class.getName());
     private final Connection conn;
 
     public ClienteDAO() throws SQLException {
