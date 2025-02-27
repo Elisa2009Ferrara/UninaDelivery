@@ -40,14 +40,6 @@
             <version>9.0.10</version>
         </dependency>
 
-        <!-- Lombok (per ridurre il boilerplate del codice) -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
-            <scope>provided</scope>
-        </dependency>
-
     </dependencies>
 
     <build>

@@ -7,8 +7,11 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClienteDAO {
+    private static final Logger LOGGER = Logger.getLogger(CorriereDAO.class.getName());
     private final Connection conn;
 
     public ClienteDAO() throws SQLException {
@@ -28,7 +31,7 @@ public class ClienteDAO {
 
             ps.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Errore durante l'inserimento del cliente", e);
         }
     }
 
@@ -50,7 +53,7 @@ public class ClienteDAO {
                 clienti.add(cliente);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Errore nell'ottenimento dei clienti", e);
         }
         return clienti;
     }
