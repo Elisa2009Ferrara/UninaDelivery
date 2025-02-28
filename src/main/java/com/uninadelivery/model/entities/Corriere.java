@@ -49,9 +49,9 @@ public class Corriere {
     @Override
     public String toString() {
         return "Corriere{" +
-                "nome='" + nomeCorriere + "'" +  //  Corretto
-                ", cognome='" + cognomeCorriere + "'" +  //  Corretto
-                ", telefono='" + nTelefonoCorriere + "'" +  //  Corretto
+                "nome='" + nomeCorriere + "'" +
+                ", cognome='" + cognomeCorriere + "'" +
+                ", telefono='" + nTelefonoCorriere + "'" +
                 ", disponibilita=" + disponibilita +
                 '}';
     }
