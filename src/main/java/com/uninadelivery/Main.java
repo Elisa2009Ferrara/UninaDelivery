@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -20,10 +22,14 @@ public class Main extends Application {
         primaryStage.setTitle("UninaDelivery");
 
         // Settiamo la scena usando root, con la larghezza e altezza specificate
-        primaryStage.setScene(new Scene(root, 332, 400));
+        primaryStage.setScene(new Scene(root, 560, 407));
 
         // Settiamo l'icona
-        primaryStage.getIcons().add( new Image( "/images/UninaIconaNuova.png" ) );
+        Image appIcon = new Image (Objects.requireNonNull(getClass().getResourceAsStream("/images/IconaApp.png")));
+        primaryStage.getIcons().add(appIcon);
+
+        // Metodo alternativo se vogliamo impostare un bottone con X per chiudere la finestra
+        //primaryStage.initStyle(StageStyle.UNDECORATED);
 
         primaryStage.show();
     }
