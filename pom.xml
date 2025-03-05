@@ -13,8 +13,6 @@
         <javafx.version>17.0.8</javafx.version>
     </properties>
 
-
-
     <dependencies>
         <!-- JavaFX -->
         <dependency>
@@ -52,7 +50,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.uninadelivery.App</mainClass> <!-- Modifica qui se serve -->
+                    <mainClass>com.uninadelivery.Main</mainClass>
                 </configuration>
             </plugin>
 
