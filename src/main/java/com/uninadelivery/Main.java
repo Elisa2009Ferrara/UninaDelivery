@@ -28,9 +28,6 @@ public class Main extends Application {
         Image appIcon = new Image (Objects.requireNonNull(getClass().getResourceAsStream("/images/IconaApp.png")));
         primaryStage.getIcons().add(appIcon);
 
-        // Metodo alternativo se vogliamo impostare un bottone con X per chiudere la finestra
-        //primaryStage.initStyle(StageStyle.UNDECORATED);
-
         primaryStage.show();
     }
     public static void main(String[] args) { launch(args); }
