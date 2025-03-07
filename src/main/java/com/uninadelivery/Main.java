@@ -22,11 +22,14 @@ public class Main extends Application {
         primaryStage.setTitle("UninaDelivery");
 
         // Settiamo la scena usando root, con la larghezza e altezza specificate
-        primaryStage.setScene(new Scene(root, 560, 407));
+        primaryStage.setScene(new Scene(root, 525, 407));
 
         // Settiamo l'icona
         Image appIcon = new Image (Objects.requireNonNull(getClass().getResourceAsStream("/images/IconaApp.png")));
         primaryStage.getIcons().add(appIcon);
+
+        // Finestra non ridimensionabile
+        primaryStage.setResizable(false);
 
         primaryStage.show();
     }

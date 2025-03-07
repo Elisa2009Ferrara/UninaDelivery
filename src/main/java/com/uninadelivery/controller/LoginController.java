@@ -7,15 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import com.uninadelivery.model.dao.OperatoreDAO;
+import com.uninadelivery.model.entities.Operatore;
+import org.w3c.dom.events.MouseEvent;
+
 import java.io.File;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.net.URL;
-
-import com.uninadelivery.model.dao.OperatoreDAO;
-import com.uninadelivery.model.entities.Operatore;
 
 public class LoginController implements Initializable {
 
@@ -29,6 +29,8 @@ public class LoginController implements Initializable {
     private TextField usernameTextField;
     @FXML
     private TextField passwordTextField;
+    @FXML
+    private Label registerMessageLabel;
 
     private final OperatoreDAO operatoreDAO = new OperatoreDAO();
 
@@ -36,24 +38,46 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         brandingImageView.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/LoginBanner.png")).toExternalForm()));
         userImageView.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/LogoLogin.png")).toExternalForm()));
+
+        loginMessageLabel.setOpacity(0); // Nasconde il messaggio di errore inizialmente
+
+        registerMessageLabel.setOnMouseClicked(event -> {
+            // Aggiungi qui il codice per passare alla schermata di registrazione
+            //openRegistrationScreen();  commentato per il momento perché non esiste
+        });
     }
 
     @FXML
     private void loginButtonOnAction(ActionEvent event) {
+        // Verifica se i campi non sono vuoti
         if (!usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank()) {
             if (validateLogin(usernameTextField.getText(), passwordTextField.getText())) {
+                // Login riuscito
                 loginMessageLabel.setText("Accesso riuscito!");
-                // Apertura nuova finestra
+                loginMessageLabel.setStyle("-fx-background-color: #dff0d8; -fx-text-fill: #3c763d;"); // Verde per successo
+                loginMessageLabel.setOpacity(1); // Rende visibile il messaggio
+                // Aprire una nuova finestra
             } else {
+                // Login fallito
                 loginMessageLabel.setText("Username o password errati.");
+                loginMessageLabel.setStyle("-fx-background-color: #f2dede; -fx-text-fill: #cf0000;");
+                loginMessageLabel.setOpacity(1); // Rende visibile il messaggio
             }
         } else {
-            loginMessageLabel.setText("Per favore, inserisci un username e una password.");
+            // Se uno dei campi è vuoto
+            loginMessageLabel.setText("Per favore, inserisci username e password.");
+            loginMessageLabel.setStyle("-fx-background-color: #f2dede; -fx-text-fill: #cf0000;");
+            loginMessageLabel.setOpacity(1); // Rende visibile il messaggio
         }
     }
 
     private boolean validateLogin(String email, String password) {
         Operatore operatore = operatoreDAO.getOperatoreByEmailPassword(email, password);
         return operatore != null;
+    }
+
+    @FXML
+    public void setOnMouseClick(javafx.scene.input.MouseEvent mouseEvent) {
+        // Codice di cosa accade quando clicchi la label
     }
 }
