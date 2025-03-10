@@ -12,7 +12,7 @@
             <children>
                 <ImageView fx:id="brandingImageView" fitHeight="407.0" fitWidth="228.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/LoginBanner.png" />
+                        <Image url="@/images/LoginBanner.png" />
                     </image></ImageView>
             </children></AnchorPane>
     </left>
@@ -26,10 +26,10 @@
                 </Label>
                 <ImageView fx:id="userImageView" fitHeight="60.0" fitWidth="60.0" layoutX="112.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/LogoLogin.png" />
+                        <Image url="@/images/LogoLogin.png" />
                     </image>
                 </ImageView>
-                <Label layoutX="26.0" layoutY="182.0" prefHeight="18.0" prefWidth="61.0" text="Username" textFill="#31243e">
+                <Label layoutX="24.0" layoutY="182.0" prefHeight="18.0" prefWidth="61.0" text="Username" textFill="#31243e">
                     <font>
                         <Font name="Segoe UI Historic" size="13.0" />
                     </font>

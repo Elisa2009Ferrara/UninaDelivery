@@ -1,7 +1,10 @@
 package com.uninadelivery.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -10,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 import com.uninadelivery.model.dao.OperatoreDAO;
 import com.uninadelivery.model.entities.Operatore;
+import javafx.stage.Stage;
 import org.w3c.dom.events.MouseEvent;
 
 import java.io.File;
@@ -80,4 +84,29 @@ public class LoginController implements Initializable {
     public void setOnMouseClick(javafx.scene.input.MouseEvent mouseEvent) {
         // Codice di cosa accade quando clicchi la label
     }
+
+    public void createAccountForm() {
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/uninadelivery/view/registration.fxml"));
+            Parent root = loader.load();
+            Stage registerStage = new Stage();
+
+            registerStage.setTitle("UninaDelivery");
+
+            registerStage.setScene(new Scene(root, 525, 407));
+
+            Image appIcon = new Image (Objects.requireNonNull(getClass().getResourceAsStream("/images/IconaApp.png")));
+            registerStage.getIcons().add(appIcon);
+
+            registerStage.setResizable(false);
+
+            registerStage.show();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
 }
