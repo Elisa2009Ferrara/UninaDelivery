@@ -1,42 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="407.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterController">
+<AnchorPane prefHeight="407.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.RegisterController">
    <children>
       <AnchorPane layoutY="-8.0" prefHeight="82.0" prefWidth="600.0" style="-fx-background-color: #31243e;">
          <children>
-            <ImageView fx:id="registrationLogoImageView" fitHeight="60.0" fitWidth="108.0" layoutX="14.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="registrationLogoImageView" fitHeight="60.0" fitWidth="108.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
                <image>
                   <Image url="@../../../images/RegistrationLogo.png" />
                </image>
             </ImageView>
             <Label layoutX="268.0" layoutY="28.0" text="Sign up" textFill="#ecece7">
                <font>
-                  <Font size="20.0" />
+                  <Font name="Segoe UI Black" size="20.0" />
                </font>
             </Label>
+            <ImageView fx:id="backButtonView" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/BackArrow.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <Label layoutX="115.0" layoutY="87.0" text="Nome" />
+      <Label layoutX="115.0" layoutY="87.0" text="Nome">
+         <font>
+            <Font name="Segoe UI Historic" size="12.0" />
+         </font>
+      </Label>
       <TextField fx:id="NomeTextField" layoutX="115.0" layoutY="104.0" />
       <TextField fx:id="CognomeTextField" layoutX="337.0" layoutY="104.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label layoutX="337.0" layoutY="87.0" text="Cognome" />
-      <Label layoutX="115.0" layoutY="135.0" prefHeight="17.0" prefWidth="33.0" text="Email" />
+      <Label layoutX="337.0" layoutY="87.0" text="Cognome">
+         <font>
+            <Font name="Segoe UI Historic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="115.0" layoutY="135.0" prefHeight="17.0" prefWidth="33.0" text="Email">
+         <font>
+            <Font name="Segoe UI Historic" size="12.0" />
+         </font>
+      </Label>
       <TextField fx:id="EmailTextField" layoutX="115.0" layoutY="152.0" prefHeight="26.0" prefWidth="371.0" />
       <TextField fx:id="NumeroTelTextField" layoutX="115.0" layoutY="204.0" prefHeight="26.0" prefWidth="371.0" />
-      <Label layoutX="115.0" layoutY="187.0" text="Numero di telefono" />
+      <Label layoutX="115.0" layoutY="187.0" text="Numero di telefono">
+         <font>
+            <Font name="Segoe UI Historic" size="12.0" />
+         </font>
+      </Label>
       <PasswordField fx:id="setPasswordField" layoutX="115.0" layoutY="256.0" prefHeight="26.0" prefWidth="371.0" />
-      <Label layoutX="115.0" layoutY="239.0" text="Password" />
+      <Label layoutX="115.0" layoutY="239.0" text="Password">
+         <font>
+            <Font name="Segoe UI Historic" size="12.0" />
+         </font>
+      </Label>
       <PasswordField fx:id="confirmPasswordField" layoutX="115.0" layoutY="308.0" prefHeight="26.0" prefWidth="371.0" />
-      <Label layoutX="115.0" layoutY="291.0" text="Conferma password" />
+      <Label layoutX="115.0" layoutY="291.0" text="Conferma password">
+         <font>
+            <Font name="Segoe UI Historic" size="12.0" />
+         </font>
+      </Label>
       <Button fx:id="registerButton" layoutX="233.0" layoutY="354.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="135.0" style="-fx-background-color: #31243e;" text="Registrati" textFill="#ecece7" />
    </children>
 </AnchorPane>

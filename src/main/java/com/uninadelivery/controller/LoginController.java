@@ -14,7 +14,9 @@ import javafx.event.ActionEvent;
 import com.uninadelivery.model.dao.OperatoreDAO;
 import com.uninadelivery.model.entities.Operatore;
 import javafx.stage.Stage;
-import org.w3c.dom.events.MouseEvent;
+import javafx.scene.input.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import java.io.File;
 import java.util.Objects;
@@ -22,6 +24,8 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 public class LoginController implements Initializable {
+
+    private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
 
     @FXML
     private Label loginMessageLabel;
@@ -44,11 +48,6 @@ public class LoginController implements Initializable {
         userImageView.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/LogoLogin.png")).toExternalForm()));
 
         loginMessageLabel.setOpacity(0); // Nasconde il messaggio di errore inizialmente
-
-        registerMessageLabel.setOnMouseClicked(event -> {
-            // Aggiungi qui il codice per passare alla schermata di registrazione
-            //openRegistrationScreen();  commentato per il momento perché non esiste
-        });
     }
 
     @FXML
@@ -76,13 +75,14 @@ public class LoginController implements Initializable {
     }
 
     private boolean validateLogin(String email, String password) {
-        Operatore operatore = operatoreDAO.getOperatoreByEmailPassword(email, password);
+        Operatore operatore = operatoreDAO.getOperatoreByEmailPassword(email,password);
         return operatore != null;
     }
 
     @FXML
-    public void setOnMouseClick(javafx.scene.input.MouseEvent mouseEvent) {
-        // Codice di cosa accade quando clicchi la label
+    public void setOnMouseClick(MouseEvent event) {
+        System.out.println("Passaggio alla schermata di registrazione...");
+        createAccountForm();
     }
 
     public void createAccountForm() {
@@ -103,9 +103,8 @@ public class LoginController implements Initializable {
 
             registerStage.show();
 
-        } catch(Exception e) {
-            e.printStackTrace();
-            e.getCause();
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Errore durante il caricamento della schermata di registrazione", e);
         }
     }
 
