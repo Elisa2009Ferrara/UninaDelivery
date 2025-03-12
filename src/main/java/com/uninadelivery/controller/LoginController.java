@@ -15,6 +15,8 @@ import com.uninadelivery.model.dao.OperatoreDAO;
 import com.uninadelivery.model.entities.Operatore;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
+
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,6 +41,9 @@ public class LoginController implements Initializable {
     private TextField passwordTextField;
     @FXML
     private Label registerMessageLabel;
+    @FXML
+    private Button loginButton;
+
 
     private final OperatoreDAO operatoreDAO = new OperatoreDAO();
 
@@ -86,25 +91,35 @@ public class LoginController implements Initializable {
     }
 
     public void createAccountForm() {
-        try{
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/uninadelivery/view/registration.fxml"));
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uninadelivery/view/registration.fxml"));
             Parent root = loader.load();
-            Stage registerStage = new Stage();
 
-            registerStage.setTitle("UninaDelivery");
+            // Ottieni la scena attuale
+            Stage currentStage = (Stage) loginButton.getScene().getWindow();
 
-            registerStage.setScene(new Scene(root, 525, 407));
+            // Imposta il nuovo contenuto della scena
+            currentStage.setScene(new Scene(root, 525, 407));
 
-            Image appIcon = new Image (Objects.requireNonNull(getClass().getResourceAsStream("/images/IconaApp.png")));
-            registerStage.getIcons().add(appIcon);
-
-            registerStage.setResizable(false);
-
-            registerStage.show();
-
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Errore durante il caricamento della schermata di registrazione", e);
+        }
+    }
+
+    private void goToRegister() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uninadelivery/view/Register.fxml"));
+            Parent root = loader.load();
+
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
+            Stage currentStage = (Stage) loginButton.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
