@@ -1,0 +1,57 @@
+/* Background e colore label login */
+/* Stile base del messaggio */
+.label-message {
+    -fx-background-color: transparent;
+    -fx-text-fill: transparent;
+    -fx-font-size: 11px;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-opacity: 0; /* Inizialmente nascosto */
+}
+
+/* Stile per il messaggio di errore */
+.label-error {
+    -fx-background-color: #f2dede;
+    -fx-text-fill: #cf0000;
+    -fx-opacity: 1;
+}
+
+/* Stile per il messaggio di successo */
+.label-success {
+    -fx-background-color: #dff0d8;
+    -fx-text-fill: #3c763d;
+    -fx-opacity: 1;
+}
+
+/* Effetto hover grassetto sulla scritta "Registrati" */
+.label-hover-effect {
+    -fx-font-weight: normal;
+    -fx-cursor: hand;
+}
+
+.label-hover-effect:hover {
+    -fx-font-weight: bold;
+}
+
+/* Sidebar style */
+.sidebar {
+    -fx-background-color: #31243e;
+}
+
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #ecece7;
+}
+
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #ecece7;
+    -fx-border-color: #80b9b2;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+.sidebar-btn-icon {
+    -fx-fill: #ecece7;
+}

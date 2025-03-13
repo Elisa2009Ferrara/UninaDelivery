@@ -51,31 +51,27 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         brandingImageView.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/LoginBanner.png")).toExternalForm()));
         userImageView.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/LogoLogin.png")).toExternalForm()));
-
         loginMessageLabel.setOpacity(0); // Nasconde il messaggio di errore inizialmente
     }
 
     @FXML
     private void loginButtonOnAction(ActionEvent event) {
-        // Verifica se i campi non sono vuoti
+        loginMessageLabel.getStyleClass().clear(); // Pulisce gli stili precedenti
+
         if (!usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank()) {
             if (validateLogin(usernameTextField.getText(), passwordTextField.getText())) {
                 // Login riuscito
                 loginMessageLabel.setText("Accesso riuscito!");
-                loginMessageLabel.setStyle("-fx-background-color: #dff0d8; -fx-text-fill: #3c763d;"); // Verde per successo
-                loginMessageLabel.setOpacity(1); // Rende visibile il messaggio
-                // Aprire una nuova finestra
+                loginMessageLabel.getStyleClass().add("label-success");
             } else {
                 // Login fallito
                 loginMessageLabel.setText("Username o password errati.");
-                loginMessageLabel.setStyle("-fx-background-color: #f2dede; -fx-text-fill: #cf0000;");
-                loginMessageLabel.setOpacity(1); // Rende visibile il messaggio
+                loginMessageLabel.getStyleClass().add("label-error");
             }
         } else {
             // Se uno dei campi è vuoto
             loginMessageLabel.setText("Per favore, inserisci username e password.");
-            loginMessageLabel.setStyle("-fx-background-color: #f2dede; -fx-text-fill: #cf0000;");
-            loginMessageLabel.setOpacity(1); // Rende visibile il messaggio
+            loginMessageLabel.getStyleClass().add("label-error");
         }
     }
 

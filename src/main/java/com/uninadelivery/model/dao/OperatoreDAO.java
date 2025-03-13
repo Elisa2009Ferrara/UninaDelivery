@@ -70,7 +70,8 @@ public class OperatoreDAO {
     }
 
     public boolean registerOperatore(Operatore operatore) {
-        String query = "INSERT INTO operatore (email_operatore, password, nome_operatore, cognome_operatore, n_telefono_operatore) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO operatore (email_operatore, password, nome_operatore, cognome_operatore, n_telefono_operatore, id_magazzino) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
@@ -80,9 +81,10 @@ public class OperatoreDAO {
             ps.setString(3, operatore.getNomeOperatore());
             ps.setString(4, operatore.getCognomeOperatore());
             ps.setString(5, operatore.getnTelefonoOperatore());
+            ps.setInt(6, 1);
 
             int rowsInserted = ps.executeUpdate();
-            return rowsInserted > 0; // Restituisce true se l'inserimento è avvenuto con successo
+            return rowsInserted > 0;
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Errore durante la registrazione dell'operatore", e);

@@ -58,12 +58,12 @@
                      </stops>
                   </LinearGradient>
                </textFill></Button>
-            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="30.0" layoutY="142.0" prefHeight="18.0" prefWidth="224.0" style="-fx-background-color: #f2dede; -fx-opacity: 0;" textAlignment="CENTER" textFill="#cf0000">
+            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="30.0" layoutY="142.0" prefHeight="18.0" prefWidth="224.0" styleClass="label-message" textAlignment="CENTER" textFill="#cf0000">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
-            <Label fx:id="registerMessageLabel" layoutX="54.0" layoutY="351.0" onMouseClicked="#setOnMouseClick" text="Non hai un account? Registrati" textFill="#555555">
+            <Label fx:id="registerMessageLabel" layoutX="54.0" layoutY="351.0" onMouseClicked="#setOnMouseClick" styleClass="label-hover-effect" text="Non hai un account? Registrati" textFill="#555555">
                <font>
                   <Font name="Segoe UI Historic" size="13.0" />
                </font>
