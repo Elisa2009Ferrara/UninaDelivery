@@ -47,6 +47,13 @@
             <version>9.0.10</version>
         </dependency>
 
+        <!-- FontAwesome -->
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx</artifactId>
+            <version>8.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>

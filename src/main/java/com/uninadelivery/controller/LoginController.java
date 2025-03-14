@@ -63,6 +63,12 @@ public class LoginController implements Initializable {
                 // Login riuscito
                 loginMessageLabel.setText("Accesso riuscito!");
                 loginMessageLabel.getStyleClass().add("label-success");
+                // Passaggio alla schermata principale
+                openMainScreen();
+
+                // Chiudere la finestra di login
+                Stage currentStage = (Stage) loginButton.getScene().getWindow();
+                currentStage.close();
             } else {
                 // Login fallito
                 loginMessageLabel.setText("Username o password errati.");
@@ -116,6 +122,21 @@ public class LoginController implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void openMainScreen() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uninadelivery/view/main.fxml"));
+            Parent root = loader.load();
+
+            Stage mainStage = new Stage();
+            mainStage.setTitle("UninaDelivery - Dashboard");
+            mainStage.setScene(new Scene(root, 800, 600));
+            mainStage.setResizable(false);
+            mainStage.show();
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Errore nel caricamento della schermata principale", e);
         }
     }
 

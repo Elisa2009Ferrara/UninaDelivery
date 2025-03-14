@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -16,15 +16,79 @@
             <Image url="@../../../images/UninaIconaNuova.png" />
          </image>
       </ImageView>
-      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" styleClass="sidebar-btn">
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn">
          <padding>
             <Insets left="20.0" />
          </padding>
          <children>
-            <FontAwesomeIconView glyphName="HOME" size="1.5em" styleClass="sidebar-btn-icon" />
+            <FontAwesomeIconView glyphName="HOME" size="1.7em" styleClass="sidebar-btn-icon" />
             <Label text="Home" textFill="#ecece7">
                <font>
-                  <Font name="Segoe UI Historic" size="14.0" />
+                  <Font name="Segoe UI Historic" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+         <children>
+            <FontAwesomeIconView glyphName="INBOX" size="1.7em" styleClass="sidebar-btn-icon" />
+            <Label text="Ordini" textFill="#ecece7">
+               <font>
+                  <Font name="Segoe UI Historic" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+         <children>
+            <FontAwesomeIconView glyphName="PAPER_PLANE" size="1.5em" styleClass="sidebar-btn-icon" />
+            <Label text="Spedizioni" textFill="#ecece7">
+               <font>
+                  <Font name="Segoe UI Historic" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+         <children>
+            <FontAwesomeIconView fill="#ecece7" glyphName="LINE_CHART" size="1.5em" />
+            <Label text="Statistiche" textFill="#ecece7">
+               <font>
+                  <Font name="Segoe UI Historic" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="410.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+         <children>
+            <FontAwesomeIconView glyphName="ARCHIVE" size="1.5em" styleClass="sidebar-btn-icon" />
+            <Label text="Magazzino" textFill="#ecece7">
+               <font>
+                  <Font name="Segoe UI Historic" size="16.0" />
                </font>
                <HBox.margin>
                   <Insets left="15.0" />
