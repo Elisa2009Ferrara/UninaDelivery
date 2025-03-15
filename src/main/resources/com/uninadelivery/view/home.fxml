@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+
+<StackPane prefHeight="500.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.HomeController">
+      <ImageView fx:id="homeImageView" fitHeight="500.0" fitWidth="774.0"  preserveRatio="true">
+          <image>
+              <Image url="@../../../images/UninaDeliveryHome.png"/>
+          </image>
+      </ImageView>
+
+</StackPane>
+

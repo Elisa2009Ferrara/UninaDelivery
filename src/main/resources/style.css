@@ -55,3 +55,7 @@
 .sidebar-btn-icon {
     -fx-fill: #ecece7;
 }
+
+.sidebar-btn-icon {
+    -fx-icon-size: 18;
+}

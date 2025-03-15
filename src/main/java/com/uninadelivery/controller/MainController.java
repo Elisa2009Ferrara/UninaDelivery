@@ -1,31 +1,49 @@
 package com.uninadelivery.controller;
 
-import java.io.IOException;
-import java.net.URL;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
-import java.util.ResourceBundle;
+import javafx.scene.layout.StackPane;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MainController implements Initializable {
+public class MainController {
 
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private StackPane contentArea;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML
+    public void initialize() {
         try {
-            Parent sidebar = FXMLLoader.load(getClass().getResource("/com/uninadelivery/view/sidebar.fxml"));
-            Parent contentArea = FXMLLoader.load(getClass().getResource("/com/uninadelivery/view/contentArea.fxml"));
+            // Carica la sidebar
+            FXMLLoader sidebarLoader = new FXMLLoader(getClass().getResource("/com/uninadelivery/view/sidebar.fxml"));
+            Node sidebar = sidebarLoader.load();
             borderPane.setLeft(sidebar);
-            borderPane.setCenter(contentArea);
 
-        } catch (IOException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            // Ottieni il controller della sidebar e passa il riferimento al MainController
+            SidebarController sidebarController = sidebarLoader.getController();
+            sidebarController.setMainController(this);
+
+            // Carica la home di default
+            loadContent("/com/uninadelivery/view/home.fxml");
+
+        } catch (IOException e) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, "Errore nel caricamento della sidebar o della home", e);
+        }
+    }
+
+    // Metodo per aggiornare la schermata nella content area
+    public void loadContent(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Node content = loader.load();
+            contentArea.getChildren().setAll(content); // Sostituisce il contenuto attuale
+        } catch (IOException e) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, "Errore nel caricamento del contenuto: " + fxmlPath, e);
         }
     }
 }

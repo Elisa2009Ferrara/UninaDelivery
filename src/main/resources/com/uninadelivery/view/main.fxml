@@ -13,14 +13,12 @@
     <!-- Sidebar a sinistra -->
     <left>
         <VBox fx:id="sidebarContainer" minWidth="200" spacing="10" style="-fx-background-color: #31243e; -fx-padding: 10;">
-            <!-- Qui verrà caricata sidebar.fxml -->
         </VBox>
     </left>
 
     <!-- Content Area al centro -->
     <center>
         <StackPane fx:id="contentArea" style="-fx-background-color: #f4f4f4; -fx-padding: 15;">
-            <!-- Qui verrà caricata contentArea.fxml -->
         </StackPane>
     </center>
 
