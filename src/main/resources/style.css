@@ -67,3 +67,12 @@
     -fx-font-family: "Segoe UI Historic";
     -fx-font-size: 16px;
 }
+
+/*schermata spedizioni*/
+.banner {
+    -fx-background-color: #31243e;
+}
+
+.deliverybox {
+    -fx-background-color: #ecece7;
+}
