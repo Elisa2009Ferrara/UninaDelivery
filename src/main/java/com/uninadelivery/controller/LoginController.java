@@ -97,10 +97,8 @@ public class LoginController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uninadelivery/view/registration.fxml"));
             Parent root = loader.load();
 
-            // Ottieni la scena attuale
             Stage currentStage = (Stage) loginButton.getScene().getWindow();
 
-            // Imposta il nuovo contenuto della scena
             currentStage.setScene(new Scene(root, 525, 407));
 
         } catch (IOException e) {
@@ -121,7 +119,7 @@ public class LoginController implements Initializable {
             currentStage.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Errore nel caricamento della schermata di login", e);
         }
     }
 
@@ -132,8 +130,13 @@ public class LoginController implements Initializable {
 
             Stage mainStage = new Stage();
             mainStage.setTitle("UninaDelivery - Dashboard");
-            mainStage.setScene(new Scene(root, 800, 600));
-            mainStage.setResizable(false);
+
+            Scene scene = new Scene(root);
+            mainStage.setScene(scene);
+
+            mainStage.setResizable(true);
+            mainStage.setMaximized(true);
+
             mainStage.show();
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Errore nel caricamento della schermata principale", e);

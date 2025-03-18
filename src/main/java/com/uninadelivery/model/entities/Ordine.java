@@ -6,17 +6,21 @@ public class Ordine {
     private int idOrdine;
     private LocalDate dataOrdine;
     private boolean completamento;
+    private String emailCliente; // Aggiunto il campo email
 
-    public Ordine(int idOrdine, LocalDate dataOrdine, Boolean completamento) {
+    public Ordine(int idOrdine, LocalDate dataOrdine, Boolean completamento, String emailCliente) {
         this.idOrdine = idOrdine;
         this.dataOrdine = dataOrdine;
         this.completamento = completamento;
+        this.emailCliente = emailCliente;
     }
 
-    // Costruttore di default
-    public Ordine() {
-        this.dataOrdine = LocalDate.now(); // Imposta la data corrente
-        this.completamento = false; // Per default, un ordine non è completato
+    public String getEmailCliente() {
+        return emailCliente;
+    }
+
+    public void setEmailCliente(String emailCliente) {
+        this.emailCliente = emailCliente;
     }
 
     public int getIdOrdine() {
@@ -49,6 +53,7 @@ public class Ordine {
                 "idOrdine=" + idOrdine +
                 ", dataOrdine=" + dataOrdine +
                 ", completamento=" + completamento +
+                ", emailCliente='" + emailCliente + '\'' +
                 '}';
     }
 }

@@ -36,7 +36,7 @@ public class OrdineDAO {
 
     public List<Ordine> getAllOrdini() {
         List<Ordine> orders = new ArrayList<>();
-        String query = "SELECT * FROM ordine";
+        String query = "SELECT id_ordine, data_ordine, completamento, email_cliente FROM ordine";
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
@@ -46,12 +46,11 @@ public class OrdineDAO {
                 int idOrdine = rs.getInt("id_ordine");
                 LocalDate dataOrdine = rs.getDate("data_ordine").toLocalDate();
                 Boolean completamento = rs.getBoolean("completamento");
+                String emailCliente = rs.getString("email_cliente");
 
-                Ordine ordine = new Ordine(idOrdine, dataOrdine, completamento);
+                Ordine ordine = new Ordine(idOrdine, dataOrdine, completamento, emailCliente);
                 orders.add(ordine);
             }
-            LOGGER.info("Recuperati " + orders.size() + " ordini dal database.");
-
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Errore durante il recupero degli ordini", e);
         }

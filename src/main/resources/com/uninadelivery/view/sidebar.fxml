@@ -6,17 +6,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox fx:id="sidebar" alignment="TOP_CENTER" prefHeight="580.0" prefWidth="250.0" styleClass="sidebar" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.SidebarController">
+<VBox fx:id="sidebar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="Infinity" styleClass="sidebar" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.SidebarController">
       <!-- Logo -->
       <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" smooth="false">
             <Image url="@../../../images/UninaIconaNuova.png" />
       </ImageView>
 
       <!-- Home -->
-      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn" spacing="15">
+      <HBox fx:id="homeButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
          <padding><Insets left="20.0" /></padding>
             <FontIcon iconLiteral="fa-home" />
             <Label text="Home">
@@ -24,7 +23,7 @@
       </HBox>
 
       <!-- Ordini -->
-      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn" spacing="15">
+      <HBox fx:id="orderButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
          <padding><Insets left="20.0" /></padding>
             <FontIcon iconLiteral="fa-inbox" />
             <Label text="Ordini">
@@ -32,7 +31,7 @@
       </HBox>
 
       <!-- Spedizioni -->
-      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn" spacing="15">
+      <HBox fx:id="deliveryButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
          <padding><Insets left="20.0" /></padding>
             <FontIcon iconLiteral="fa-paper-plane" />
             <Label text="Spedizioni">
@@ -40,15 +39,15 @@
       </HBox>
 
       <!-- Statistiche -->
-      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn" spacing="15">
+      <HBox fx:id="statsButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
          <padding><Insets left="20.0" /></padding>
-            <FontIcon iconLiteral="fas-chart-line" />
+            <FontIcon iconLiteral="fa-area-chart" />
             <Label text="Statistiche">
             </Label>
       </HBox>
 
       <!-- Magazzino -->
-      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn" spacing="15">
+      <HBox fx:id="storeButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
          <padding><Insets left="20.0" /></padding>
             <FontIcon iconLiteral="fa-archive" />
             <Label text="Magazzino">

@@ -38,41 +38,54 @@
     -fx-background-color: #31243e;
 }
 
+/* Stile di base per i pulsanti */
 .sidebar-btn {
     -fx-background-color: transparent;
     -fx-background-radius: 0px;
     -fx-text-fill: #ecece7;
     -fx-padding: 0 0 0 20px;
     -fx-alignment: CENTER_LEFT;
+    -fx-border-width: 0px 0px 0px 3px;
+    -fx-border-color: transparent;
 }
 
-.sidebar-btn {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0px;
-    -fx-text-fill: #ecece7;
+/* Effetto Hover */
+.sidebar-btn:hover {
+    -fx-background-color: rgba(128, 185, 178, 0.3);
+}
+
+/* Stile per il pulsante selezionato */
+.sidebar-btn-selected {
+    -fx-background-color: #2A9DF4;
     -fx-border-color: #80b9b2;
     -fx-border-width: 0px 0px 0px 3px;
 }
 
+/* Stile per icone */
 .sidebar-btn FontIcon {
     -fx-icon-color: #ecece7;
     -fx-icon-size: 22px;
 }
 
+/* Stile per il testo */
 .sidebar-btn Label {
     -fx-text-fill: #ecece7;
-}
-
-.sidebar-btn Label {
     -fx-font-family: "Segoe UI Historic";
     -fx-font-size: 16px;
 }
 
-/*schermata spedizioni*/
+/* Schermata */
 .banner {
     -fx-background-color: #31243e;
 }
 
-.deliverybox {
-    -fx-background-color: #ecece7;
+.labelOrder {
+    -fx-text-fill: #ecece7;
+}
+
+.searchButton {
+    -fx-background-color: #80b9b2;
+    -fx-font-family: "Segoe UI Historic";
+    -fx-font-size: 12px;
+    -fx-text-fill: #31243e;
 }
