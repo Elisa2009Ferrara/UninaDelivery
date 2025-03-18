@@ -10,72 +10,48 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <VBox fx:id="sidebar" alignment="TOP_CENTER" prefHeight="580.0" prefWidth="250.0" styleClass="sidebar" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.SidebarController">
-   <children>
       <!-- Logo -->
       <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" smooth="false">
-         <image>
             <Image url="@../../../images/UninaIconaNuova.png" />
-         </image>
       </ImageView>
 
       <!-- Home -->
-      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn">
+      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn" spacing="15">
          <padding><Insets left="20.0" /></padding>
-         <children>
-            <FontIcon iconColor="#ecece7" iconLiteral="fa-home" iconSize="22" />
-            <Label text="Home" textFill="#ecece7">
-               <font><Font name="Segoe UI Historic" size="16.0" /></font>
-               <HBox.margin><Insets left="15.0" /></HBox.margin>
+            <FontIcon iconLiteral="fa-home" />
+            <Label text="Home">
             </Label>
-         </children>
       </HBox>
 
       <!-- Ordini -->
-      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn">
+      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn" spacing="15">
          <padding><Insets left="20.0" /></padding>
-         <children>
-            <FontIcon iconColor="#ecece7" iconLiteral="fa-inbox" iconSize="22" />
-            <Label text="Ordini" textFill="#ecece7">
-               <font><Font name="Segoe UI Historic" size="16.0" /></font>
-               <HBox.margin><Insets left="15.0" /></HBox.margin>
+            <FontIcon iconLiteral="fa-inbox" />
+            <Label text="Ordini">
             </Label>
-         </children>
       </HBox>
 
       <!-- Spedizioni -->
-      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn">
+      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn" spacing="15">
          <padding><Insets left="20.0" /></padding>
-         <children>
-            <FontIcon iconColor="#ecece7" iconLiteral="fa-paper-plane" iconSize="20" />
-            <Label text="Spedizioni" textFill="#ecece7">
-               <font><Font name="Segoe UI Historic" size="16.0" /></font>
-               <HBox.margin><Insets left="15.0" /></HBox.margin>
+            <FontIcon iconLiteral="fa-paper-plane" />
+            <Label text="Spedizioni">
             </Label>
-         </children>
       </HBox>
 
       <!-- Statistiche -->
-      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn">
+      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn" spacing="15">
          <padding><Insets left="20.0" /></padding>
-         <children>
-            <FontIcon iconColor="#ecece7" iconLiteral="fas-chart-line" iconSize="20" />
-            <Label text="Statistiche" textFill="#ecece7">
-               <font><Font name="Segoe UI Historic" size="16.0" /></font>
-               <HBox.margin><Insets left="15.0" /></HBox.margin>
+            <FontIcon iconLiteral="fas-chart-line" />
+            <Label text="Statistiche">
             </Label>
-         </children>
       </HBox>
 
       <!-- Magazzino -->
-      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn">
+      <HBox alignment="CENTER_LEFT" prefHeight="75.5" prefWidth="250.0" styleClass="sidebar-btn" spacing="15">
          <padding><Insets left="20.0" /></padding>
-         <children>
-            <FontIcon iconColor="#ecece7" iconLiteral="fa-archive" iconSize="20" />
-            <Label text="Magazzino" textFill="#ecece7">
-               <font><Font name="Segoe UI Historic" size="16.0" /></font>
-               <HBox.margin><Insets left="15.0" /></HBox.margin>
+            <FontIcon iconLiteral="fa-archive" />
+            <Label text="Magazzino">
             </Label>
-         </children>
       </HBox>
-   </children>
 </VBox>

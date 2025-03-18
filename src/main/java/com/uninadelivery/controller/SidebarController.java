@@ -2,11 +2,14 @@ package com.uninadelivery.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class SidebarController {
 
     private MainController mainController;
 
+    @FXML
+    private VBox sidebar;
     @FXML
     private HBox homeButton, orderButton, deliveryButton, statsButton, storeButton;
 

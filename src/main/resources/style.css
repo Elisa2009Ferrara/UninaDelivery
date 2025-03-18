@@ -42,6 +42,8 @@
     -fx-background-color: transparent;
     -fx-background-radius: 0px;
     -fx-text-fill: #ecece7;
+    -fx-padding: 0 0 0 20px;
+    -fx-alignment: CENTER_LEFT;
 }
 
 .sidebar-btn {
@@ -52,10 +54,16 @@
     -fx-border-width: 0px 0px 0px 3px;
 }
 
-.sidebar-btn-icon {
-    -fx-fill: #ecece7;
+.sidebar-btn FontIcon {
+    -fx-icon-color: #ecece7;
+    -fx-icon-size: 22px;
 }
 
-.sidebar-btn-icon {
-    -fx-icon-size: 18;
+.sidebar-btn Label {
+    -fx-text-fill: #ecece7;
+}
+
+.sidebar-btn Label {
+    -fx-font-family: "Segoe UI Historic";
+    -fx-font-size: 16px;
 }
