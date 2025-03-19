@@ -10,13 +10,9 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="407.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.RegisterController">
-   <children>
       <AnchorPane layoutY="-8.0" prefHeight="82.0" prefWidth="525.0" style="-fx-background-color: #31243e;">
-         <children>
             <ImageView fx:id="registrationLogoImageView" fitHeight="60.0" fitWidth="108.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
-               <image>
                   <Image url="@../../../images/RegistrationLogo.png" />
-               </image>
             </ImageView>
             <Label layoutX="231.0" layoutY="28.0" text="Sign up" textFill="#ecece7">
                <font>
@@ -24,11 +20,8 @@
                </font>
             </Label>
             <ImageView fx:id="backButtonView" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-               <image>
                   <Image url="@../../../images/BackArrow.png" />
-               </image>
             </ImageView>
-         </children>
       </AnchorPane>
       <Label layoutX="78.0" layoutY="93.0" text="Nome">
          <font>
@@ -67,5 +60,4 @@
          </font>
       </Label>
       <Button fx:id="registerButton" layoutX="195.0" layoutY="360.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="135.0" style="-fx-background-color: #31243e;" text="Registrati" textFill="#ecece7" onAction="#handleRegistration" />
-   </children>
 </AnchorPane>

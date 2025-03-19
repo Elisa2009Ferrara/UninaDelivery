@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
       <Label fx:id="labelListaOrdini" prefHeight="56.0" prefWidth="774.0" styleClass="labelListaOrdini" stylesheets="@../../../style.css" text="    Ordini Programmati" textFill="#ecece7">>
          <font>
             <Font name="Segoe UI Historic" size="18.0" />
@@ -25,5 +24,4 @@
         </columns>
       </TableView>
       <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Modifica" />
-   </children>
 </VBox>

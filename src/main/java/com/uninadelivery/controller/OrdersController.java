@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +37,7 @@ public class OrdersController {
     @FXML
     private Button searchButton;
 
-    private ObservableList<Ordine> ordiniList = FXCollections.observableArrayList();
+    private final ObservableList<Ordine> ordiniList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -49,7 +50,10 @@ public class OrdersController {
         loadOrders();
 
         // Aggiunge il comportamento al bottone di ricerca
-        searchButton.setOnAction(event -> searchOrders());
+        searchButton.setOnAction(_ -> searchOrders());
+
+        // Aggiorna automaticamente la lista mentre l'utente digita
+        emailField.textProperty().addListener((_, _, _) -> searchOrders());
     }
 
     private void loadOrders() {
@@ -65,9 +69,9 @@ public class OrdersController {
         LocalDate endDate = endDatePicker.getValue();
 
         List<Ordine> filteredOrders = ordiniList.stream()
-                .filter(order -> (email.isEmpty() || order.getEmailCliente().equalsIgnoreCase(email))) // Filtra per email se inserita
-                .filter(order -> (startDate == null || !order.getDataOrdine().isBefore(startDate))) // Controlla la data inizio
-                .filter(order -> (endDate == null || !order.getDataOrdine().isAfter(endDate))) // Controlla la data fine
+                .filter(order -> (email.isEmpty() || order.getEmailCliente().toLowerCase().contains(email.toLowerCase()))) // Cerca per email parziale
+                .filter(order -> (startDate == null || !order.getDataOrdine().isBefore(startDate)))
+                .filter(order -> (endDate == null || !order.getDataOrdine().isAfter(endDate)))
                 .collect(Collectors.toList());
 
         tableView.setItems(FXCollections.observableArrayList(filteredOrders));

@@ -9,25 +9,20 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.LoginController">
     <left>
         <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #31243e;" BorderPane.alignment="CENTER">
-         <children>
             <ImageView fx:id="brandingImageView" fitHeight="407.0" fitWidth="228.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
-               <image>
                   <Image url="@../../../images/LoginBanner.png" />
-               </image></ImageView>
-         </children></AnchorPane>
+            </ImageView>
+        </AnchorPane>
     </left>
     <right>
         <AnchorPane prefHeight="400.0" prefWidth="332.0" style="-fx-background-color: ecece7;" BorderPane.alignment="CENTER">
-         <children>
             <Label layoutX="108.0" layoutY="104.0" text="Sign in" textFill="#31243e">
                <font>
                   <Font name="Segoe UI Black" size="20.0" />
                </font>
             </Label>
             <ImageView fx:id="userImageView" fitHeight="60.0" fitWidth="60.0" layoutX="112.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
-               <image>
                   <Image url="@../../../images/LogoLogin.png" />
-               </image>
             </ImageView>
             <Label layoutX="26.0" layoutY="182.0" prefHeight="18.0" prefWidth="61.0" text="Username" textFill="#31243e">
                <font>
@@ -68,6 +63,6 @@
                   <Font name="Segoe UI Historic" size="13.0" />
                </font>
             </Label>
-         </children></AnchorPane>
+        </AnchorPane>
     </right>
 </BorderPane>

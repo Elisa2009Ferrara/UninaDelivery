@@ -1,3 +1,12 @@
+/* Colori per tutte le schermate */
+.banner {
+    -fx-background-color: #31243e;
+}
+
+.background {
+    -fx-background-color: #ecece7;
+}
+
 /* Background e colore label login */
 /* Stile base del messaggio */
 .label-message {
@@ -74,11 +83,9 @@
     -fx-font-size: 16px;
 }
 
-/* Schermata */
-.banner {
-    -fx-background-color: #31243e;
-}
 
+
+/* Schermata Ordini */
 .labelOrder {
     -fx-text-fill: #ecece7;
 }
@@ -90,7 +97,17 @@
     -fx-text-fill: #31243e;
 }
 
+/* Schermata statistiche */
+.labelStats {
+    -fx-text-fill: #ecece7;
+    -fx-font-family: "Segoe UI Black";
+    -fx-font-size: 20px;
+
+}
+
+/* Schermata lista ordini programmati */
 .labelListaOrdini {
     -fx-background-color: #31243e;
     -fx-padding: 10px
 }
+
