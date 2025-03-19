@@ -35,7 +35,9 @@ public class GestioneOrdiniProgrammatiController {
         colClienteEmail.setCellValueFactory(cellData -> cellData.getValue().clienteEmailProperty());
 
         Scene scene = tableOrdini.getScene(); // Ottieni la scena associata alla TableView
-        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        String css = this.getClass().getResource("/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
 
         tableOrdini.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         caricaOrdiniProgrammati();
