@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane prefHeight="407.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.CreateDeliveryController">
+   <children>
+      <BorderPane prefHeight="82.0" prefWidth="525.0" style="-fx-background-color: #31243e;">
+         <center>
+            <Label prefHeight="65.0" prefWidth="342.0" text="Crea una nuova spedizione" textFill="#ebebe6c8" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+      <GridPane layoutY="102.0" prefHeight="263.0" prefWidth="525.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="512.0" minWidth="10.0" prefWidth="407.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="162.0" minHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="239.0" minHeight="0.0" prefHeight="166.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TableView prefHeight="187.0" prefWidth="512.0" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Id ordine" />
+                <TableColumn prefWidth="75.0" text="nome " />
+                  <TableColumn prefWidth="75.0" text="cognome" />
+                  <TableColumn prefWidth="101.0" text="destinazione" />
+                  <TableColumn prefWidth="128.0" text="mezzo di trasporto" />
+                  <TableColumn prefWidth="70.0" text="corriere" />
+              </columns>
+            </TableView>
+            <TextField />
+         </children>
+      </GridPane>
+      <Button layoutX="222.0" layoutY="365.0" mnemonicParsing="false" text="Crea" />
+   </children>
+</AnchorPane>
