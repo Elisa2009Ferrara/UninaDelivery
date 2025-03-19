@@ -89,3 +89,8 @@
     -fx-font-size: 12px;
     -fx-text-fill: #31243e;
 }
+
+.labelListaOrdini {
+    -fx-background-color: #31243e;
+    -fx-padding: 10px
+}

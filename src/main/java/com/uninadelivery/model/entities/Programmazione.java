@@ -1,61 +1,97 @@
 package com.uninadelivery.model.entities;
 
-import java.sql.Date;
+import javafx.beans.property.*;
 import java.time.LocalDate;
 
 public class Programmazione {
-    private int idProgrammazione;
-    private LocalDate proxConsegna;
-    private LocalDate dataFine;
-    private String orario;
-    private String frequenza;
 
-    public Programmazione(int idProgrammazione, LocalDate proxConsegna, LocalDate dataFine, String orario, String frequenza) {
-        this.setIdProgrammazione(idProgrammazione);
-        this.setProxConsegna(proxConsegna);
-        this.setDataFine(dataFine);
-        this.setOrario(orario);
-        this.setFrequenza(frequenza);
+    private IntegerProperty idProgrammazione;
+    private ObjectProperty<LocalDate> proxConsegna;
+    private ObjectProperty<LocalDate> dataFine;
+    private StringProperty orario;
+    private StringProperty frequenza;
+    private StringProperty clienteEmail;
+
+    public Programmazione(int idProgrammazione, LocalDate proxConsegna, LocalDate dataFine, String orario, String frequenza, String clienteEmail) {
+        this.idProgrammazione = new SimpleIntegerProperty(idProgrammazione);
+        this.proxConsegna = new SimpleObjectProperty<>(proxConsegna);
+        this.dataFine = new SimpleObjectProperty<>(dataFine);
+        this.orario = new SimpleStringProperty(orario);
+        this.frequenza = new SimpleStringProperty(frequenza);
+        this.clienteEmail = new SimpleStringProperty(clienteEmail);
     }
 
-    public int getIdProgrammazione() {
+    // Getter e Setter con Property
+    public IntegerProperty idProgrammazioneProperty() {
         return idProgrammazione;
     }
 
-    public void setIdProgrammazione(int idProgrammazione) {
-        this.idProgrammazione = idProgrammazione;
+    public int getIdProgrammazione() {
+        return idProgrammazione.get();
     }
 
-    public LocalDate getProxConsegna() {
+    public void setIdProgrammazione(int idProgrammazione) {
+        this.idProgrammazione.set(idProgrammazione);
+    }
+
+    public ObjectProperty<LocalDate> proxConsegnaProperty() {
         return proxConsegna;
     }
 
-    public void setProxConsegna(LocalDate proxConsegna) {
-        this.proxConsegna = proxConsegna;
+    public LocalDate getProxConsegna() {
+        return proxConsegna.get();
     }
 
-    public LocalDate getDataFine() {
+    public void setProxConsegna(LocalDate proxConsegna) {
+        this.proxConsegna.set(proxConsegna);
+    }
+
+    public ObjectProperty<LocalDate> dataFineProperty() {
         return dataFine;
     }
 
-    public void setDataFine(LocalDate dataFine) {
-        this.dataFine = dataFine;
+    public LocalDate getDataFine() {
+        return dataFine.get();
     }
 
-    public String getOrario() {
+    public void setDataFine(LocalDate dataFine) {
+        this.dataFine.set(dataFine);
+    }
+
+    public StringProperty orarioProperty() {
         return orario;
     }
 
-    public void setOrario(String orario) {
-        this.orario = orario;
+    public String getOrario() {
+        return orario.get();
     }
 
-    public String getFrequenza() {
+    public void setOrario(String orario) {
+        this.orario.set(orario);
+    }
+
+    public StringProperty frequenzaProperty() {
         return frequenza;
     }
 
+    public String getFrequenza() {
+        return frequenza.get();
+    }
+
     public void setFrequenza(String frequenza) {
-        this.frequenza = frequenza;
+        this.frequenza.set(frequenza);
+    }
+
+    public StringProperty clienteEmailProperty() {
+        return clienteEmail;
+    }
+
+    public String getClienteEmail() {
+        return clienteEmail.get();
+    }
+
+    public void setClienteEmail(String clienteEmail) {
+        this.clienteEmail.set(clienteEmail);
     }
 
     @Override
@@ -66,6 +102,7 @@ public class Programmazione {
                 ", dataFine=" + dataFine +
                 ", orario='" + orario + '\'' +
                 ", frequenza='" + frequenza + '\'' +
+                ", clienteEmail='" + clienteEmail + '\'' +
                 '}';
     }
 }

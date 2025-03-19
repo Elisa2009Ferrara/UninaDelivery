@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="labelListaOrdini" prefHeight="56.0" prefWidth="774.0" styleClass="labelListaOrdini" text="    Ordini Programmati">>
+         <font>
+            <Font name="Segoe UI Historic" size="18.0" />
+         </font>
+      </Label>
+      <TableView prefHeight="374.0" prefWidth="774.0">
+        <columns>
+          <TableColumn fx:id="colIdOrdine" prefWidth="75.0" text="IdOrdine" />
+          <TableColumn fx:id="colProxConsegna" prefWidth="139.0" text="Prossima Consegna" />
+            <TableColumn fx:id="colDataFine" prefWidth="94.0" text="Data Fine" />
+            <TableColumn fx:id="colOrario" prefWidth="71.0" text="Orario" />
+            <TableColumn fx:id="colFrequenza" prefWidth="86.0" text="Frequenza" />
+            <TableColumn prefWidth="102.0" text="Email Cliente" />
+        </columns>
+      </TableView>
+      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Modifica" />
+   </children>
+</VBox>
