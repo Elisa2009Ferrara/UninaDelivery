@@ -10,8 +10,9 @@
 
     <!-- Sidebar a sinistra -->
     <left>
-        <VBox fx:id="sidebarContainer" minWidth="200" spacing="10"
-              style="-fx-background-color: #31243e; -fx-padding: 10;">
+        <VBox fx:id="sidebarContainer" minWidth="200" maxWidth="250" prefWidth="220" spacing="10"
+              style="-fx-background-color: #31243e; -fx-padding: 10;"
+              VBox.vgrow="ALWAYS">
         </VBox>
     </left>
 

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox fx:id="sidebar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="Infinity" styleClass="sidebar" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.SidebarController">
+<VBox fx:id="sidebar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="Infinity" VBox.vgrow="ALWAYS" styleClass="sidebar" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.SidebarController">
       <!-- Logo -->
       <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" smooth="false">
             <Image url="@../../../images/UninaIconaNuova.png" />

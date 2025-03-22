@@ -16,27 +16,14 @@ import com.uninadelivery.model.entities.Ordine;
 public class OrdineDAO {
     private static final Logger LOGGER = Logger.getLogger(OrdineDAO.class.getName());
 
-    public void createOrdine(Ordine ordine) {
-        String query = "INSERT INTO ordine (id_ordine, data_ordine, completamento) VALUES (?, ?, ?) RETURNING id_ordine";
-
-        try (Connection conn = DBConnection.getDBconnection().getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
-
-            ps.setInt(1, ordine.getIdOrdine());
-            ps.setDate(2, java.sql.Date.valueOf(ordine.getDataOrdine()));
-            ps.setBoolean(3, ordine.getCompletamento());
-
-            ps.executeUpdate();
-            LOGGER.info("Ordine inserito con successo: " + ordine.getIdOrdine());
-
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Errore durante l'inserimento dell'ordine", e);
-        }
-    }
-
+    /* Metodo usato nella schermata orders */
     public List<Ordine> getAllOrdini() {
         List<Ordine> orders = new ArrayList<>();
-        String query = "SELECT id_ordine, data_ordine, completamento, email_cliente FROM ordine";
+        String query = "SELECT o.id_ordine, o.data_ordine, o.completamento, o.email_cliente, " +
+                "COALESCE(SUM(d.quantita), 0) AS numero_prodotti " +
+                "FROM ordine o " +
+                "LEFT JOIN dettaglio_ordine d ON o.id_ordine = d.id_ordine " +
+                "GROUP BY o.id_ordine, o.data_ordine, o.completamento, o.email_cliente";
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
@@ -47,8 +34,9 @@ public class OrdineDAO {
                 LocalDate dataOrdine = rs.getDate("data_ordine").toLocalDate();
                 Boolean completamento = rs.getBoolean("completamento");
                 String emailCliente = rs.getString("email_cliente");
+                int numeroProdotti = rs.getInt("numero_prodotti");
 
-                Ordine ordine = new Ordine(idOrdine, dataOrdine, completamento, emailCliente);
+                Ordine ordine = new Ordine(idOrdine, dataOrdine, completamento, emailCliente, numeroProdotti);
                 orders.add(ordine);
             }
         } catch (SQLException e) {
@@ -57,4 +45,8 @@ public class OrdineDAO {
 
         return orders;
     }
+
+
+
+
 }

@@ -6,13 +6,15 @@ public class Ordine {
     private int idOrdine;
     private LocalDate dataOrdine;
     private boolean completamento;
-    private String emailCliente; // Aggiunto il campo email
+    private String emailCliente;
+    private int numeroProdotti;
 
-    public Ordine(int idOrdine, LocalDate dataOrdine, Boolean completamento, String emailCliente) {
+    public Ordine(int idOrdine, LocalDate dataOrdine, Boolean completamento, String emailCliente, int numeroProdotti) {
         this.idOrdine = idOrdine;
         this.dataOrdine = dataOrdine;
         this.completamento = completamento;
         this.emailCliente = emailCliente;
+        this.numeroProdotti = numeroProdotti;
     }
 
     public String getEmailCliente() {
@@ -47,6 +49,14 @@ public class Ordine {
         this.completamento = completamento;
     }
 
+    public int getNumeroProdotti() {
+        return numeroProdotti;
+    }
+
+    public void setNumeroProdotti(int numeroProdotti) {
+        this.numeroProdotti = numeroProdotti;
+    }
+
     @Override
     public String toString() {
         return "Ordine{" +
@@ -54,6 +64,7 @@ public class Ordine {
                 ", dataOrdine=" + dataOrdine +
                 ", completamento=" + completamento +
                 ", emailCliente='" + emailCliente + '\'' +
+                ", numeroProdotti=" + numeroProdotti +
                 '}';
     }
 }

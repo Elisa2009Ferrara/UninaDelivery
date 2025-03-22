@@ -4,7 +4,6 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -15,8 +14,11 @@
 <BorderPane prefHeight="500.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.StatsController">
     <top>
         <VBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="banner" stylesheets="@../../../style.css">
-                        <Label prefHeight="18.0" prefWidth="166.0" styleClass="labelStats" stylesheets="@../../../style.css" text="Report mensile" />
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="banner" stylesheets="@../../../style.css">
+                        <Label prefHeight="30.0" prefWidth="186.0" styleClass="labelStats" stylesheets="@../../../style.css" text="Report mensile">
+               <padding>
+                  <Insets left="10.0" />
+               </padding></Label>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="574.0">
                                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                         <ComboBox fx:id="monthComboBox" prefWidth="150.0" promptText="Seleziona Mese" />
@@ -28,24 +30,21 @@
     </top>
     <center>
         <VBox prefHeight="400.0" prefWidth="511.0" styleClass="background" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                        <VBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="294.0" spacing="10.0">
+                <HBox alignment="CENTER" prefHeight="406.0" prefWidth="774.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="262.0" prefWidth="294.0" spacing="10.0">
                                 <Label text="Numero medio di ordini:" />
-                                <Label fx:id="averageOrdersLabel" style="-fx-font-weight: bold;" text="--" />
-
+                                <Label fx:id="avgOrdersLabel" style="-fx-font-weight: bold;" text="--" />
+   
                                 <Label text="Ordine con più prodotti:" />
-                                <Label fx:id="maxProductsLabel" style="-fx-font-weight: bold;" text="--" />
-
+                                <Label fx:id="maxOrderLabel" style="-fx-font-weight: bold;" text="--" />
+   
                                 <Label text="Ordine con meno prodotti:" />
-                                <Label fx:id="minProductsLabel" style="-fx-font-weight: bold;" text="--" />
+                                <Label fx:id="minOrderLabel" style="-fx-font-weight: bold;" text="--" />
                             <padding>
                                 <Insets left="10.0" top="5.0" />
                             </padding>
                         </VBox>
-                </HBox>
-                <HBox alignment="CENTER" prefHeight="302.0" prefWidth="774.0" spacing="20.0">
-                        <PieChart fx:id="ordersPieChart" prefHeight="302.0" prefWidth="317.0" />
-                        <BarChart fx:id="ordersBarChart" prefHeight="302.0" prefWidth="317.0">
+                        <BarChart fx:id="barChart" prefHeight="200.0" prefWidth="411.0">
                             <xAxis>
                                 <CategoryAxis side="BOTTOM" fx:id="xAxis" />
                             </xAxis>

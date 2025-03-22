@@ -7,7 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -27,20 +26,24 @@ public class MainController {
     @FXML
     public void initialize() {
         try {
-            // Carica la sidebar
             FXMLLoader sidebarLoader = new FXMLLoader(getClass().getResource("/com/uninadelivery/view/sidebar.fxml"));
             Node sidebar = sidebarLoader.load();
             borderPane.setLeft(sidebar);
 
-            // Ottieni il controller della sidebar e passa il riferimento al MainController
             SidebarController sidebarController = sidebarLoader.getController();
             sidebarController.setMainController(this);
 
-            // Content area adattata alla finestra
-            borderPane.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            contentArea.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            borderPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
+                double width = newWidth.doubleValue();
 
-            // Carica la home di default
+                // Se la finestra è più piccola di 600px, riduci la sidebar
+                if (width < 600) {
+                    sidebar.setStyle("-fx-pref-width: 150px; -fx-min-width: 150px;");
+                } else {
+                    sidebar.setStyle("-fx-pref-width: 220px; -fx-min-width: 200px;");
+                }
+            });
+
             loadContent("/com/uninadelivery/view/home.fxml");
 
         } catch (IOException e) {
@@ -54,11 +57,10 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent view = loader.load();
 
-            // Allinea al centro e assicura l'adattamento alla finestra
+            // Allineamento al centro
             StackPane.setAlignment(view, Pos.CENTER);
             StackPane.setMargin(view, new Insets(10));
 
-            // Se la view è una Region (VBox, HBox, StackPane, BorderPane, ecc.), la rendiamo adattabile
             if (view instanceof javafx.scene.layout.Region) {
                 ((javafx.scene.layout.Region) view).prefWidthProperty().bind(contentArea.widthProperty());
                 ((javafx.scene.layout.Region) view).prefHeightProperty().bind(contentArea.heightProperty());
@@ -70,16 +72,4 @@ public class MainController {
         }
     }
 
-    public void setCenterView(Parent view) {
-        StackPane.setAlignment(view, Pos.CENTER);
-
-        // Controlla se la view è un Region per poter adattare le dimensioni
-        if (view instanceof Region) {
-            Region regionView = (Region) view;
-            regionView.prefWidthProperty().bind(contentArea.widthProperty());
-            regionView.prefHeightProperty().bind(contentArea.heightProperty());
-        }
-
-        contentArea.getChildren().setAll(view);
-    }
 }
