@@ -1,7 +1,9 @@
 # UninaDelivery
 
 ## Descrizione
-UninaDelivery è un sistema di gestione della logistica delle spedizioni di merci. Gli operatori possono pianificare le spedizioni in base agli ordini ricevuti, considerando la disponibilità della merce, il peso degli articoli, nonché la presenza di mezzi di trasporto e corrieri disponibili. 
+UninaDelivery è un sistema avanzato per la gestione logistica delle spedizioni di merci. L'applicazione permette agli operatori di pianificare, monitorare e ottimizzare il processo di spedizione in base agli ordini dei clienti, tenendo conto di variabili come disponibilità dei prodotti, mezzi di trasporto e corrieri disponibili.
+
+Il sistema è progettato con un'interfaccia grafica intuitiva realizzata in JavaFX e sfrutta una base di dati relazionale per gestire gli ordini e le disponibilità.
 
 Il sistema offre diverse funzionalità chiave:
 - Login per operatori
