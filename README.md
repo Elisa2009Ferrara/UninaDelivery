@@ -70,18 +70,20 @@ Questo progetto utilizza **PostgreSQL** come database relazionale. Nella reposit
 2. Creare un database con il nome **UninaDelivery**.
 3. Ripristinare il backup con il comando:
    ```sh
-   psql -U postgres -d UninaDelivery -f backup.sql
+   psql -U postgres -d UninaDelivery -f backup_uninadelivery.sql
    ```
 
 ### 2. Credenziali del Database
 Le credenziali di accesso al database sono state fornite via email.
 
 ### 3. Avvio del Progetto
-Il progetto utilizza **JavaFX** per l'interfaccia grafica. Per eseguire l'applicazione:
+Il progetto utilizza **JavaFX** per l'interfaccia grafica. Se non si ha ancora il progetto sul PC, clonarlo con:
 ```sh
-mvn clean install
-java -jar target/uninaDelivery.jar
+git clone https://github.com/Elisa2009Ferrara/UninaDelivery.git
+cd UninaDelivery
 ```
+Aprire la directory principale, aprire il file Main e cliccare su Run.
+
 ## Contributi
 <p align="center">
   <table>
