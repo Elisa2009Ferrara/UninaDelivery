@@ -46,13 +46,10 @@ public class OrdersController {
         emailUtente.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getEmailCliente()));
         dataOrdine.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getDataOrdine()));
 
-        // Carica gli ordini all'avvio
         loadOrders();
-
-        // Aggiunge il comportamento al bottone di ricerca
         searchButton.setOnAction(_ -> searchOrders());
 
-        // Aggiorna automaticamente la lista mentre l'utente digita
+        // Aggiornamento automatico della lista mentre l'utente digita
         emailField.textProperty().addListener((_, _, _) -> searchOrders());
     }
 
@@ -69,7 +66,7 @@ public class OrdersController {
         LocalDate endDate = endDatePicker.getValue();
 
         List<Ordine> filteredOrders = ordiniList.stream()
-                .filter(order -> (email.isEmpty() || order.getEmailCliente().toLowerCase().contains(email.toLowerCase()))) // Cerca per email parziale
+                .filter(order -> (email.isEmpty() || order.getEmailCliente().toLowerCase().contains(email.toLowerCase())))
                 .filter(order -> (startDate == null || !order.getDataOrdine().isBefore(startDate)))
                 .filter(order -> (endDate == null || !order.getDataOrdine().isAfter(endDate)))
                 .collect(Collectors.toList());
