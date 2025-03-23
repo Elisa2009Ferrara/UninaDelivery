@@ -18,7 +18,9 @@
 
     <!-- Content Area al centro -->
     <center>
-        <StackPane fx:id="contentArea" maxWidth="Infinity" maxHeight="Infinity"
+        <StackPane fx:id="contentArea"
+                   maxWidth="Infinity"
+                   maxHeight="Infinity"
                    BorderPane.alignment="CENTER"
                    style="-fx-background-color: #f4f4f4; -fx-padding: 15;">
         </StackPane>

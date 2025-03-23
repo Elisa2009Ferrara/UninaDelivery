@@ -3,6 +3,11 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox fx:id="content_area" maxWidth="Infinity" maxHeight="Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.ContentAreaController">
-
+<VBox fx:id="content_area"
+      maxWidth="Infinity"
+      maxHeight="Infinity"
+      VBox.vgrow="ALWAYS"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.uninadelivery.controller.ContentAreaController">
 </VBox>
