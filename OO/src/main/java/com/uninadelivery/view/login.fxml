@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.LoginController">
+    <left>
+        <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #31243e;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fx:id="brandingImageView" fitHeight="407.0" fitWidth="228.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@/images/LoginBanner.png" />
+                    </image></ImageView>
+            </children></AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="400.0" prefWidth="332.0" style="-fx-background-color: ecece7;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="108.0" layoutY="104.0" text="Sign in" textFill="#31243e">
+                    <font>
+                        <Font name="Segoe UI Black" size="20.0" />
+                    </font>
+                </Label>
+                <ImageView fx:id="userImageView" fitHeight="60.0" fitWidth="60.0" layoutX="112.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@/images/LogoLogin.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="24.0" layoutY="182.0" prefHeight="18.0" prefWidth="61.0" text="Username" textFill="#31243e">
+                    <font>
+                        <Font name="Segoe UI Historic" size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="27.0" layoutY="233.0" prefHeight="18.0" prefWidth="59.0" text="Password" textFill="#31243e">
+                    <font>
+                        <Font name="Segoe UI Historic" size="13.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="usernameTextField" layoutX="98.0" layoutY="178.0" prefHeight="26.0" prefWidth="163.0" />
+                <PasswordField fx:id="passwordTextField" layoutX="98.0" layoutY="230.0" prefHeight="26.0" prefWidth="163.0" />
+                <Button fx:id="loginButton" layoutX="74.0" layoutY="287.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="135.0" style="-fx-background-color: #31243e;" text="Login">
+                    <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="0.9254902005195618" green="0.9254902005195618" blue="0.9058823585510254" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </textFill></Button>
+                <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="30.0" layoutY="142.0" prefHeight="18.0" prefWidth="224.0" style="-fx-background-color: #f2dede; -fx-opacity: 0;" textAlignment="CENTER" textFill="#cf0000">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Label>
+                <Label fx:id="registerMessageLabel" layoutX="54.0" layoutY="351.0" onMouseClicked="#setOnMouseClick" text="Non hai un account? Registrati" textFill="#555555">
+                    <font>
+                        <Font name="Segoe UI Historic" size="13.0" />
+                    </font>
+                </Label>
+            </children></AnchorPane>
+    </right>
+</BorderPane>
