@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="#"><img src="https://github.com/Elisa2009Ferrara/UninaDelivery/blob/main/src/main/resources/images/UninaIconaNuova.png" width="250"></a>
+  <a href="#"><img src="[https://github.com/Elisa2009Ferrara/UninaDelivery/blob/main/src/main/resources/images/UninaIconaNuova.png](https://github.com/Elisa2009Ferrara/UninaDelivery/blob/main/OO/src/main/resources/images/UninaIconaNuova.png)" width="250"></a>
   <br>
   UninaDelivery
   <br>
