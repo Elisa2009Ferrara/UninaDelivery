@@ -131,3 +131,10 @@
     -fx-background-color: #31243e;
     -fx-padding: 10px
 }
+
+.cancelButton {
+    -fx-background-color: #E74C3C;
+    -fx-font-family: "Segoe UI Historic";
+    -fx-font-size: 12px;
+    -fx-text-fill: #ecece7;
+}

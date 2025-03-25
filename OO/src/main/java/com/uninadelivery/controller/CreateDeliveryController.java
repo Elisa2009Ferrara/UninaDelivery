@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import com.uninadelivery.database.DatabaseHelper;
+
 
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class CreateDeliveryController {
     @FXML
     public void initialize() {
         // Associa le colonne agli attributi di Ordine
-        colIdOrdine.setCellValueFactory(cellData -> javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getIdOrdine()).asObject());
+        colIdOrdine.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getIdOrdine()).asObject());
         colNome.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmailCliente())); // Supponiamo che nome sia l'email
         colCognome.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty("")); // Da cambiare se hai un campo cognome
         colIdOrdine.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getIdOrdine()).asObject());

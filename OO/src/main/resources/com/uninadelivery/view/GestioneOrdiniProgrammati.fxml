@@ -19,8 +19,8 @@
         </TableView>
     </center>
     <top>
-        <VBox alignment="CENTER" prefHeight="82.0" prefWidth="774.0" styleClass="banner" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="774.0" spacing="10.0">
+        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="774.0" styleClass="banner" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="525.0" spacing="10.0">
                 <Label prefHeight="30.0" prefWidth="297.0" stylesheets="@../../../style.css" text="Ordini Programmati">
                     <styleClass>
                         <String fx:value="labelOrder" />
@@ -32,19 +32,15 @@
                 </Label>
                 <HBox prefHeight="66.0" prefWidth="134.0" />
                 <VBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="538.0">
-                    <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="672.0" spacing="10.0">
-                            <children>
-                        <Button fx:id="modifyButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Modifica" />
-                        <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Cancella" />
+                        <Button fx:id="modifyButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" styleClass="searchButton" stylesheets="@../../../style.css" text="Modifica" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" styleClass="cancelButton" stylesheets="@../../../style.css" text="Cancella" />
                                 <Label styleClass="labelOrder" stylesheets="@../../../style.css" text="Cliente" />
                                 <TextField fx:id="emailClienteField" prefHeight="26.0" prefWidth="186.0" promptText="Email del Cliente" />
-                            </children>
                             <padding>
                                 <Insets right="10.0" />
                             </padding>
                         </HBox>
-                    </children>
                 </VBox>
             </HBox>
             <padding>
