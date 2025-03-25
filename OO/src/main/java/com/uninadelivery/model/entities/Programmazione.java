@@ -47,10 +47,12 @@ public class Programmazione {
     }
 
     public ObjectProperty<LocalDate> dataFineProperty() {
+
         return dataFine;
     }
 
     public LocalDate getDataFine() {
+
         return dataFine.get();
     }
 

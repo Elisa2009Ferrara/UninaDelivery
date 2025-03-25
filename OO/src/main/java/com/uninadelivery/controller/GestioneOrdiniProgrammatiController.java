@@ -19,6 +19,8 @@ public class GestioneOrdiniProgrammatiController {
     @FXML private TableColumn<Programmazione, LocalDate> colDataSpedizione;
     @FXML private TableColumn<Programmazione, String> colFrequenza;
     @FXML private TableColumn<Programmazione, String> colClienteEmail;
+    @FXML private TableColumn<Programmazione, String> colOrario;
+    @FXML private TableColumn<Programmazione, LocalDate> colDataFine;
     @FXML private Button btnModifica;
     @FXML private Button btnElimina;
     @FXML private Button btnAggiorna;
@@ -33,6 +35,8 @@ public class GestioneOrdiniProgrammatiController {
         colDataSpedizione.setCellValueFactory(cellData -> cellData.getValue().proxConsegnaProperty());
         colFrequenza.setCellValueFactory(cellData -> cellData.getValue().frequenzaProperty());
         colClienteEmail.setCellValueFactory(cellData -> cellData.getValue().clienteEmailProperty());
+        colOrario.setCellValueFactory(cellData -> cellData.getValue().orarioProperty());
+        colDataFine.setCellValueFactory(cellData -> cellData.getValue().dataFineProperty());
 
         Scene scene = tableOrdini.getScene();
         //scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());

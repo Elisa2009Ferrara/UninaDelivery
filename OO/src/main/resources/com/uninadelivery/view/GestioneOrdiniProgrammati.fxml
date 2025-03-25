@@ -9,12 +9,12 @@
     <center>
         <TableView fx:id="tableView" prefHeight="200.0" prefWidth="774.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="idOrdineProgrammato" prefWidth="111.0" text="IdOrdine" />
-                <TableColumn fx:id="prossimaConsegna" prefWidth="205.0" text="Prossima Consegna" />
-                <TableColumn fx:id="dataFine" prefWidth="119.0" text="Data Fine" />
-            <TableColumn fx:id="orario" prefWidth="118.0" text="Fascia Oraria" />
-            <TableColumn fx:id="frequenza" prefWidth="105.0" text="Frequenza" />
-            <TableColumn fx:id="dataOrdine11" prefWidth="115.0" text="Email Cliente" />
+                <TableColumn fx:id="colIdOrdine" prefWidth="111.0" text="IdOrdine" />
+                <TableColumn fx:id="colDataSpedizione" prefWidth="205.0" text="Prossima Consegna" />
+                <TableColumn fx:id="colDataFine" prefWidth="119.0" text="Data Fine" />
+            <TableColumn fx:id="colOrario" prefWidth="118.0" text="Fascia Oraria" />
+            <TableColumn fx:id="colFrequenza" prefWidth="105.0" text="Frequenza" />
+            <TableColumn fx:id="colClienteEmail" prefWidth="115.0" text="Email Cliente" />
             </columns>
         </TableView>
     </center>
