@@ -106,23 +106,6 @@ public class LoginController implements Initializable {
         }
     }
 
-    private void goToRegister() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uninadelivery/view/Register.fxml"));
-            Parent root = loader.load();
-
-            Stage newStage = new Stage();
-            newStage.setScene(new Scene(root));
-            newStage.show();
-
-            Stage currentStage = (Stage) loginButton.getScene().getWindow();
-            currentStage.close();
-
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Errore nel caricamento della schermata di login", e);
-        }
-    }
-
     private void openMainScreen() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uninadelivery/view/main.fxml"));
@@ -130,6 +113,8 @@ public class LoginController implements Initializable {
 
             Stage mainStage = new Stage();
             mainStage.setTitle("UninaDelivery - Dashboard");
+            Image appIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconaApp.png")));
+            mainStage.getIcons().add(appIcon);
 
             Scene scene = new Scene(root);
             mainStage.setScene(scene);

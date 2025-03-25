@@ -59,7 +59,6 @@ public class MainController {
 
             // Allineamento al centro
             StackPane.setAlignment(view, Pos.CENTER);
-            StackPane.setMargin(view, new Insets(10));
 
             if (view instanceof javafx.scene.layout.Region) {
                 ((javafx.scene.layout.Region) view).prefWidthProperty().bind(contentArea.widthProperty());

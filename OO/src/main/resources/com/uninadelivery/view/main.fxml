@@ -4,25 +4,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane fx:id="borderPane" maxWidth="Infinity" maxHeight="Infinity" xmlns="http://javafx.com/javafx/11.0.14-internal"
+<BorderPane fx:id="borderPane" maxWidth="Infinity" maxHeight="Infinity"
+            style="-fx-padding: 0; -fx-background-insets: 0; -fx-border-width: 0; -fx-border-color: transparent;"
+            xmlns="http://javafx.com/javafx/11.0.14-internal"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.uninadelivery.controller.MainController">
 
     <!-- Sidebar a sinistra -->
     <left>
         <VBox fx:id="sidebarContainer" minWidth="200" maxWidth="250" prefWidth="220" spacing="10"
-              style="-fx-background-color: #31243e; -fx-padding: 10;"
-              VBox.vgrow="ALWAYS">
+              style="-fx-background-color: #31243e; -fx-padding: 10; -fx-border-width: 0;"
+              fillWidth="true" maxHeight="Infinity" VBox.vgrow="ALWAYS">
         </VBox>
     </left>
 
     <!-- Content Area al centro -->
     <center>
         <StackPane fx:id="contentArea"
-                   maxWidth="Infinity"
-                   maxHeight="Infinity"
+                   maxWidth="Infinity" maxHeight="Infinity"
+                   minWidth="0" minHeight="0"
                    BorderPane.alignment="CENTER"
-                   style="-fx-background-color: #f4f4f4; -fx-padding: 15;">
+                   style="-fx-background-color: #80b9b2; -fx-padding: 0; -fx-background-insets: 0; -fx-border-width: 0; -fx-border-insets: 0; -fx-border-color: transparent;">
         </StackPane>
     </center>
 

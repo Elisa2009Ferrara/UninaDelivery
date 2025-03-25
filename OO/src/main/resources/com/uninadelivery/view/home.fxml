@@ -5,8 +5,8 @@
 
 
 <StackPane prefHeight="500.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.HomeController">
-      <ImageView fx:id="homeImageView" fitHeight="500.0" fitWidth="774.0"  preserveRatio="true">
-              <Image url="@../../../images/UninaDeliveryHome.png"/>
+      <ImageView fitHeight="500.0" fitWidth="774.0"  preserveRatio="true">
+              <Image url="@../../../images/UninaHomeNuova.png"/>
       </ImageView>
 </StackPane>
 

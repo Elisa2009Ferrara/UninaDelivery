@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.geometry.Insets?>
 
 <VBox fx:id="content_area"
       maxWidth="Infinity"
@@ -9,5 +9,9 @@
       VBox.vgrow="ALWAYS"
       xmlns="http://javafx.com/javafx/23.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.uninadelivery.controller.ContentAreaController">
+      fx:controller="com.uninadelivery.controller.ContentAreaController"
+      style="-fx-border-width: 0; -fx-border-color: transparent;">
+    <padding>
+        <Insets top="0" right="0" bottom="0" left="0"/>
+    </padding>
 </VBox>

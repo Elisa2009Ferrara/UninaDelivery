@@ -7,6 +7,15 @@
     -fx-background-color: #ecece7;
 }
 
+/* Ensure no borders for the main application window */
+.root {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+}
+
 /* Background e colore label login */
 /* Stile base del messaggio */
 .label-message {
@@ -45,6 +54,9 @@
 /* Sidebar style */
 .sidebar {
     -fx-background-color: #31243e;
+    -fx-min-height: 100%;
+    -fx-max-height: Infinity;
+    -fx-pref-height: Infinity;
 }
 
 /* Stile di base per i pulsanti */
@@ -83,8 +95,6 @@
     -fx-font-size: 16px;
 }
 
-
-
 /* Schermata Ordini */
 .labelOrder {
     -fx-text-fill: #ecece7;
@@ -121,4 +131,3 @@
     -fx-background-color: #31243e;
     -fx-padding: 10px
 }
-

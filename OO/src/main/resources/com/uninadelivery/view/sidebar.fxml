@@ -8,49 +8,49 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox fx:id="sidebar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="Infinity" VBox.vgrow="ALWAYS" styleClass="sidebar" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.SidebarController">
-      <!-- Logo -->
-      <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" smooth="false">
-            <Image url="@../../../images/UninaIconaNuova.png" />
-      </ImageView>
+<VBox fx:id="sidebar" alignment="TOP_CENTER" maxHeight="Infinity" minHeight="-Infinity" maxWidth="Infinity" prefHeight="Infinity" VBox.vgrow="ALWAYS" styleClass="sidebar" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.SidebarController">
+    <!-- Logo -->
+    <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" smooth="false">
+        <Image url="@../../../images/UninaIconaNuova.png" />
+    </ImageView>
 
-      <!-- Home -->
-      <HBox fx:id="homeButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
-         <padding><Insets left="20.0" /></padding>
-            <FontIcon iconLiteral="fa-home" />
-            <Label text="Home">
-            </Label>
-      </HBox>
+    <!-- Home -->
+    <HBox fx:id="homeButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
+        <padding><Insets left="20.0" /></padding>
+        <FontIcon iconLiteral="fa-home" />
+        <Label text="Home">
+        </Label>
+    </HBox>
 
-      <!-- Ordini -->
-      <HBox fx:id="orderButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
-         <padding><Insets left="20.0" /></padding>
-            <FontIcon iconLiteral="fa-inbox" />
-            <Label text="Ordini">
-            </Label>
-      </HBox>
+    <!-- Ordini -->
+    <HBox fx:id="orderButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
+        <padding><Insets left="20.0" /></padding>
+        <FontIcon iconLiteral="fa-inbox" />
+        <Label text="Ordini">
+        </Label>
+    </HBox>
 
-      <!-- Spedizioni -->
-      <HBox fx:id="deliveryButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
-         <padding><Insets left="20.0" /></padding>
-            <FontIcon iconLiteral="fa-paper-plane" />
-            <Label text="Spedizioni">
-            </Label>
-      </HBox>
+    <!-- Spedizioni -->
+    <HBox fx:id="deliveryButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
+        <padding><Insets left="20.0" /></padding>
+        <FontIcon iconLiteral="fa-paper-plane" />
+        <Label text="Spedizioni">
+        </Label>
+    </HBox>
 
-      <!-- Statistiche -->
-      <HBox fx:id="statsButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
-         <padding><Insets left="20.0" /></padding>
-            <FontIcon iconLiteral="fa-area-chart" />
-            <Label text="Statistiche">
-            </Label>
-      </HBox>
+    <!-- Statistiche -->
+    <HBox fx:id="statsButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
+        <padding><Insets left="20.0" /></padding>
+        <FontIcon iconLiteral="fa-area-chart" />
+        <Label text="Statistiche">
+        </Label>
+    </HBox>
 
-      <!-- Magazzino -->
-      <HBox fx:id="storeButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
-         <padding><Insets left="20.0" /></padding>
-            <FontIcon iconLiteral="fa-archive" />
-            <Label text="Magazzino">
-            </Label>
-      </HBox>
+    <!-- Magazzino -->
+    <HBox fx:id="storeButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
+        <padding><Insets left="20.0" /></padding>
+        <FontIcon iconLiteral="fa-archive" />
+        <Label text="Magazzino">
+        </Label>
+    </HBox>
 </VBox>
