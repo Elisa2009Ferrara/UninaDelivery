@@ -14,28 +14,32 @@ public class SpedizioneDAO {
     private static final Logger LOGGER = Logger.getLogger(SpedizioneDAO.class.getName());
     private DBConnection dbcon;
 
-    public void createSpedizione(Spedizione spedizione) {
-        String query = "INSERT INTO spedizione (id_spedizione, destinazione, arrivo_prev, societa, stato, data_sped) " +
-                "VALUES (?, ?, ?, ?, ?, ?) RETURNING id_spedizione";
+    public int createSpedizione(Spedizione spedizione) {
+        String query = "INSERT INTO spedizione (destinazione, arrivo_prev, societa, stato, data_sped) " +
+                "VALUES (?, ?, ?, ?, ?) RETURNING id_spedizione";
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
+             PreparedStatement ps = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-            ps.setInt(1, spedizione.getIdSpedizione());
-            ps.setString(2, spedizione.getDestinazione());
-            ps.setDate(3, java.sql.Date.valueOf(spedizione.getArrivoPrev()));
-            ps.setString(4, spedizione.getSocieta());
-            ps.setString(5, spedizione.getStato());
-            ps.setDate(6, java.sql.Date.valueOf(spedizione.getDataSped()));
+            ps.setString(1, spedizione.getDestinazione());
+            ps.setDate(2, java.sql.Date.valueOf(spedizione.getArrivoPrev()));
+            ps.setString(3, spedizione.getSocieta());
+            ps.setString(4, spedizione.getStato());
+            ps.setDate(5, java.sql.Date.valueOf(spedizione.getDataSped()));
 
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    int idGenerato = rs.getInt(1);
-                    LOGGER.info("Prodotto inserito con successo, ID generato: " + idGenerato);
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows > 0) {
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        int idSpedizione = rs.getInt(1);
+                        LOGGER.info("Spedizione inserita con successo, ID: " + idSpedizione);
+                        return idSpedizione;
+                    }
                 }
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Errore durante l'inserimento del prodotto", e);
+            LOGGER.log(Level.SEVERE, "Errore durante l'inserimento della spedizione", e);
         }
+        return -1;
     }
 }

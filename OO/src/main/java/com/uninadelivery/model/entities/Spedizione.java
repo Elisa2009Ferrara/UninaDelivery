@@ -11,14 +11,18 @@ public class Spedizione {
     private String societa;
     private String stato;
     private LocalDate dataSped;
+    private int idOrdine;
+    private int id_programmazione;
 
-    public Spedizione(int idSpedizione, String destinazione, LocalDate arrivoPrev, String societa, String stato, LocalDate dataSped) {
+    public Spedizione(int idSpedizione, String destinazione, LocalDate arrivoPrev, String societa, String stato, LocalDate dataSped, int idOrdine, int id_programmazione) {
         this.setIdSpedizione(idSpedizione);
         this.setDestinazione(destinazione);
         this.setArrivoPrev(arrivoPrev);
         this.setSocieta(societa);
         this.setStato(stato);
         this.setDataSped(dataSped);
+        this.setIdOrdine(idOrdine);
+        this.setId_programmazione(id_programmazione);
     }
 
     public int getIdSpedizione() {
@@ -69,6 +73,22 @@ public class Spedizione {
         this.dataSped = dataSped;
     }
 
+    public int getIdOrdine() {
+        return idOrdine;
+    }
+
+    public void setIdOrdine(int idOrdine) {
+        this.idOrdine = idOrdine;
+    }
+
+    public int getId_programmazione() {
+        return id_programmazione;
+    }
+
+    public void setId_programmazione(int id_programmazione) {
+        this.id_programmazione = id_programmazione;
+    }
+
     @Override
     public String toString() {
         return "Spedizione{" + "idSpedizione=" + idSpedizione +
@@ -77,6 +97,8 @@ public class Spedizione {
                 ", societa=" + societa +
                 ", stato=" + stato +
                 ", dataSped=" + dataSped +
+                ", idOrdine=" + idOrdine +
+                ", id_programmazione=" + id_programmazione +
                 '}';
     }
 }

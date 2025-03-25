@@ -138,3 +138,11 @@
     -fx-font-size: 12px;
     -fx-text-fill: #ecece7;
 }
+
+/* */
+.buttonCreate {
+    -fx-background-color: #80b9b2;
+    -fx-font-family: "Segoe UI Historic";
+    -fx-font-size: 12px;
+    -fx-text-fill: #31243e;
+}

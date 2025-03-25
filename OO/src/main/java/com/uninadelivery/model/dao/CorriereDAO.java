@@ -2,7 +2,10 @@ package com.uninadelivery.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,22 +15,21 @@ import com.uninadelivery.model.entities.Corriere;
 public class CorriereDAO {
     private static final Logger LOGGER = Logger.getLogger(CorriereDAO.class.getName());
 
-    public void createCorriere(Corriere corriere) {
-        String query = "INSERT INTO corriere (n_telefono_corriere, nome_corriere, cognome_corriere, disponibilita) " +
-                "VALUES (?, ?, ?, ?) RETURNING n_telefono_corriere";
+    public List<String> getCorrieriDisponibili() {
+        List<String> corrieri = new ArrayList<>();
+        String query = "SELECT nome_corriere FROM corriere WHERE disponibilita = true";
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
+             PreparedStatement ps = conn.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
 
-            ps.setString(1, corriere.getnTelefonoCorriere());
-            ps.setString(2, corriere.getNomeCorriere());
-            ps.setString(3, corriere.getCognomeCorriere());
-            ps.setBoolean(4, corriere.getDisponibilita());
-
-            ps.executeUpdate();
+            while (rs.next()) {
+                corrieri.add(rs.getString("nome_corriere"));
+            }
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Errore durante l'inserimento del corriere", e);
+            LOGGER.log(Level.SEVERE, "Errore durante il recupero dei corrieri disponibili", e);
         }
+        return corrieri;
     }
 }

@@ -45,7 +45,47 @@ public class OrdineDAO {
 
         return orders;
     }
+    public List<Ordine> getOrdiniSenzaSpedizione() {
+        List<Ordine> ordini = new ArrayList<>();
+        String query = "SELECT id_ordine, email_cliente FROM ordine WHERE id_spedizione IS NULL";
 
+        try (Connection conn = DBConnection.getDBconnection().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int idOrdine = rs.getInt("id_ordine");
+                String emailCliente = rs.getString("email_cliente");
+                //ordini.add(new Ordine(idOrdine, emailCliente));
+            }
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Errore nel recupero degli ordini senza spedizione", e);
+        }
+
+        return ordini;
+    }
+
+    public void assegnaSpedizioneAOrdine(int idOrdine, int idSpedizione) {
+        String query = "UPDATE ordine SET id_spedizione = ? WHERE id_ordine = ?";
+
+        try (Connection conn = DBConnection.getDBconnection().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setInt(1, idSpedizione);
+            ps.setInt(2, idOrdine);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows > 0) {
+                LOGGER.info("Spedizione " + idSpedizione + " assegnata all'ordine " + idOrdine);
+            } else {
+                LOGGER.warning("Nessun ordine aggiornato. Controlla l'ID.");
+            }
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Errore durante l'assegnazione della spedizione all'ordine", e);
+        }
+    }
 
 
 
