@@ -45,6 +45,26 @@ public class OrdineDAO {
 
         return orders;
     }
+    public List<Ordine> getOrdiniSenzaSpedizione() {
+        List<Ordine> ordini = new ArrayList<>();
+        String query = "SELECT id_ordine, email_cliente FROM ordine WHERE mezzo_trasporto IS NULL OR corriere IS NULL";
+
+        try (Connection conn = DBConnection.getDBconnection().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int idOrdine = rs.getInt("id_ordine");
+                String emailCliente = rs.getString("email_cliente");
+                ordini.add(new Ordine(idOrdine, emailCliente));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore nel recupero degli ordini", e);
+        }
+
+        return ordini;
+    }
 
 
 

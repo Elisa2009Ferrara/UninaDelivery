@@ -1,19 +1,18 @@
 package com.uninadelivery.controller;
 
+import com.uninadelivery.model.dao.OrdineDAO; // Usa direttamente il DAO
+import com.uninadelivery.model.dao.SpedizioneDAO;
 import com.uninadelivery.model.entities.Ordine;
+import com.uninadelivery.model.entities.Spedizione;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import com.uninadelivery.database.DatabaseHelper;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CreateDeliveryController {
@@ -37,14 +36,15 @@ public class CreateDeliveryController {
     private ObservableList<String> mezziTrasportoList = FXCollections.observableArrayList("Camion", "Furgone", "Moto", "Aereo");
     private ObservableList<String> corrieriList = FXCollections.observableArrayList("DHL", "UPS", "FedEx", "Bartolini");
 
+    private OrdineDAO ordineDAO = new OrdineDAO(); // Usa direttamente il DAO
+    private SpedizioneDAO spedizioneDAO = new SpedizioneDAO();
+
     @FXML
     public void initialize() {
         // Associa le colonne agli attributi di Ordine
-        colIdOrdine.setCellValueFactory(cellData -> javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getIdOrdine()).asObject());
-        colNome.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmailCliente())); // Supponiamo che nome sia l'email
-        colCognome.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty("")); // Da cambiare se hai un campo cognome
         colIdOrdine.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getIdOrdine()).asObject());
         colNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmailCliente()));
+        colCognome.setCellValueFactory(cellData -> new SimpleStringProperty(""));
 
 
         // Carica gli ordini dal database
@@ -59,9 +59,7 @@ public class CreateDeliveryController {
     }
 
     private void caricaOrdini() {
-        // Query al database per recuperare gli ordini senza spedizione assegnata
-        List<Ordine> ordiniDalDB = DatabaseHelper.getOrdiniSenzaSpedizione(); // Questo metodo va implementato
-
+        List<Ordine> ordiniDalDB = ordineDAO.getOrdiniSenzaSpedizione(); // Usa OrdineDAO
         ordiniList.clear();
         ordiniList.addAll(ordiniDalDB);
         tableView.setItems(ordiniList);
@@ -82,8 +80,17 @@ public class CreateDeliveryController {
             return;
         }
 
-        // Aggiorna il database con mezzo di trasporto e corriere
-        DatabaseHelper.aggiornaOrdine(ordineSelezionato.getIdOrdine(), mezzoSelezionato, corriereSelezionato);
+        // Crea una nuova spedizione e la salva nel database
+        Spedizione nuovaSpedizione = new Spedizione(
+                ordineSelezionato.getIdOrdine(),
+                "Default",  // Valore fittizio per la destinazione
+                LocalDate.now().plusDays(3),  // Data fittizia di arrivo
+                corriereSelezionato,
+                "In preparazione",  // Stato fittizio
+                LocalDate.now()
+        );
+
+        spedizioneDAO.createSpedizione(nuovaSpedizione);
 
         // Ricarica la tabella per rimuovere l'ordine aggiornato
         caricaOrdini();
