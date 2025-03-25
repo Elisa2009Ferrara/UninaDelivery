@@ -28,13 +28,13 @@ public class GestioneOrdiniProgrammatiController {
 
     @FXML
     public void initialize() {
-        // Usa i metodi Property per configurare le TableColumn
+
         colIdOrdine.setCellValueFactory(cellData -> cellData.getValue().idProgrammazioneProperty().asObject());
         colDataSpedizione.setCellValueFactory(cellData -> cellData.getValue().proxConsegnaProperty());
         colFrequenza.setCellValueFactory(cellData -> cellData.getValue().frequenzaProperty());
         colClienteEmail.setCellValueFactory(cellData -> cellData.getValue().clienteEmailProperty());
 
-        Scene scene = tableOrdini.getScene(); // Ottieni la scena associata alla TableView
+        Scene scene = tableOrdini.getScene();
         //scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         String css = this.getClass().getResource("/style.css").toExternalForm();
         scene.getStylesheets().add(css);
@@ -46,7 +46,7 @@ public class GestioneOrdiniProgrammatiController {
     private void caricaOrdiniProgrammati() {
         listaOrdini.clear();
         try {
-            listaOrdini.addAll(programmazioneDAO.getAllOrdiniProgrammati());  // Chiamata istanziata
+            listaOrdini.addAll(programmazioneDAO.getAllOrdiniProgrammati());
             tableOrdini.setItems(listaOrdini);
         } catch (SQLException e) {
             mostraErrore("Errore nel caricamento degli ordini programmati.");
@@ -72,7 +72,7 @@ public class GestioneOrdiniProgrammatiController {
             try {
                 LocalDate nuovaData = LocalDate.parse(newDate);
                 ordineSelezionato.setProxConsegna(nuovaData);
-                programmazioneDAO.aggiornaOrdineProgrammato(ordineSelezionato);  // Chiamata istanziata
+                programmazioneDAO.aggiornaOrdineProgrammato(ordineSelezionato);
                 caricaOrdiniProgrammati();
             } catch (Exception e) {
                 mostraErrore("Data non valida.");
@@ -94,7 +94,7 @@ public class GestioneOrdiniProgrammatiController {
 
         if (result.isPresent() && result.get() == ButtonType.YES) {
             try {
-                programmazioneDAO.eliminaOrdineProgrammato(ordineSelezionato.getIdProgrammazione());  // Chiamata istanziata
+                programmazioneDAO.eliminaOrdineProgrammato(ordineSelezionato.getIdProgrammazione());
                 caricaOrdiniProgrammati();
             } catch (SQLException e) {
                 mostraErrore("Errore durante l'eliminazione.");
