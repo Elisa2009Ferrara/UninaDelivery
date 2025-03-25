@@ -32,11 +32,11 @@ public class ProgrammazioneDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     int idGenerato = rs.getInt(1);
-                    LOGGER.info("Prodotto inserito con successo, ID generato: " + idGenerato);
+                    LOGGER.info("Programmazione inserita con successo, ID generato: " + idGenerato);
                 }
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Errore durante l'inserimento del prodotto", e);
+            LOGGER.log(Level.SEVERE, "Errore durante l'inserimento della programmazione", e);
         }
     }
 
