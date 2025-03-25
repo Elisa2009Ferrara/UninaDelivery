@@ -1,34 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="407.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.CreateDeliveryController">
-      <BorderPane prefHeight="82.0" prefWidth="525.0" style="-fx-background-color: #31243e;">
-         <center>
-            <Label prefHeight="65.0" prefWidth="342.0" text="Crea una nuova spedizione" textFill="#ebebe6c8" BorderPane.alignment="CENTER" />
-         </center>
-      </BorderPane>
-      <GridPane layoutY="140.0" prefHeight="225.0" prefWidth="526.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="512.0" minWidth="10.0" prefWidth="407.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="162.0" minHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="239.0" minHeight="0.0" prefHeight="166.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-            <TableView prefHeight="187.0" prefWidth="512.0" GridPane.rowIndex="1">
-              <columns>
-                <TableColumn prefWidth="75.0" text="Id ordine" />
-                <TableColumn prefWidth="75.0" text="nome " />
-                  <TableColumn prefWidth="75.0" text="cognome" />
-                  <TableColumn prefWidth="101.0" text="destinazione" />
-                  <TableColumn prefWidth="128.0" text="mezzo di trasporto" />
-                  <TableColumn prefWidth="70.0" text="corriere" />
-              </columns>
+<BorderPane prefHeight="407.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.CreateDeliveryController">
+
+    <top>
+        <BorderPane prefHeight="82.0" prefWidth="525.0" style="-fx-background-color: #31243e;">
+            <center>
+                <Label prefHeight="65.0" prefWidth="342.0" text="Crea una nuova spedizione" textFill="#ebebe6c8" BorderPane.alignment="CENTER" />
+            </center>
+        </BorderPane>
+    </top>
+
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <HBox spacing="10" alignment="CENTER">
+                <ComboBox fx:id="comboBox1" promptText="Seleziona opzione..." />
+                <ComboBox fx:id="comboBox2" promptText="Seleziona opzione..." />
+            </HBox>
+            <TableView fx:id="tableView" prefHeight="187.0" prefWidth="512.0">
+                <columns>
+                    <TableColumn fx:id="colIdOrdine" prefWidth="75.0" text="Id ordine" />
+                    <TableColumn fx:id="colNome" prefWidth="75.0" text="Nome" />
+                    <TableColumn fx:id="colCognome" prefWidth="75.0" text="Cognome" />
+                    <TableColumn fx:id="colDestinazione" prefWidth="101.0" text="Destinazione" />
+                    <TableColumn fx:id="colMezzoTrasporto" prefWidth="128.0" text="Mezzo di trasporto" />
+                    <TableColumn fx:id="colCorriere" prefWidth="70.0" text="Corriere" />
+                </columns>
             </TableView>
-      </GridPane>
-      <Button layoutX="222.0" layoutY="365.0" mnemonicParsing="false" text="Crea" />
-      <TextField layoutX="27.0" layoutY="114.0" />
-      <TextField layoutX="195.0" layoutY="114.0" />
-</AnchorPane>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER">
+            <Button text="Crea" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
