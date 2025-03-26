@@ -21,7 +21,7 @@
     <top>
         <VBox alignment="CENTER" prefHeight="82.0" prefWidth="774.0" styleClass="banner" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="774.0" spacing="10.0">
-                <Label prefHeight="30.0" prefWidth="297.0" stylesheets="@../../../style.css" text="Ordini Programmati">
+                <Label prefHeight="30.0" prefWidth="297.0" stylesheets="@../../../style.css" text="   Ordini Programmati">
                     <styleClass>
                         <String fx:value="labelOrder" />
                         <String fx:value="labelStats" />
