@@ -46,14 +46,10 @@ public class Corriere {
     public void setDisponibilita(boolean disponibilita) {
         this.disponibilita = disponibilita;
     }
+
     @Override
     public String toString() {
-        return "Corriere{" +
-                "nome='" + nomeCorriere + "'" +
-                ", cognome='" + cognomeCorriere + "'" +
-                ", telefono='" + nTelefonoCorriere + "'" +
-                ", disponibilita=" + disponibilita +
-                '}';
+        return nomeCorriere + " " + cognomeCorriere;
     }
 
     @Override

@@ -16,20 +16,20 @@ public class MezzoDiTrasportoDAO {
     private static final Logger LOGGER = Logger.getLogger(MezzoDiTrasportoDAO.class.getName());
 
     public List<String> getMezziDisponibili() {
-        List<String> mezzi = new ArrayList<>();
-        String query = "SELECT modello FROM mezzo_di_trasporto WHERE disponibilita = true";
+        List<String> targhe = new ArrayList<>();
+        String query = "SELECT targa FROM mezzo_di_trasporto WHERE disponibilita = true";
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                mezzi.add(rs.getString("modello"));
+                targhe.add(rs.getString("targa"));  // Aggiungi la targa alla lista
             }
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Errore durante il recupero dei mezzi di trasporto disponibili", e);
         }
-        return mezzi;
+        return targhe;
     }
 }

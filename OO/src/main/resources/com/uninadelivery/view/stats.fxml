@@ -21,7 +21,7 @@
                </padding></Label>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="574.0">
                                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                        <ComboBox fx:id="monthComboBox" prefWidth="150.0" promptText="Seleziona Mese" />
+                                        <ComboBox fx:id="monthComboBox" prefWidth="150.0" promptText="Seleziona Mese" visibleRowCount="12" />
                                         <Button fx:id="generateReportButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" styleClass="searchButton" stylesheets="@../../../style.css" text="Genera report" />
                                 </HBox>
                         </VBox>

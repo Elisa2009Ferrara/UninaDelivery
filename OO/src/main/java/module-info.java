@@ -13,4 +13,5 @@ module uninaDelivery {
     exports com.uninadelivery.controller;
     opens com.uninadelivery to javafx.fxml;
     opens com.uninadelivery.controller to javafx.fxml;
+    opens com.uninadelivery.model.entities to javafx.base;
 }

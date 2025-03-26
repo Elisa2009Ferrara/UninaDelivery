@@ -1,82 +1,154 @@
 package com.uninadelivery.controller;
 
+import com.uninadelivery.model.dao.MezzoDiTrasportoDAO;
+import com.uninadelivery.model.dao.OrdineDAO;
+import com.uninadelivery.model.dao.SpedizioneDAO;
+import com.uninadelivery.model.dao.CorriereDAO;
+import com.uninadelivery.model.entities.Spedizione;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.util.Callback;
+import javafx.stage.Stage;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class CreateDeliveryController {
 
-    @FXML private TableView<Order> tableView;
-    @FXML private TableColumn<Order, Boolean> colSeleziona;
-    @FXML private TableColumn<Order, Integer> colIdOrdine;
-    @FXML private TableColumn<Order, String> colNome;
-    @FXML private TableColumn<Order, String> colCognome;
-    @FXML private ComboBox<String> comboMezzoTrasporto;
-    @FXML private ComboBox<String> comboCorriere;
-    @FXML private Button btnCrea;
+    @FXML
+    private ComboBox<Integer> cbIdOrdine;
 
-    private final ObservableList<Order> ordini = FXCollections.observableArrayList();
-    private final ObservableList<String> mezziTrasporto = FXCollections.observableArrayList("Furgone", "Moto", "Bicicletta");
-    private final ObservableList<String> corrieri = FXCollections.observableArrayList("Mario Rossi", "Luca Bianchi", "Anna Verdi");
+    @FXML
+    private DatePicker dpArrivoPrevisto;
+
+    @FXML
+    private TextField tfSocieta;
+
+    @FXML
+    private ComboBox<String> cbCorriere;  // Cambiato da Corriere a String
+
+    @FXML
+    private ComboBox<String> cbMezzoTrasporto;
+
+    @FXML
+    private Button btnConferma;
+
+    @FXML
+    private Button btnCancella;
+
+    private final SpedizioneDAO spedizioneDAO = new SpedizioneDAO();
+    private final OrdineDAO ordineDAO = new OrdineDAO();
+    private final CorriereDAO corriereDAO = new CorriereDAO();
+    private final MezzoDiTrasportoDAO mezzoTrasportoDAO = new MezzoDiTrasportoDAO();
 
     @FXML
     public void initialize() {
-        // Configura le colonne della tabella
-        colIdOrdine.setCellValueFactory(new PropertyValueFactory<>("idOrdine"));
-        colNome.setCellValueFactory(new PropertyValueFactory<>("nomeCliente"));
-        colCognome.setCellValueFactory(new PropertyValueFactory<>("cognomeCliente"));
+        // Carica ID Ordini non assegnati
+        List<Integer> ordiniDisponibili = ordineDAO.getOrdiniNonAssegnati();
+        cbIdOrdine.setItems(FXCollections.observableArrayList(ordiniDisponibili));
 
-        // Configura la colonna delle checkbox
-        colSeleziona.setCellValueFactory(param -> param.getValue().selezionatoProperty());
-        colSeleziona.setCellFactory(CheckBoxTableCell.forTableColumn(colSeleziona));
+        // Carica i corrieri disponibili (solo nome e cognome)
+        List<String> nomiCorrieri = corriereDAO.getNomiCorrieriDisponibili(); // Metodo DAO che restituisce List<String>
+        cbCorriere.setItems(FXCollections.observableArrayList(nomiCorrieri));
 
-        // Aggiungi dati di esempio alla tabella
-        ordini.add(new Order(1, "Giovanni", "Esposito"));
-        ordini.add(new Order(2, "Francesca", "Russo"));
-        ordini.add(new Order(3, "Lorenzo", "Bianchi"));
+        // Carica Mezzi di Trasporto disponibili
+        List<String> mezziDisponibili = mezzoTrasportoDAO.getMezziDisponibili();
+        cbMezzoTrasporto.setItems(FXCollections.observableArrayList(mezziDisponibili));
 
-        tableView.setItems(ordini);
+        // Pulsante "Conferma"
+        btnConferma.setOnAction(event -> creaSpedizione());
 
-        // Popola i ComboBox
-        comboMezzoTrasporto.setItems(mezziTrasporto);
-        comboCorriere.setItems(corrieri);
-
-        // Azione bottone "Crea"
-        btnCrea.setOnAction(event -> creaSpedizione());
+        // Pulsante "Cancella"
+        btnCancella.setOnAction(event -> chiudiFinestra());
     }
 
     private void creaSpedizione() {
-        Order ordineSelezionato = tableView.getItems().stream()
-                .filter(Order::isSelezionato)
-                .findFirst()
-                .orElse(null);
-
-        if (ordineSelezionato == null) {
-            showAlert("Errore", "Seleziona almeno un ordine!");
+        if (cbIdOrdine.getValue() == null || dpArrivoPrevisto.getValue() == null ||
+                tfSocieta.getText().isEmpty() || cbCorriere.getValue() == null ||
+                cbMezzoTrasporto.getValue() == null) {
+            mostraErrore("Compila tutti i campi!");
             return;
         }
 
-        String mezzo = comboMezzoTrasporto.getValue();
-        String corriere = comboCorriere.getValue();
+        // Mostra finestra di conferma
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conferma Creazione Spedizione");
+        alert.setHeaderText(null);
+        alert.setContentText("Sei sicuro di voler creare questa spedizione?");
 
-        if (mezzo == null || corriere == null) {
-            showAlert("Errore", "Seleziona un mezzo di trasporto e un corriere!");
-            return;
-        }
+        ButtonType buttonConferma = new ButtonType("Conferma");
+        ButtonType buttonAnnulla = new ButtonType("Annulla", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-        System.out.println("Spedizione creata per Ordine #" + ordineSelezionato.getIdOrdine() +
-                " con " + corriere + " su " + mezzo);
+        alert.getButtonTypes().setAll(buttonConferma, buttonAnnulla);
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == buttonConferma) {
+                salvaSpedizione();
+            }
+        });
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+    private void salvaSpedizione() {
+        int idOrdine = cbIdOrdine.getValue();
+        LocalDate arrivoPrevisto = dpArrivoPrevisto.getValue();
+        String societa = tfSocieta.getText();
+
+        // Prendi il nome del corriere selezionato dalla ComboBox
+        String nomeCorriere = cbCorriere.getValue();
+
+        // Ottieni il numero di telefono del corriere dal DAO
+        String numeroTelefonoCorriere = corriereDAO.getNumeroTelefonoByNome(nomeCorriere);
+
+        if (numeroTelefonoCorriere == null) {
+            mostraErrore("Errore: impossibile trovare il numero di telefono per " + nomeCorriere);
+            return;
+        }
+
+        // Ottieni il mezzo di trasporto selezionato dalla ComboBox
+        String mezzoTrasporto = cbMezzoTrasporto.getValue();
+
+        // Crea la nuova spedizione con tutti i parametri
+        Spedizione nuovaSpedizione = new Spedizione(
+                0,
+                "Destinazione non specificata",  // Puoi modificare se necessario
+                arrivoPrevisto,
+                societa,
+                "ordinato",
+                LocalDate.now(),
+                idOrdine,
+                nomeCorriere,
+                mezzoTrasporto
+        );
+
+        // Salva la spedizione nel database
+        boolean successo = spedizioneDAO.createSpedizione(nuovaSpedizione);
+        if (successo) {
+            mostraMessaggio("Spedizione creata con successo!");
+            chiudiFinestra();
+        } else {
+            mostraErrore("Errore nella creazione della spedizione.");
+        }
+    }
+
+
+    private void mostraMessaggio(String messaggio) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Operazione completata");
         alert.setHeaderText(null);
-        alert.setContentText(message);
+        alert.setContentText(messaggio);
         alert.showAndWait();
+    }
+
+    private void mostraErrore(String messaggio) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Errore");
+        alert.setHeaderText(null);
+        alert.setContentText(messaggio);
+        alert.showAndWait();
+    }
+
+    private void chiudiFinestra() {
+        Stage stage = (Stage) btnCancella.getScene().getWindow();
+        stage.close();
     }
 }

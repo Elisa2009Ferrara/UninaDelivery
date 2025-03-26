@@ -8,15 +8,13 @@ public class Ordine {
     private boolean completamento;
     private String emailCliente;
     private int numeroProdotti;
-    private int idPagamento;    // Foreign key
 
-    public Ordine(int idOrdine, LocalDate dataOrdine, Boolean completamento, String emailCliente, int numeroProdotti, int idPagamento) {
+    public Ordine(int idOrdine, LocalDate dataOrdine, Boolean completamento, String emailCliente, int numeroProdotti) {
         this.idOrdine = idOrdine;
         this.dataOrdine = dataOrdine;
         this.completamento = completamento;
         this.emailCliente = emailCliente;
         this.numeroProdotti = numeroProdotti;
-        this.idPagamento = idPagamento;
     }
 
     public String getEmailCliente() {
@@ -59,15 +57,6 @@ public class Ordine {
         this.numeroProdotti = numeroProdotti;
     }
 
-    public int getIdPagamento() {
-        return idPagamento;
-    }
-
-    public void setIdPagamento(int idPagamento) {
-        this.idPagamento = idPagamento;
-    }
-
-
     @Override
     public String toString() {
         return "Ordine{" +
@@ -76,7 +65,6 @@ public class Ordine {
                 ", completamento=" + completamento +
                 ", emailCliente='" + emailCliente + '\'' +
                 ", numeroProdotti=" + numeroProdotti +
-                ", idPagamento=" + idPagamento +
                 '}';
     }
 }

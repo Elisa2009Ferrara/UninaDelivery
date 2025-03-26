@@ -32,7 +32,7 @@ public class SidebarController {
         } else if (clickedButton == orderButton) {
             mainController.loadContent("/com/uninadelivery/view/orders.fxml");
         } else if (clickedButton == deliveryButton) {
-            mainController.loadContent("/com/uninadelivery/view/createDelivery.fxml");
+            mainController.loadContent("/com/uninadelivery/view/delivery.fxml");
         } else if (clickedButton == statsButton) {
             mainController.loadContent("/com/uninadelivery/view/stats.fxml");
         } else if (clickedButton == storeButton) {
