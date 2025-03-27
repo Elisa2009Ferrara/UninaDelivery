@@ -7,6 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.Node;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -20,6 +23,7 @@ public class CreaProgrammazioneController {
     @FXML private TableColumn<Programmazione, String> colFrequenza;
     @FXML private TableColumn<Programmazione, String> colCliente;
 
+    @FXML private AnchorPane dragPane;
     @FXML private DatePicker dateProxConsegna;
     @FXML private DatePicker dateDataFine;
     @FXML private TextField txtOrario;
@@ -28,6 +32,8 @@ public class CreaProgrammazioneController {
     @FXML private Button btnSalva;
     @FXML private Button btnElimina;
 
+    private double offsetX, offsetY;
+    private boolean isDragging = false;
     private ProgrammazioneDAO programmazioneDAO = new ProgrammazioneDAO();
     private ObservableList<Programmazione> listaProgrammazioni = FXCollections.observableArrayList();
 
@@ -42,6 +48,13 @@ public class CreaProgrammazioneController {
 
         comboFrequenza.setItems(FXCollections.observableArrayList("Settimanale", "Mensile", "Annuale"));
         caricaProgrammazioni();
+
+        // Abilita il drag and drop con onDragDetected
+        abilitaDragAndDrop(dateProxConsegna);
+        abilitaDragAndDrop(dateDataFine);
+        abilitaDragAndDrop(txtOrario);
+        abilitaDragAndDrop(comboFrequenza);
+        abilitaDragAndDrop(txtClienteEmail);
     }
 
     private void caricaProgrammazioni() {
@@ -105,5 +118,26 @@ public class CreaProgrammazioneController {
         txtOrario.clear();
         comboFrequenza.getSelectionModel().clearSelection();
         txtClienteEmail.clear();
+    }
+
+    // Metodo per abilitare il drag and drop con onDragDetected
+    private void abilitaDragAndDrop(Node nodo) {
+        nodo.setOnMousePressed(event -> {
+            offsetX = event.getSceneX() - nodo.getLayoutX();
+            offsetY = event.getSceneY() - nodo.getLayoutY();
+            isDragging = false; // Reset flag
+        });
+
+        nodo.setOnMouseDragged(event -> {
+            nodo.setLayoutX(event.getSceneX() - offsetX);
+            nodo.setLayoutY(event.getSceneY() - offsetY);
+            isDragging = true; // Sta trascinando
+        });
+
+        nodo.setOnDragDetected(event -> {
+            if (!isDragging) {
+                nodo.startFullDrag(); // Inizia il drag
+            }
+        });
     }
 }
