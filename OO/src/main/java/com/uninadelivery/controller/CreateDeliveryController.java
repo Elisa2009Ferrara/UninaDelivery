@@ -116,7 +116,7 @@ public class CreateDeliveryController {
                 "ordinato",
                 LocalDate.now(),
                 idOrdine,
-                nomeCorriere,
+                numeroTelefonoCorriere,
                 mezzoTrasporto
         );
 
