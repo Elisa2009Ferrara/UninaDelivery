@@ -152,3 +152,11 @@
     -fx-font-size: 14px;
     -fx-text-fill: #31243e;
 }
+
+/* Product Management schermata */
+.schedaProdotto {
+    -fx-background-color: #80b9b2;
+    -fx-font: "Segoe UI Historic";
+    -fx-font-size: 14px;
+    -fx-text-fill: #31243e;
+}

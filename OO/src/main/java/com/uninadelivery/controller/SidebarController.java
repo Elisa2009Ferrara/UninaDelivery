@@ -36,7 +36,7 @@ public class SidebarController {
         } else if (clickedButton == statsButton) {
             mainController.loadContent("/com/uninadelivery/view/stats.fxml");
         } else if (clickedButton == storeButton) {
-            mainController.loadContent("/com/uninadelivery/view/store.fxml");
+            mainController.loadContent("/com/uninadelivery/view/inventory.fxml");
         }
     }
 

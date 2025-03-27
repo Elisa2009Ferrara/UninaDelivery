@@ -4,37 +4,43 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.uninadelivery.model.dbconnection.DBConnection;
+import com.uninadelivery.model.entities.Ordine;
 import com.uninadelivery.model.entities.Prodotto;
 
 public class ProdottoDAO {
     private static final Logger LOGGER = Logger.getLogger(ProdottoDAO.class.getName());
 
-    public void createProdotto(Prodotto prodotto) {
-        String query = "INSERT INTO prodotto (id_prodotto, nome_prodotto, dimensioni, peso, quantita_disp, prezzo) " +
-                "VALUES (?, ?, ?, ?, ?, ?) RETURNING id_prodotto";
+    // Metodo per recuperare tutti i prodotti dal database
+    public List<Prodotto> getAllProdotti() {
+        List<Prodotto> prodotti = new ArrayList<>();
+        String query = "SELECT id_prodotto, nome_prodotto, dimensioni, peso, quantita_disp, prezzo FROM prodotto";
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
+             PreparedStatement ps = conn.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
 
-            ps.setInt(1, prodotto.getIdProdotto());
-            ps.setString(2, prodotto.getNomeProdotto());
-            ps.setString(3, prodotto.getDimensioni());
-            ps.setDouble(4, prodotto.getPeso());
-            ps.setInt(5, prodotto.getQuantitaDisp());
-            ps.setDouble(6, prodotto.getPrezzo());
-
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    int idGenerato = rs.getInt(1);
-                    LOGGER.info("Prodotto inserito con successo, ID generato: " + idGenerato);
-                }
+            while (rs.next()) {
+                Prodotto prodotto = new Prodotto(
+                        rs.getInt("id_prodotto"),
+                        rs.getString("nome_prodotto"),
+                        rs.getString("dimensioni"),
+                        rs.getDouble("peso"),
+                        rs.getInt("quantita_disp"),
+                        rs.getDouble("prezzo")
+                );
+                prodotti.add(prodotto);
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Errore durante l'inserimento del prodotto", e);
+            LOGGER.log(Level.SEVERE, "Errore durante il recupero dei prodotti", e);
         }
+
+        return prodotti;
     }
+
 }
