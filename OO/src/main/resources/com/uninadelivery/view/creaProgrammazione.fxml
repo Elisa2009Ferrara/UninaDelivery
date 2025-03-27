@@ -1,51 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="383.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.CreaProgrammazioneController">
+<BorderPane prefHeight="500.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.CreaProgrammazioneController">
 
     <top>
-        <VBox fx:id="banner" alignment="CENTER" prefHeight="69.0" prefWidth="774.0" styleClass="banner" stylesheets="@../../../style.css">
-            <Label fx:id="labelCreaProgrammazione" style="-fx-font-size: 18px; -fx-padding: 10px;" text="Crea Nuova Programmazione" textFill="#ecece7" />
+        <VBox fx:id="banner" alignment="CENTER" prefHeight="82.0" prefWidth="804.0" styleClass="banner" stylesheets="@../../../style.css">
+            <Label fx:id="labelCreaProgrammazione" style="-fx-font-size: 18px; -fx-padding: 10px;" stylesheets="@../../../style.css" text="Crea Nuova Programmazione" textFill="#ecece7">
+            <styleClass>
+               <String fx:value="labelOrder" />
+               <String fx:value="labelStats" />
+            </styleClass></Label>
         </VBox>
     </top>
 
-    <center>
-        <VBox spacing="10" alignment="CENTER">
-            <!-- Padding removed for center section -->
-        </VBox>
-    </center>
-
     <bottom>
-        <VBox prefHeight="419.0" prefWidth="774.0" spacing="10">
-            <!-- Padding as Insets now -->
+        <HBox alignment="CENTER" prefHeight="70.0" prefWidth="774.0" spacing="10">
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-
-            <HBox spacing="10" alignment="CENTER">
-                <Label text="Prox Consegna:" />
-                <DatePicker fx:id="dateProxConsegna" />
-                <Label text="Data Fine:" />
-                <DatePicker fx:id="dateDataFine" />
-            </HBox>
-
-            <HBox spacing="10" alignment="CENTER">
-                <Label text="Orario:" />
-                <TextField fx:id="txtOrario" />
-                <Label text="Frequenza:" />
-                <ComboBox fx:id="comboFrequenza" />
-                <Label text="Cliente Email:" />
-                <TextField fx:id="txtClienteEmail" />
-            </HBox>
-
-            <HBox spacing="10" alignment="CENTER">
-                <Button fx:id="btnSalva" onAction="#salvaProgrammazione" text="Salva" />
-                <Button fx:id="btnElimina" onAction="#eliminaProgrammazione" text="Elimina" />
-            </HBox>
-        </VBox>
+            <Button fx:id="btnSalva" onAction="#salvaProgrammazione" prefHeight="25.0" prefWidth="120.0" text="Salva" />
+            <Button fx:id="btnElimina" onAction="#eliminaProgrammazione" prefHeight="25.0" prefWidth="115.0" text="Elimina" />
+        </HBox>
     </bottom>
+   <center>
+        <AnchorPane fx:id="dragPane" prefHeight="386.0" prefWidth="775.0" BorderPane.alignment="CENTER">
+            <Label layoutX="58.0" layoutY="78.0" text="Prossima Consegna:" />
+            <DatePicker fx:id="dateProxConsegna" layoutX="58.0" layoutY="95.0" prefHeight="25.0" prefWidth="201.0" />
+
+            <Label layoutX="288.0" layoutY="78.0" text="Data Fine:" />
+            <DatePicker fx:id="dateDataFine" layoutX="288.0" layoutY="95.0" prefHeight="25.0" prefWidth="200.0" />
+
+            <Label layoutX="285.0" layoutY="244.0" text="Orario:" />
+            <TextField fx:id="txtOrario" layoutX="285.0" layoutY="260.0" prefHeight="15.0" prefWidth="200.0" />
+
+            <Label layoutX="183.0" layoutY="164.0" text="Frequenza:" />
+            <ComboBox fx:id="comboFrequenza" layoutX="183.0" layoutY="181.0" prefHeight="25.0" prefWidth="168.0" />
+
+            <Label layoutX="59.0" layoutY="244.0" text="Cliente Email:" />
+            <TextField fx:id="txtClienteEmail" layoutX="59.0" layoutY="260.0" prefHeight="19.0" prefWidth="200.0" />
+         <ImageView fitHeight="323.0" fitWidth="319.0" layoutX="485.0" layoutY="32.0">
+            <image>
+               <Image url="@../../../../../../../../../Downloads/aa4d92c7-7efc-4921-a1e5-b8d194c52de7_removalai_preview.png" />
+            </image>
+         </ImageView>
+        </AnchorPane>
+   </center>
 
 </BorderPane>

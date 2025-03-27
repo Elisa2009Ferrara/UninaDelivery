@@ -7,7 +7,6 @@
     -fx-background-color: #ecece7;
 }
 
-/* Ensure no borders for the main application window */
 .root {
     -fx-background-color: transparent;
     -fx-padding: 0;
