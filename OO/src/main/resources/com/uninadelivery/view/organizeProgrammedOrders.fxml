@@ -35,8 +35,12 @@
                 </Label>
                 <VBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="538.0">
                         <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="495.0" spacing="10.0">
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" styleClass="createButton" stylesheets="@../../../style.css" text="Crea" />
-                        <Button fx:id="btnModifica" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" styleClass="buttonCreate" text="Modifica" textFill="WHITE" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Crea">
+                     <styleClass>
+                        <String fx:value="buttonCreate" />
+                        <String fx:value="createButton" />
+                     </styleClass></Button>
+                        <Button fx:id="btnModifica" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" styleClass="buttonCreate" text="Modifica" />
                         <Button fx:id="btnElimina" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" styleClass="cancelButton" text="Cancella" />
                                 <Label styleClass="labelOrder" stylesheets="@../../../style.css" text="Cliente" />
                                 <TextField fx:id="emailClienteField" prefHeight="27.0" prefWidth="142.0" promptText="Email del Cliente" />
