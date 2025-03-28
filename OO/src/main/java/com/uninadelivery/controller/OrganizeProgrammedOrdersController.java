@@ -41,6 +41,7 @@ public class OrganizeProgrammedOrdersController {
     public void initialize() {
         Platform.runLater(() -> {
             if (tableOrdini.getScene() != null) {
+                // Aggiungi il foglio di stile
                 tableOrdini.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
             } else {
                 System.err.println("Attenzione: la Scene è ancora null. Lo stylesheet non è stato caricato.");
@@ -77,40 +78,38 @@ public class OrganizeProgrammedOrdersController {
             return;
         }
 
-        System.out.println("Ordine selezionato: " + ordineSelezionato);  // Debug: Verifica che l'ordine sia selezionato
+        System.out.println("Ordine selezionato: " + ordineSelezionato);
 
-        // Dialogo per la modifica dei dettagli dell'ordine
+
         Dialog<Programmazione> dialog = new Dialog<>();
         dialog.setTitle("Modifica Ordine");
         dialog.setHeaderText("Modifica i dettagli dell'ordine selezionato.");
 
-        // Crea un pulsante per la modifica
+
         ButtonType modificaButtonType = new ButtonType("Modifica", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(modificaButtonType, ButtonType.CANCEL);
 
-        // Crea il ComboBox per la frequenza
+
         ComboBox<String> frequenzaComboBox = new ComboBox<>();
         frequenzaComboBox.getItems().addAll("settimanale", "mensile", "trimestrale");
-        frequenzaComboBox.setValue(ordineSelezionato.getFrequenza());  // Imposta il valore attuale
+        frequenzaComboBox.setValue(ordineSelezionato.getFrequenza());
 
-        // Crea il ComboBox per l'orario (mattina o pomeriggio)
+
         ComboBox<String> orarioComboBox = new ComboBox<>();
         orarioComboBox.getItems().addAll("mattina", "pomeriggio");
         orarioComboBox.setValue(ordineSelezionato.getOrario());  // Imposta l'orario attuale
 
-        // Crea il TextField per l'email cliente
+
         TextField emailClienteField = new TextField(ordineSelezionato.getClienteEmail());
 
-        // Layout del dialogo
         VBox vbox = new VBox(10);
         vbox.getChildren().addAll(
                 new Label("Frequenza:"), frequenzaComboBox,
                 new Label("Orario:"), orarioComboBox,
                 new Label("Email Cliente:"), emailClienteField
         );
-        dialog.getDialogPane().setContent(vbox); // Set content of the dialog to the VBox
+        dialog.getDialogPane().setContent(vbox);
 
-        // Azione al clic sul pulsante Modifica
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == modificaButtonType) {
                 ordineSelezionato.setFrequenza(frequenzaComboBox.getValue());  // Imposta la frequenza selezionata
@@ -140,34 +139,26 @@ public class OrganizeProgrammedOrdersController {
             return;
         }
 
-        // Finestra di conferma
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma Cancellazione");
         alert.setHeaderText("Sei sicuro di voler cancellare questa programmazione?");
         alert.setContentText("L'operazione non può essere annullata.");
 
-        // Aggiungi i pulsanti Sì e No
         ButtonType buttonTypeYes = new ButtonType("Sì");
         ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
 
-        // Mostra l'alert e gestisci la risposta
+
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == buttonTypeYes) {
             try {
-                // Elimina l'ordine dal database
                 programmazioneDAO.eliminaOrdineProgrammato(ordineSelezionato.getIdProgrammazione());
                 caricaOrdiniProgrammati(); // Ricarica la lista degli ordini
             } catch (SQLException e) {
                 mostraErrore("Errore durante l'eliminazione dell'ordine.");
             }
         }
-    }
-
-    @FXML
-    private void aggiornaLista(ActionEvent event) {
-        caricaOrdiniProgrammati();
     }
 
     @FXML
@@ -197,4 +188,5 @@ public class OrganizeProgrammedOrdersController {
         alert.setContentText(messaggio);
         alert.showAndWait();
     }
+
 }
