@@ -43,22 +43,16 @@ public class CreateDeliveryController {
 
     @FXML
     public void initialize() {
-        // Carica ID Ordini non assegnati
         List<Integer> ordiniDisponibili = ordineDAO.getOrdiniNonAssegnati();
         cbIdOrdine.setItems(FXCollections.observableArrayList(ordiniDisponibili));
 
-        // Carica i corrieri disponibili (solo nome e cognome)
-        List<String> nomiCorrieri = corriereDAO.getNomiCorrieriDisponibili(); // Metodo DAO che restituisce List<String>
+        List<String> nomiCorrieri = corriereDAO.getNomiCorrieriDisponibili();
         cbCorriere.setItems(FXCollections.observableArrayList(nomiCorrieri));
 
-        // Carica Mezzi di Trasporto disponibili
         List<String> mezziDisponibili = mezzoTrasportoDAO.getMezziDisponibili();
         cbMezzoTrasporto.setItems(FXCollections.observableArrayList(mezziDisponibili));
 
-        // Pulsante "Conferma"
         btnConferma.setOnAction(event -> creaSpedizione());
-
-        // Pulsante "Cancella"
         btnCancella.setOnAction(event -> chiudiFinestra());
     }
 
@@ -93,10 +87,7 @@ public class CreateDeliveryController {
         LocalDate arrivoPrevisto = dpArrivoPrevisto.getValue();
         String societa = tfSocieta.getText();
 
-        // Prendi il nome del corriere selezionato dalla ComboBox
         String nomeCorriere = cbCorriere.getValue();
-
-        // Ottieni il numero di telefono del corriere dal DAO
         String numeroTelefonoCorriere = corriereDAO.getNumeroTelefonoByNome(nomeCorriere);
 
         if (numeroTelefonoCorriere == null) {
@@ -104,27 +95,17 @@ public class CreateDeliveryController {
             return;
         }
 
-        // Ottieni il mezzo di trasporto selezionato dalla ComboBox
         String mezzoTrasporto = cbMezzoTrasporto.getValue();
 
-        // Crea la nuova spedizione con tutti i parametri
         Spedizione nuovaSpedizione = new Spedizione(
-                0,
-                "Destinazione non specificata",  // Puoi modificare se necessario
-                arrivoPrevisto,
-                societa,
-                "ordinato",
-                LocalDate.now(),
-                idOrdine,
-                numeroTelefonoCorriere,
-                mezzoTrasporto
+                0, "Destinazione non specificata", arrivoPrevisto, societa,
+                "ordinato", LocalDate.now(), idOrdine, numeroTelefonoCorriere, mezzoTrasporto
         );
 
-        // Salva la spedizione nel database
         boolean successo = spedizioneDAO.createSpedizione(nuovaSpedizione);
         if (successo) {
             mostraMessaggio("Spedizione creata con successo!");
-            chiudiFinestra();
+            chiudiFinestra(); // Questo chiuderà la finestra e attiverà il refresh nel DeliveryController
         } else {
             mostraErrore("Errore nella creazione della spedizione.");
         }

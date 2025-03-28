@@ -51,7 +51,6 @@ public class DeliveryController {
 
     @FXML
     public void initialize() {
-        // Impostazione delle colonne della tabella
         colIdSpedizione.setCellValueFactory(new PropertyValueFactory<>("idSpedizione"));
         colIdOrdine.setCellValueFactory(new PropertyValueFactory<>("idOrdine"));
         colSocieta.setCellValueFactory(new PropertyValueFactory<>("societa"));
@@ -79,6 +78,9 @@ public class DeliveryController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Crea nuova spedizione");
+
+            stage.setOnHidden(event -> loadTableData());
+
             stage.show();
 
         } catch (IOException e) {
