@@ -2,17 +2,18 @@ package com.uninadelivery.controller;
 
 import com.uninadelivery.model.entities.Programmazione;
 import com.uninadelivery.model.dao.ProgrammazioneDAO;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class GestioneOrdiniProgrammatiController {
+public class OrganizeProgrammedOrdersController {
 
     @FXML private TableView<Programmazione> tableOrdini;
     @FXML private TableColumn<Programmazione, Integer> colIdOrdine;
@@ -25,12 +26,18 @@ public class GestioneOrdiniProgrammatiController {
     @FXML private Button btnElimina;
     @FXML private Button btnAggiorna;
 
-    private ProgrammazioneDAO programmazioneDAO = new ProgrammazioneDAO();  // Istanza non statica
-    private ObservableList<Programmazione> listaOrdini = FXCollections.observableArrayList();
+    private final ProgrammazioneDAO programmazioneDAO = new ProgrammazioneDAO();
+    private final ObservableList<Programmazione> listaOrdini = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        tableOrdini.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        Platform.runLater(() -> {
+            if (tableOrdini.getScene() != null) {
+                tableOrdini.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+            } else {
+                System.err.println("Attenzione: la Scene è ancora null. Lo stylesheet non è stato caricato.");
+            }
+        });
 
         colIdOrdine.setCellValueFactory(cellData -> cellData.getValue().idProgrammazioneProperty().asObject());
         colDataSpedizione.setCellValueFactory(cellData -> cellData.getValue().proxConsegnaProperty());

@@ -269,3 +269,10 @@
     -fx-border-color: #31243e;
     -fx-border-radius: 5px;
 }
+
+.createButton {
+    -fx-background-color: #E74C3C;
+    -fx-font-family: "Segoe UI Historic";
+    -fx-font-size: 12px;
+    -fx-text-fill: #ecece7;
+}

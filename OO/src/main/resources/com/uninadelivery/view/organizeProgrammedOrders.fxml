@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="500.0" prefWidth="774.0" style="-fx-padding: 0; -fx-background-insets: 0; -fx-border-width: 0;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.GestioneOrdiniProgrammatiController">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="500.0" prefWidth="774.0" style="-fx-padding: 0; -fx-background-insets: 0; -fx-border-width: 0;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.OrganizeProgrammedOrdersController">
     <center>
         <TableView fx:id="tableOrdini" prefHeight="200.0" prefWidth="774.0" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
             <columns>
@@ -16,12 +16,15 @@
             <TableColumn fx:id="colFrequenza" prefWidth="105.0" text="Frequenza" />
             <TableColumn fx:id="colClienteEmail" prefWidth="115.0" text="Email Cliente" />
             </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
         </TableView>
     </center>
     <top>
         <VBox alignment="CENTER" prefHeight="82.0" prefWidth="774.0" styleClass="banner" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="774.0" spacing="10.0">
-                <Label prefHeight="30.0" prefWidth="297.0" stylesheets="@../../../style.css" text="Ordini Programmati">
+                <Label prefHeight="30.0" prefWidth="272.0" stylesheets="@../../../style.css" text="Ordini Programmati">
                     <styleClass>
                         <String fx:value="labelOrder" />
                         <String fx:value="labelStats" />
@@ -30,13 +33,13 @@
                         <Insets left="10.0" />
                     </padding>
                 </Label>
-                <HBox prefHeight="66.0" prefWidth="134.0" />
                 <VBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="538.0">
-                        <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="672.0" spacing="10.0">
-                        <Button fx:id="btnModifica" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" styleClass="buttonCreate" text="Modifica" />
+                        <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="495.0" spacing="10.0">
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" styleClass="createButton" stylesheets="@../../../style.css" text="Crea" />
+                        <Button fx:id="btnModifica" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" styleClass="buttonCreate" text="Modifica" textFill="WHITE" />
                         <Button fx:id="btnElimina" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" styleClass="cancelButton" text="Cancella" />
                                 <Label styleClass="labelOrder" stylesheets="@../../../style.css" text="Cliente" />
-                                <TextField fx:id="emailClienteField" prefHeight="26.0" prefWidth="186.0" promptText="Email del Cliente" />
+                                <TextField fx:id="emailClienteField" prefHeight="27.0" prefWidth="142.0" promptText="Email del Cliente" />
                             <padding>
                                 <Insets right="10.0" />
                             </padding>

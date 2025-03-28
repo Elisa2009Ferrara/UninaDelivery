@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="500.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.CreaProgrammazioneController">
+<BorderPane prefHeight="500.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.CreaProgrammazioneController">
 
     <top>
         <VBox fx:id="banner" alignment="CENTER" prefHeight="82.0" prefWidth="804.0" styleClass="banner" stylesheets="@../../../style.css">
