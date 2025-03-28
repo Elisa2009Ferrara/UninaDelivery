@@ -2,17 +2,25 @@ package com.uninadelivery.controller;
 
 import com.uninadelivery.model.entities.Programmazione;
 import com.uninadelivery.model.dao.ProgrammazioneDAO;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.io.IOException;
 
-public class GestioneOrdiniProgrammatiController {
+public class OrganizeProgrammedOrdersController {
 
     @FXML private TableView<Programmazione> tableOrdini;
     @FXML private TableColumn<Programmazione, Integer> colIdOrdine;
@@ -24,13 +32,20 @@ public class GestioneOrdiniProgrammatiController {
     @FXML private Button btnModifica;
     @FXML private Button btnElimina;
     @FXML private Button btnAggiorna;
+    @FXML private Button btnCrea;  // Pulsante per aprire la schermata di creazione
 
-    private ProgrammazioneDAO programmazioneDAO = new ProgrammazioneDAO();  // Istanza non statica
-    private ObservableList<Programmazione> listaOrdini = FXCollections.observableArrayList();
+    private final ProgrammazioneDAO programmazioneDAO = new ProgrammazioneDAO();
+    private final ObservableList<Programmazione> listaOrdini = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        tableOrdini.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        Platform.runLater(() -> {
+            if (tableOrdini.getScene() != null) {
+                tableOrdini.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+            } else {
+                System.err.println("Attenzione: la Scene è ancora null. Lo stylesheet non è stato caricato.");
+            }
+        });
 
         colIdOrdine.setCellValueFactory(cellData -> cellData.getValue().idProgrammazioneProperty().asObject());
         colDataSpedizione.setCellValueFactory(cellData -> cellData.getValue().proxConsegnaProperty());
@@ -105,6 +120,26 @@ public class GestioneOrdiniProgrammatiController {
     @FXML
     private void aggiornaLista(ActionEvent event) {
         caricaOrdiniProgrammati();
+    }
+
+    @FXML
+    private void apriCreaProgrammazione(ActionEvent event) {
+        try {
+            URL fxmlLocation = getClass().getResource("/com/uninadelivery/view/createProgram.fxml");
+            if (fxmlLocation == null) {
+                throw new IOException("FXML file not found!");
+            }
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            AnchorPane root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Crea Programmazione");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostraErrore("Errore nell'aprire la finestra di creazione programmazione.");
+        }
     }
 
     private void mostraErrore(String messaggio) {

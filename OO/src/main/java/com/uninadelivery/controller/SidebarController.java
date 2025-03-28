@@ -37,7 +37,7 @@ public class SidebarController {
         } else if (clickedButton == storeButton) {
             mainController.loadContent("/com/uninadelivery/view/inventory.fxml");
         } else if (clickedButton == programmingButton) {
-            mainController.loadContent("/com/uninadelivery/view/GestioneOrdiniProgrammati.fxml");
+            mainController.loadContent("/com/uninadelivery/view/organizeProgrammedOrders.fxml");
         }
     }
 

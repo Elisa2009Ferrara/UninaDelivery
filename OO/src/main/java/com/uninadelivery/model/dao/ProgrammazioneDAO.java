@@ -17,8 +17,8 @@ public class ProgrammazioneDAO {
     private static final Logger LOGGER = Logger.getLogger(ProgrammazioneDAO.class.getName());
 
     public void createProgrammazione(Programmazione programmazione) {
-        String query = "INSERT INTO programmazione (id_programmazione, prox_consegna, data_fine, orario, frequenza)" +
-                "VALUES (?, ?, ?, ?, ?) RETURNING id_programmazione";
+        String query = "INSERT INTO programmazione (id_programmazione, prox_consegna, data_fine, orario, frequenza, email_cliente)" +
+                "VALUES (?, ?, ?, ?, ?, ?) RETURNING id_programmazione";
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
@@ -28,6 +28,7 @@ public class ProgrammazioneDAO {
             ps.setDate(3, java.sql.Date.valueOf(programmazione.getDataFine()));
             ps.setString(4, programmazione.getOrario());
             ps.setString(5, programmazione.getFrequenza());
+            ps.setString(6, programmazione.getClienteEmail());
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -42,7 +43,7 @@ public class ProgrammazioneDAO {
 
     // Metodo per ottenere tutti gli ordini programmati
     public List<Programmazione> getAllOrdiniProgrammati() throws SQLException {
-        String query = "SELECT * FROM programmazione";  // Assicurati che questa query sia corretta per il tuo caso
+        String query = "SELECT id_programmazione, prox_consegna, data_fine, orario, frequenza, email_cliente FROM programmazione";
         List<Programmazione> ordini = new ArrayList<>();
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
@@ -55,7 +56,7 @@ public class ProgrammazioneDAO {
                 LocalDate dataFine = rs.getDate("data_fine").toLocalDate();
                 String orario = rs.getString("orario");
                 String frequenza = rs.getString("frequenza");
-                String clienteEmail = rs.getString("cliente_email");
+                String clienteEmail = rs.getString("email_cliente");  // Corretto il nome della colonna
 
                 Programmazione programmazione = new Programmazione(idProgrammazione, proxConsegna, dataFine, orario, frequenza, clienteEmail);
                 ordini.add(programmazione);
@@ -70,7 +71,7 @@ public class ProgrammazioneDAO {
 
     // Metodo per aggiornare un ordine programmato
     public void aggiornaOrdineProgrammato(Programmazione ordine) throws SQLException {
-        String query = "UPDATE programmazione SET prox_consegna = ?, data_fine = ?, orario = ?, frequenza = ? WHERE id_programmazione = ?";
+        String query = "UPDATE programmazione SET prox_consegna = ?, data_fine = ?, orario = ?, frequenza = ?, email_cliente = ? WHERE id_programmazione = ?";
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
@@ -79,7 +80,8 @@ public class ProgrammazioneDAO {
             ps.setDate(2, java.sql.Date.valueOf(ordine.getDataFine()));
             ps.setString(3, ordine.getOrario());
             ps.setString(4, ordine.getFrequenza());
-            ps.setInt(5, ordine.getIdProgrammazione());
+            ps.setString(5, ordine.getClienteEmail());
+            ps.setInt(6, ordine.getIdProgrammazione());
 
             ps.executeUpdate();
             LOGGER.info("Ordine programmato aggiornato con successo: " + ordine.getIdProgrammazione());
