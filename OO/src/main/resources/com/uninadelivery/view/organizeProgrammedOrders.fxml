@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="500.0" prefWidth="774.0" style="-fx-padding: 0; -fx-background-insets: 0; -fx-border-width: 0;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.OrganizeProgrammedOrdersController">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="500.0" prefWidth="774.0" style="-fx-padding: 0; -fx-background-insets: 0; -fx-border-width: 0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.OrganizeProgrammedOrdersController">
     <center>
         <TableView fx:id="tableOrdini" prefHeight="200.0" prefWidth="774.0" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
             <columns>
@@ -35,7 +35,7 @@
                 </Label>
                 <VBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="538.0">
                         <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="495.0" spacing="10.0">
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Crea">
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Crea" onAction="#apriCreaProgrammazione">
                      <styleClass>
                         <String fx:value="buttonCreate" />
                         <String fx:value="createButton" />

@@ -8,10 +8,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.io.IOException;
 
 public class OrganizeProgrammedOrdersController {
 
@@ -25,6 +32,7 @@ public class OrganizeProgrammedOrdersController {
     @FXML private Button btnModifica;
     @FXML private Button btnElimina;
     @FXML private Button btnAggiorna;
+    @FXML private Button btnCrea;  // Pulsante per aprire la schermata di creazione
 
     private final ProgrammazioneDAO programmazioneDAO = new ProgrammazioneDAO();
     private final ObservableList<Programmazione> listaOrdini = FXCollections.observableArrayList();
@@ -112,6 +120,26 @@ public class OrganizeProgrammedOrdersController {
     @FXML
     private void aggiornaLista(ActionEvent event) {
         caricaOrdiniProgrammati();
+    }
+
+    @FXML
+    private void apriCreaProgrammazione(ActionEvent event) {
+        try {
+            URL fxmlLocation = getClass().getResource("/com/uninadelivery/view/createProgram.fxml");
+            if (fxmlLocation == null) {
+                throw new IOException("FXML file not found!");
+            }
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            AnchorPane root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Crea Programmazione");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostraErrore("Errore nell'aprire la finestra di creazione programmazione.");
+        }
     }
 
     private void mostraErrore(String messaggio) {
