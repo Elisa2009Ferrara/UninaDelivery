@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.VBox;  // Importing VBox and Label
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -29,9 +29,9 @@ public class OrganizeProgrammedOrdersController {
     @FXML private TableColumn<Programmazione, String> colClienteEmail;
     @FXML private TableColumn<Programmazione, String> colOrario;
     @FXML private TableColumn<Programmazione, LocalDate> colDataFine;
+    @FXML private TextField emailClienteField;
     @FXML private Button btnModifica;
     @FXML private Button btnElimina;
-    @FXML private Button btnAggiorna;
     @FXML private Button btnCrea;  // Pulsante per aprire la schermata di creazione
 
     private final ProgrammazioneDAO programmazioneDAO = new ProgrammazioneDAO();
@@ -41,7 +41,7 @@ public class OrganizeProgrammedOrdersController {
     public void initialize() {
         Platform.runLater(() -> {
             if (tableOrdini.getScene() != null) {
-                // Aggiungi il foglio di stile
+                // Add the stylesheet
                 tableOrdini.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
             } else {
                 System.err.println("Attenzione: la Scene è ancora null. Lo stylesheet non è stato caricato.");
@@ -70,6 +70,28 @@ public class OrganizeProgrammedOrdersController {
     }
 
     @FXML
+    public void filtraOrdiniPerEmail() {
+        String email = emailClienteField.getText().trim(); // Rimuovi gli spazi vuoti
+
+        listaOrdini.clear(); // Pulisci la lista prima di aggiornarla
+
+        try {
+            if (email.isEmpty()) {
+                // Se il campo è vuoto, recupera tutti gli ordini
+                listaOrdini.addAll(programmazioneDAO.getAllOrdiniProgrammati());  // Supponendo che esista un metodo per prendere tutti gli ordini
+            } else {
+                // Se il campo non è vuoto, filtra gli ordini per email
+                listaOrdini.addAll(programmazioneDAO.getOrdiniProgrammatiPerEmail(email));
+            }
+
+            // Imposta la lista nella table
+            tableOrdini.setItems(listaOrdini);
+
+        } catch (SQLException e) {
+            mostraErrore("Errore nel filtro degli ordini per email.");
+        }
+    }
+    @FXML
     private void modificaOrdine(ActionEvent event) {
         Programmazione ordineSelezionato = tableOrdini.getSelectionModel().getSelectedItem();
 
@@ -78,27 +100,20 @@ public class OrganizeProgrammedOrdersController {
             return;
         }
 
-        System.out.println("Ordine selezionato: " + ordineSelezionato);
-
-
         Dialog<Programmazione> dialog = new Dialog<>();
         dialog.setTitle("Modifica Ordine");
         dialog.setHeaderText("Modifica i dettagli dell'ordine selezionato.");
 
-
         ButtonType modificaButtonType = new ButtonType("Modifica", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(modificaButtonType, ButtonType.CANCEL);
-
 
         ComboBox<String> frequenzaComboBox = new ComboBox<>();
         frequenzaComboBox.getItems().addAll("settimanale", "mensile", "trimestrale");
         frequenzaComboBox.setValue(ordineSelezionato.getFrequenza());
 
-
         ComboBox<String> orarioComboBox = new ComboBox<>();
         orarioComboBox.getItems().addAll("mattina", "pomeriggio");
         orarioComboBox.setValue(ordineSelezionato.getOrario());  // Imposta l'orario attuale
-
 
         TextField emailClienteField = new TextField(ordineSelezionato.getClienteEmail());
 
@@ -147,7 +162,6 @@ public class OrganizeProgrammedOrdersController {
         ButtonType buttonTypeYes = new ButtonType("Sì");
         ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-
 
         Optional<ButtonType> result = alert.showAndWait();
 

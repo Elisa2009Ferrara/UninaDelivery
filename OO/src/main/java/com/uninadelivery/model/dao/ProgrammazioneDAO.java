@@ -84,6 +84,36 @@ public class ProgrammazioneDAO {
         return ordini;
     }
 
+    public List<Programmazione> getOrdiniProgrammatiPerEmail(String email) throws SQLException {
+        String query = "SELECT id_programmazione, prox_consegna, data_fine, orario, frequenza, email_cliente " +
+                "FROM programmazione WHERE email_cliente = ?";
+        List<Programmazione> ordini = new ArrayList<>();
+
+        try (Connection conn = DBConnection.getDBconnection().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+
+                while (rs.next()) {
+                    int idProgrammazione = rs.getInt("id_programmazione");
+                    LocalDate proxConsegna = rs.getDate("prox_consegna").toLocalDate();
+                    LocalDate dataFine = rs.getDate("data_fine").toLocalDate();
+                    String orario = rs.getString("orario");
+                    String frequenza = rs.getString("frequenza");
+                    String clienteEmail = rs.getString("email_cliente");
+
+                    Programmazione programmazione = new Programmazione(idProgrammazione, proxConsegna, dataFine, orario, frequenza, clienteEmail);
+                    ordini.add(programmazione);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Errore nel recupero degli ordini programmati per l'email: " + email, e);
+            throw new SQLException("Errore nel recupero degli ordini programmati per l'email", e);
+        }
+
+        return ordini;
+    }
+
     // Metodo per aggiornare un ordine programmato
     public void aggiornaOrdineProgrammato(Programmazione ordine) throws SQLException {
         String query = "UPDATE programmazione SET prox_consegna = ?, data_fine = ?, orario = ?, frequenza = ?, email_cliente = ? WHERE id_programmazione = ?";

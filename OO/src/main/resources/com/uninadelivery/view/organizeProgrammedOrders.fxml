@@ -43,7 +43,7 @@
                         <Button fx:id="btnModifica" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" styleClass="buttonCreate" text="Modifica" onAction="#modificaOrdine" />
                         <Button fx:id="btnElimina" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" styleClass="cancelButton" text="Cancella" onAction="#eliminaOrdine" />
                                 <Label styleClass="labelOrder" stylesheets="@../../../style.css" text="Cliente" />
-                                <TextField fx:id="emailClienteField" prefHeight="27.0" prefWidth="142.0" promptText="Email del Cliente" />
+                                <TextField fx:id="emailClienteField" prefHeight="27.0" prefWidth="142.0" promptText="Email del Cliente" onAction="#filtraOrdiniPerEmail" />
                             <padding>
                                 <Insets right="10.0" />
                             </padding>
