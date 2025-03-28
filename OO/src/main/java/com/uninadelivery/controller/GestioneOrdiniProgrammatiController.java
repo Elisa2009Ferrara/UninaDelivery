@@ -30,6 +30,7 @@ public class GestioneOrdiniProgrammatiController {
 
     @FXML
     public void initialize() {
+        tableOrdini.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 
         colIdOrdine.setCellValueFactory(cellData -> cellData.getValue().idProgrammazioneProperty().asObject());
         colDataSpedizione.setCellValueFactory(cellData -> cellData.getValue().proxConsegnaProperty());
@@ -37,11 +38,6 @@ public class GestioneOrdiniProgrammatiController {
         colClienteEmail.setCellValueFactory(cellData -> cellData.getValue().clienteEmailProperty());
         colOrario.setCellValueFactory(cellData -> cellData.getValue().orarioProperty());
         colDataFine.setCellValueFactory(cellData -> cellData.getValue().dataFineProperty());
-
-        Scene scene = tableOrdini.getScene();
-        //scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-        String css = this.getClass().getResource("/style.css").toExternalForm();
-        scene.getStylesheets().add(css);
 
         tableOrdini.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         caricaOrdiniProgrammati();

@@ -3,10 +3,7 @@ package com.uninadelivery.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.uninadelivery.model.dao.ProdottoDAO;
 import com.uninadelivery.model.entities.Prodotto;
@@ -30,14 +27,17 @@ public class InventoryController {
     @FXML
     private TableColumn<Prodotto, Double> priceColumn;
     @FXML
-    private TextField searchField;
-
+    private TableColumn<Prodotto, Integer> storeColumn;
     @FXML
-    private Label lblId, lblName, lblSize, lblWeight, lblQuantity, lblPrice;
+    private TextField searchField;
+    @FXML
+    private Label lblId, lblName, lblSize, lblWeight, lblPrice;
+    @FXML
+    private Spinner<Integer> quantitySpinner;
 
     private ObservableList<Prodotto> productList = FXCollections.observableArrayList();
-    private ObservableList<Prodotto> filteredList = FXCollections.observableArrayList();
     private ProdottoDAO prodottoDAO = new ProdottoDAO();
+    private Prodotto selectedProdotto;
 
     @FXML
     public void initialize() {
@@ -45,14 +45,21 @@ public class InventoryController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("nomeProdotto"));
         sizeColumn.setCellValueFactory(new PropertyValueFactory<>("dimensioni"));
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("peso"));
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantitaDisp"));
+        storeColumn.setCellValueFactory(new PropertyValueFactory<>("magazzino"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("prezzo"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantitaDisp"));
 
         loadDataFromDatabase();
 
         tableView.setItems(productList);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> filterProducts(newValue));
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showProductDetails(newValue));
+
+        // Configurazione dello Spinner
+        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000, 0);
+        quantitySpinner.setValueFactory(valueFactory);
+        quantitySpinner.valueProperty().addListener((obs, oldValue, newValue) -> updateQuantity(newValue));
     }
 
     private void loadDataFromDatabase() {
@@ -66,7 +73,7 @@ public class InventoryController {
             return;
         }
 
-        filteredList.clear();
+        ObservableList<Prodotto> filteredList = FXCollections.observableArrayList();
         for (Prodotto prodotto : productList) {
             if (prodotto.getNomeProdotto().toLowerCase().contains(keyword.toLowerCase())) {
                 filteredList.add(prodotto);
@@ -77,12 +84,27 @@ public class InventoryController {
 
     private void showProductDetails(Prodotto prodotto) {
         if (prodotto != null) {
+            this.selectedProdotto = prodotto;
+
             lblId.setText(String.valueOf(prodotto.getIdProdotto()));
             lblName.setText(prodotto.getNomeProdotto());
             lblSize.setText(prodotto.getDimensioni());
             lblWeight.setText(String.valueOf(prodotto.getPeso()));
             lblPrice.setText(String.format("%.2f", prodotto.getPrezzo()));
-            lblQuantity.setText(String.valueOf(prodotto.getQuantitaDisp()));
+            quantitySpinner.getValueFactory().setValue(prodotto.getQuantitaDisp());
+
+            // Tooltip: mostra il nome completo del prodotto se è troppo lungo
+            Tooltip tooltip = new Tooltip(prodotto.getNomeProdotto());
+            Tooltip.install(lblName, tooltip);
+        }
+    }
+
+    private void updateQuantity(int newQuantity) {
+        if (selectedProdotto != null) {
+            selectedProdotto.setQuantitaDisp(newQuantity);
+            tableView.refresh();
+
+            prodottoDAO.updateQuantita(selectedProdotto.getIdProdotto(), newQuantity);
         }
     }
 }

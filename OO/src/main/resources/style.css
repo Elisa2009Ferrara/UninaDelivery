@@ -1,4 +1,4 @@
-/* Colori per tutte le schermate */
+/* SPECIFICHE GENERICHE */
 .banner {
     -fx-background-color: #31243e;
 }
@@ -7,7 +7,6 @@
     -fx-background-color: #ecece7;
 }
 
-/* Ensure no borders for the main application window */
 .root {
     -fx-background-color: transparent;
     -fx-padding: 0;
@@ -16,7 +15,7 @@
     -fx-background-insets: 0;
 }
 
-/* Background e colore label login */
+/* SCHERMATA LOGIN */
 /* Stile base del messaggio */
 .label-message {
     -fx-background-color: transparent;
@@ -51,7 +50,7 @@
     -fx-font-weight: bold;
 }
 
-/* Sidebar style */
+/* STILE SIDEBAR */
 .sidebar {
     -fx-background-color: #31243e;
     -fx-min-height: 100%;
@@ -95,7 +94,7 @@
     -fx-font-size: 16px;
 }
 
-/* Schermata Ordini */
+/* SCHERMATA ORDINI */
 .labelOrder {
     -fx-text-fill: #ecece7;
 }
@@ -107,7 +106,7 @@
     -fx-text-fill: #31243e;
 }
 
-/* Schermata statistiche */
+/* SCHERMATA STATISTICHE */
 .labelStats {
     -fx-text-fill: #ecece7;
     -fx-font-family: "Segoe UI Black";
@@ -126,12 +125,13 @@
     -fx-bar-fill: #80b9b2;
 }
 
-/* Schermata lista ordini programmati */
+/* SCHERMATA LISTA ORDINI PROGRAMMATI */
 .labelListaOrdini {
     -fx-background-color: #31243e;
     -fx-padding: 10px
 }
 
+/* BOTTONE CANCELLA */
 .cancelButton {
     -fx-background-color: #E74C3C;
     -fx-font-family: "Segoe UI Historic";
@@ -139,7 +139,7 @@
     -fx-text-fill: #ecece7;
 }
 
-/* */
+/* BOTTONE CREAZIONE */
 .buttonCreate {
     -fx-background-color: #80b9b2;
     -fx-font-family: "Segoe UI Historic";
@@ -153,10 +153,119 @@
     -fx-text-fill: #31243e;
 }
 
-/* Product Management schermata */
+/* SCHERMATA PRODUCT MANAGEMENT */
 .schedaProdotto {
     -fx-background-color: #80b9b2;
-    -fx-font: "Segoe UI Historic";
+    -fx-font-family: "Segoe UI Historic";
     -fx-font-size: 14px;
     -fx-text-fill: #31243e;
+}
+
+/* STILE DELLE TABELLE */
+/* Colore bianco per l'intestazione */
+.column-header-background {
+    -fx-background-color: white;
+}
+
+/* Colore verde per i titoli delle colonne */
+.table-view .column-header .label {
+    -fx-text-fill: #31243e;
+}
+
+/* Colore giallo per la riga selezionata e testo nero */
+.table-row-cell:focused {
+    -fx-background-color: #80b9b2;
+    -fx-text-fill: black;
+}
+.table-row-cell:selected {
+    -fx-background-color: #80b9b2;
+    -fx-text-fill: black;
+}
+
+/* Sfondo bianco per tutta la tabella */
+.table-view {
+    -fx-background-color: white;
+}
+
+/* Colore grigio chiaro al passaggio del mouse sulle righe */
+.table-row-cell:hover {
+    -fx-background-color: lightgray;
+}
+
+/* STILE DELLO SPINNER */
+.spinner {
+    -fx-border-color: #31243e;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Stile del campo di testo dentro lo spinner */
+.spinner .text-field {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+/* Stile dei bottoni dello Spinner */
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: #31243e;
+    -fx-border-radius: 5px;
+}
+
+
+/* Cambia colore quando il pulsante è premuto */
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-background-color: #4f3a63;
+}
+
+/* Stile della freccia dello Spinner */
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-background-color: white;
+}
+
+/* STILE DEI COMBOBOX */
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #31243e;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #31243e;
+}
+
+/* Stile della freccetta nei ComboBox */
+.combo-box .arrow-button {
+    -fx-background-color: #80b9b2;
+    -fx-border-color: #31243e;
+}
+
+/* STILE DEI TEXTFIELDS */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #31243e;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #333;
+}
+
+/* STILE DEI DATEPICKER */
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #31243e;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #31243e;
+}
+
+/* Stile della freccetta nel DatePicker */
+.date-picker .arrow-button {
+    -fx-background-color: #80b9b2;
+    -fx-border-color: #31243e;
+}
+
+/* Stile del calendario nel DatePicker */
+.date-picker .popup-content {
+    -fx-background-color: white;
+    -fx-border-color: #31243e;
+    -fx-border-radius: 5px;
 }

@@ -3,7 +3,6 @@ package com.uninadelivery.controller;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import javafx.scene.input.MouseEvent;
 
 public class SidebarController {
@@ -13,7 +12,7 @@ public class SidebarController {
     @FXML
     private VBox sidebar;
     @FXML
-    private HBox homeButton, orderButton, deliveryButton, statsButton, storeButton;
+    private HBox homeButton, orderButton, deliveryButton, statsButton, storeButton, programmingButton;
 
     private HBox selectedButton = null;
 
@@ -37,6 +36,8 @@ public class SidebarController {
             mainController.loadContent("/com/uninadelivery/view/stats.fxml");
         } else if (clickedButton == storeButton) {
             mainController.loadContent("/com/uninadelivery/view/inventory.fxml");
+        } else if (clickedButton == programmingButton) {
+            mainController.loadContent("/com/uninadelivery/view/GestioneOrdiniProgrammati.fxml");
         }
     }
 

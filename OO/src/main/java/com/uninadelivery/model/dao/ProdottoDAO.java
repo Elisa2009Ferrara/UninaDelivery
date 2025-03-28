@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.uninadelivery.model.dbconnection.DBConnection;
-import com.uninadelivery.model.entities.Ordine;
 import com.uninadelivery.model.entities.Prodotto;
 
 public class ProdottoDAO {
@@ -19,7 +18,7 @@ public class ProdottoDAO {
     // Metodo per recuperare tutti i prodotti dal database
     public List<Prodotto> getAllProdotti() {
         List<Prodotto> prodotti = new ArrayList<>();
-        String query = "SELECT id_prodotto, nome_prodotto, dimensioni, peso, quantita_disp, prezzo FROM prodotto";
+        String query = "SELECT id_prodotto, nome_prodotto, dimensioni, peso, quantita_disp, prezzo, id_magazzino FROM prodotto";
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
@@ -32,7 +31,8 @@ public class ProdottoDAO {
                         rs.getString("dimensioni"),
                         rs.getDouble("peso"),
                         rs.getInt("quantita_disp"),
-                        rs.getDouble("prezzo")
+                        rs.getDouble("prezzo"),
+                        rs.getInt("id_magazzino")
                 );
                 prodotti.add(prodotto);
             }
@@ -41,6 +41,19 @@ public class ProdottoDAO {
         }
 
         return prodotti;
+    }
+
+    // Metodo per modificare la quantità di prodotti disponibili
+    public void updateQuantita(int prodottoId, int nuovaQuantita) {
+        String sql = "UPDATE prodotto SET quantita_disp = ? WHERE id_prodotto = ?";
+        try (Connection conn = DBConnection.getDBconnection().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, nuovaQuantita);
+            stmt.setInt(2, prodottoId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Errore durante la modifica della quantità di prodotti", e);
+        }
     }
 
 }

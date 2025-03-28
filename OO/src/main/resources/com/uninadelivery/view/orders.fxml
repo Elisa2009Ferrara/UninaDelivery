@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="500.0" prefWidth="774.0" style="-fx-padding: 0; -fx-background-insets: 0; -fx-border-width: 0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uninadelivery.controller.OrdersController">
     <center>
-        <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="emailUtente" prefWidth="75.0" text="Email Utente" />
                 <TableColumn fx:id="dataOrdine" prefWidth="75.0" text="Data ordine" />

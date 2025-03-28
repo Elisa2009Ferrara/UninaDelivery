@@ -7,47 +7,37 @@ public class Prodotto {
     private double peso;
     private int quantitaDisp;
     private double prezzo;
+    private int magazzino;
 
-    public Prodotto(int idProdotto, String nomeProdotto, String dimensioni, double peso, int quantitaDisp, double prezzo) {
+    public Prodotto(int idProdotto, String nomeProdotto, String dimensioni, double peso, int quantitaDisp, double prezzo, int magazzino) {
         this.idProdotto = idProdotto;
         this.nomeProdotto = nomeProdotto;
         this.dimensioni = dimensioni;
         this.peso = peso;
         this.quantitaDisp = quantitaDisp;
         this.prezzo = prezzo;
+        this.magazzino = magazzino;
     }
 
     public int getIdProdotto() {
         return idProdotto;
     }
 
-    public void setIdProdotto(int idProdotto) {
-        this.idProdotto = idProdotto;
-    }
 
     public String getNomeProdotto() {
         return nomeProdotto;
     }
 
-    public void setNomeProdotto(String nomeProdotto) {
-        this.nomeProdotto = nomeProdotto;
-    }
 
     public String getDimensioni() {
         return dimensioni;
     }
 
-    public void setDimensioni(String dimensioni) {
-        this.dimensioni = dimensioni;
-    }
 
     public double getPeso() {
         return peso;
     }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
 
     public int getQuantitaDisp() {
         return quantitaDisp;
@@ -61,8 +51,8 @@ public class Prodotto {
         return prezzo;
     }
 
-    public void setPrezzo(double prezzo) {
-        this.prezzo = prezzo;
+    public int getMagazzino() {
+        return magazzino;
     }
 
     @Override

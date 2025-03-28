@@ -29,7 +29,7 @@
     </top>
 
     <center>
-        <TableView fx:id="tableView" prefHeight="400.0" prefWidth="800.0">
+        <TableView fx:id="tableView" prefHeight="400.0" prefWidth="800.0" stylesheets="@../../../style.css">
             <columns>
                 <TableColumn fx:id="colIdSpedizione" prefWidth="100.0" text="Id Spedizione" />
                 <TableColumn fx:id="colIdOrdine" prefWidth="100.0" text="Id Ordine" />

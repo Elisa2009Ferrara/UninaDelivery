@@ -53,4 +53,12 @@
         <Label text="Magazzino">
         </Label>
     </HBox>
+
+    <!-- Programmazione -->
+    <HBox fx:id="programmingButton" alignment="CENTER_LEFT" onMouseClicked="#handleSidebarClick" prefHeight="75.5" prefWidth="250.0" spacing="15" styleClass="sidebar-btn" HBox.hgrow="ALWAYS">
+        <padding><Insets left="20.0" /></padding>
+        <FontIcon iconLiteral="fa-calendar" />
+        <Label text="Programmazione">
+        </Label>
+    </HBox>
 </VBox>

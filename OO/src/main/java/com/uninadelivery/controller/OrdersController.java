@@ -15,25 +15,18 @@ public class OrdersController {
 
     @FXML
     private TableView<Ordine> tableView;
-
     @FXML
     private TableColumn<Ordine, Integer> idOrdine;
-
     @FXML
     private TableColumn<Ordine, String> emailUtente;
-
     @FXML
     private TableColumn<Ordine, LocalDate> dataOrdine;
-
     @FXML
     private TextField emailField;
-
     @FXML
     private DatePicker startDatePicker;
-
     @FXML
     private DatePicker endDatePicker;
-
     @FXML
     private Button searchButton;
 
