@@ -19,7 +19,7 @@
     </VBox>
 
     <!-- Bottom Button -->
-    <HBox alignment="CENTER" prefHeight="70.0" prefWidth="774.0" spacing="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+    <HBox alignment="CENTER" prefHeight="70.0" prefWidth="774.0" spacing="10" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
         <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
         </padding>
@@ -27,7 +27,7 @@
     </HBox>
 
     <!-- Main content area -->
-    <AnchorPane fx:id="dragPane" prefHeight="386.0" prefWidth="775.0" AnchorPane.topAnchor="82" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="70">
+    <AnchorPane fx:id="dragPane" prefHeight="386.0" prefWidth="775.0" AnchorPane.bottomAnchor="70" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="82">
 
         <Label layoutX="58.0" layoutY="78.0" text="Prossima Consegna:" />
         <DatePicker fx:id="dateProxConsegna" layoutX="58.0" layoutY="95.0" prefHeight="25.0" prefWidth="201.0" />
@@ -36,10 +36,9 @@
         <DatePicker fx:id="dateDataFine" layoutX="288.0" layoutY="95.0" prefHeight="25.0" prefWidth="200.0" />
 
         <Label layoutX="285.0" layoutY="244.0" text="Orario:" />
-        <TextField fx:id="txtOrario" layoutX="285.0" layoutY="260.0" prefHeight="15.0" prefWidth="200.0" />
 
-        <Label layoutX="183.0" layoutY="164.0" text="Frequenza:" />
-        <ComboBox fx:id="comboFrequenza" layoutX="183.0" layoutY="181.0" prefHeight="25.0" prefWidth="168.0" />
+        <Label layoutX="159.0" layoutY="164.0" text="Frequenza:" />
+        <ComboBox fx:id="comboFrequenza" layoutX="159.0" layoutY="181.0" prefHeight="25.0" prefWidth="200.0" />
 
         <Label layoutX="59.0" layoutY="244.0" text="Cliente Email:" />
         <TextField fx:id="txtClienteEmail" layoutX="59.0" layoutY="260.0" prefHeight="19.0" prefWidth="200.0" />
@@ -50,6 +49,7 @@
                 <Image url="@../../../images/LogoCreaProg.png" />
             </image>
         </ImageView>
+      <ComboBox fx:id="comboOrario" layoutX="285.0" layoutY="260.0" prefHeight="25.0" prefWidth="200.0" />
 
     </AnchorPane>
 

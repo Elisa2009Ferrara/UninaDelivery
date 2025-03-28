@@ -10,9 +10,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.VBox;  // Importing VBox and Label
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -77,22 +77,58 @@ public class OrganizeProgrammedOrdersController {
             return;
         }
 
-        TextInputDialog dialog = new TextInputDialog(ordineSelezionato.getProxConsegna().toString());
-        dialog.setTitle("Modifica Data Spedizione");
-        dialog.setHeaderText("Modifica la data della spedizione");
-        dialog.setContentText("Inserisci la nuova data (YYYY-MM-DD):");
+        System.out.println("Ordine selezionato: " + ordineSelezionato);  // Debug: Verifica che l'ordine sia selezionato
 
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(newDate -> {
-            try {
-                LocalDate nuovaData = LocalDate.parse(newDate);
-                ordineSelezionato.setProxConsegna(nuovaData);
-                programmazioneDAO.aggiornaOrdineProgrammato(ordineSelezionato);
-                caricaOrdiniProgrammati();
-            } catch (Exception e) {
-                mostraErrore("Data non valida.");
+        // Dialogo per la modifica dei dettagli dell'ordine
+        Dialog<Programmazione> dialog = new Dialog<>();
+        dialog.setTitle("Modifica Ordine");
+        dialog.setHeaderText("Modifica i dettagli dell'ordine selezionato.");
+
+        // Crea un pulsante per la modifica
+        ButtonType modificaButtonType = new ButtonType("Modifica", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(modificaButtonType, ButtonType.CANCEL);
+
+        // Crea il ComboBox per la frequenza
+        ComboBox<String> frequenzaComboBox = new ComboBox<>();
+        frequenzaComboBox.getItems().addAll("settimanale", "mensile", "trimestrale");
+        frequenzaComboBox.setValue(ordineSelezionato.getFrequenza());  // Imposta il valore attuale
+
+        // Crea il ComboBox per l'orario (mattina o pomeriggio)
+        ComboBox<String> orarioComboBox = new ComboBox<>();
+        orarioComboBox.getItems().addAll("mattina", "pomeriggio");
+        orarioComboBox.setValue(ordineSelezionato.getOrario());  // Imposta l'orario attuale
+
+        // Crea il TextField per l'email cliente
+        TextField emailClienteField = new TextField(ordineSelezionato.getClienteEmail());
+
+        // Layout del dialogo
+        VBox vbox = new VBox(10);
+        vbox.getChildren().addAll(
+                new Label("Frequenza:"), frequenzaComboBox,
+                new Label("Orario:"), orarioComboBox,
+                new Label("Email Cliente:"), emailClienteField
+        );
+        dialog.getDialogPane().setContent(vbox); // Set content of the dialog to the VBox
+
+        // Azione al clic sul pulsante Modifica
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == modificaButtonType) {
+                ordineSelezionato.setFrequenza(frequenzaComboBox.getValue());  // Imposta la frequenza selezionata
+                ordineSelezionato.setOrario(orarioComboBox.getValue());        // Imposta l'orario selezionato
+                ordineSelezionato.setClienteEmail(emailClienteField.getText()); // Imposta l'email
+
+                try {
+                    // Aggiorna l'ordine nel database
+                    programmazioneDAO.aggiornaOrdineProgrammato(ordineSelezionato);
+                    caricaOrdiniProgrammati(); // Ricarica la lista degli ordini
+                } catch (SQLException e) {
+                    mostraErrore("Errore durante l'aggiornamento dell'ordine.");
+                }
             }
+            return null;
         });
+
+        dialog.showAndWait();
     }
 
     @FXML
@@ -104,15 +140,27 @@ public class OrganizeProgrammedOrdersController {
             return;
         }
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Vuoi eliminare l'ordine?", ButtonType.YES, ButtonType.NO);
+        // Finestra di conferma
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conferma Cancellazione");
+        alert.setHeaderText("Sei sicuro di voler cancellare questa programmazione?");
+        alert.setContentText("L'operazione non può essere annullata.");
+
+        // Aggiungi i pulsanti Sì e No
+        ButtonType buttonTypeYes = new ButtonType("Sì");
+        ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        // Mostra l'alert e gestisci la risposta
         Optional<ButtonType> result = alert.showAndWait();
 
-        if (result.isPresent() && result.get() == ButtonType.YES) {
+        if (result.isPresent() && result.get() == buttonTypeYes) {
             try {
+                // Elimina l'ordine dal database
                 programmazioneDAO.eliminaOrdineProgrammato(ordineSelezionato.getIdProgrammazione());
-                caricaOrdiniProgrammati();
+                caricaOrdiniProgrammati(); // Ricarica la lista degli ordini
             } catch (SQLException e) {
-                mostraErrore("Errore durante l'eliminazione.");
+                mostraErrore("Errore durante l'eliminazione dell'ordine.");
             }
         }
     }

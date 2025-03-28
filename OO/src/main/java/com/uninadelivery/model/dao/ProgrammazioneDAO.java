@@ -1,21 +1,36 @@
 package com.uninadelivery.model.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.uninadelivery.model.dbconnection.DBConnection;
 import com.uninadelivery.model.entities.Programmazione;
 
 public class ProgrammazioneDAO {
     private static final Logger LOGGER = Logger.getLogger(ProgrammazioneDAO.class.getName());
 
+    // Metodo per verificare se l'email esiste nel database
+    public boolean emailClienteEsistente(String email) {
+        String query = "SELECT COUNT(*) FROM cliente WHERE email_cliente = ?";
+
+        try (Connection conn = DBConnection.getDBconnection().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;  // Se il conteggio è maggiore di 0, l'email esiste
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Errore durante la verifica dell'email cliente", e);
+        }
+        return false;
+    }
+
+    // Metodo per creare una nuova programmazione
     public void createProgrammazione(Programmazione programmazione) {
         String query = "INSERT INTO programmazione (id_programmazione, prox_consegna, data_fine, orario, frequenza, email_cliente)" +
                 "VALUES (?, ?, ?, ?, ?, ?) RETURNING id_programmazione";
