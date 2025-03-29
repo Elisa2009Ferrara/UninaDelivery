@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.uninadelivery.model.dbconnection.DBConnection;
-import com.uninadelivery.model.entities.MezzoDiTrasporto;
+
 
 public class MezzoDiTrasportoDAO {
     private static final Logger LOGGER = Logger.getLogger(MezzoDiTrasportoDAO.class.getName());
@@ -24,7 +24,7 @@ public class MezzoDiTrasportoDAO {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                targhe.add(rs.getString("targa"));  // Aggiungi la targa alla lista
+                targhe.add(rs.getString("targa"));
             }
 
         } catch (SQLException e) {

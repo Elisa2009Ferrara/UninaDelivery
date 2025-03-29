@@ -21,40 +21,16 @@ public class Ordine {
         return emailCliente;
     }
 
-    public void setEmailCliente(String emailCliente) {
-        this.emailCliente = emailCliente;
-    }
-
     public int getIdOrdine() {
         return idOrdine;
-    }
-
-    public void setIdOrdine(int idOrdine) {
-        this.idOrdine = idOrdine;
     }
 
     public LocalDate getDataOrdine() {
         return dataOrdine;
     }
 
-    public void setDataOrdine(LocalDate dataOrdine) {
-        this.dataOrdine = dataOrdine;
-    }
-
-    public Boolean getCompletamento() {
-        return completamento;
-    }
-
-    public void setCompletamento(boolean completamento) {
-        this.completamento = completamento;
-    }
-
     public int getNumeroProdotti() {
         return numeroProdotti;
-    }
-
-    public void setNumeroProdotti(int numeroProdotti) {
-        this.numeroProdotti = numeroProdotti;
     }
 
     @Override

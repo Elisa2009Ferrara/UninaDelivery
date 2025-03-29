@@ -7,7 +7,6 @@ public class Prodotto {
     private double peso;
     private int quantitaDisp;
     private double prezzo;
-    private int magazzino;
 
     public Prodotto(int idProdotto, String nomeProdotto, String dimensioni, double peso, int quantitaDisp, double prezzo, int magazzino) {
         this.idProdotto = idProdotto;
@@ -16,7 +15,6 @@ public class Prodotto {
         this.peso = peso;
         this.quantitaDisp = quantitaDisp;
         this.prezzo = prezzo;
-        this.magazzino = magazzino;
     }
 
     public int getIdProdotto() {
@@ -49,10 +47,6 @@ public class Prodotto {
 
     public double getPrezzo() {
         return prezzo;
-    }
-
-    public int getMagazzino() {
-        return magazzino;
     }
 
     @Override

@@ -13,7 +13,6 @@ public class Operatore {
     private String cognomeOperatore;
     private String nTelefonoOperatore;
 
-    // Regex per verificare che l'email sia valida
     private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
     private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
@@ -73,7 +72,7 @@ public class Operatore {
     }
 
     public void setnTelefonoOperatore(String nTelefonoOperatore) {
-        if (nTelefonoOperatore.matches("\\d{10}")) {  // Controlla che sia un numero di 10 cifre
+        if (nTelefonoOperatore.matches("\\d{10}")) {
             this.nTelefonoOperatore = nTelefonoOperatore;
         } else {
             LOGGER.warning("Numero di telefono non valido: " + nTelefonoOperatore);

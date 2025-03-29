@@ -9,10 +9,8 @@ public class SidebarController {
 
     private MainController mainController;
 
-    @FXML
-    private VBox sidebar;
-    @FXML
-    private HBox homeButton, orderButton, deliveryButton, statsButton, storeButton, programmingButton;
+    @FXML private VBox sidebar;
+    @FXML private HBox homeButton, orderButton, deliveryButton, statsButton, storeButton, programmingButton;
 
     private HBox selectedButton = null;
 
@@ -25,7 +23,6 @@ public class SidebarController {
         HBox clickedButton = (HBox) event.getSource();
         selectButton(clickedButton);
 
-        // Cambia schermata in base al pulsante cliccato
         if (clickedButton == homeButton) {
             mainController.loadContent("/com/uninadelivery/view/home.fxml");
         } else if (clickedButton == orderButton) {

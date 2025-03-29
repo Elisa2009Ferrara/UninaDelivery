@@ -13,7 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;

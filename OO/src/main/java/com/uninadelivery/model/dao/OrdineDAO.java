@@ -16,7 +16,6 @@ import com.uninadelivery.model.entities.Ordine;
 public class OrdineDAO {
     private static final Logger LOGGER = Logger.getLogger(OrdineDAO.class.getName());
 
-    /* Metodo usato nella schermata orders */
     public List<Ordine> getAllOrdini() {
         List<Ordine> orders = new ArrayList<>();
         String query = "SELECT o.id_ordine, o.data_ordine, o.completamento, o.email_cliente, " +
@@ -46,7 +45,6 @@ public class OrdineDAO {
         return orders;
     }
 
-    // Metodo che ricava solo gli ordini senza spedizione assegnata
     public List<Integer> getOrdiniNonAssegnati() {
         List<Integer> ordiniNonAssegnati = new ArrayList<>();
         String query = "SELECT id_ordine FROM ordine " +

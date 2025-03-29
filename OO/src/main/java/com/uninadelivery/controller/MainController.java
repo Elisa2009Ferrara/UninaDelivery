@@ -2,26 +2,21 @@ package com.uninadelivery.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MainController {
 
-    @FXML
-    public VBox sidebarContainer;
-    @FXML
-    private BorderPane borderPane;
-    @FXML
-    private StackPane contentArea;
+    @FXML public VBox sidebarContainer;
+    @FXML private BorderPane borderPane;
+    @FXML private StackPane contentArea;
 
     @FXML
     public void initialize() {
@@ -36,7 +31,6 @@ public class MainController {
             borderPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
                 double width = newWidth.doubleValue();
 
-                // Se la finestra è più piccola di 600px, riduci la sidebar
                 if (width < 600) {
                     sidebar.setStyle("-fx-pref-width: 150px; -fx-min-width: 150px;");
                 } else {
@@ -51,13 +45,11 @@ public class MainController {
         }
     }
 
-    // Metodo per aggiornare la schermata nella content area
     public void loadContent(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent view = loader.load();
 
-            // Allineamento al centro
             StackPane.setAlignment(view, Pos.CENTER);
 
             if (view instanceof javafx.scene.layout.Region) {

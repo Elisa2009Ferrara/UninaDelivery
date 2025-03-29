@@ -10,11 +10,10 @@ public class Spedizione {
     private String societa;
     private String stato;
     private LocalDate dataSped;
-    private int idOrdine; // Foreign key
+    private int idOrdine;
     private String corriere;
     private String mezzoTrasporto;
 
-    // Modifica del costruttore per includere corriere e mezzo di trasporto
     public Spedizione(int idSpedizione, String destinazione, LocalDate arrivoPrev, String societa,
                       String stato, LocalDate dataSped, int idOrdine, String corriere, String mezzoTrasporto) {
         this.idSpedizione = idSpedizione;
@@ -24,13 +23,8 @@ public class Spedizione {
         this.stato = stato;
         this.dataSped = dataSped;
         this.idOrdine = idOrdine;
-        this.corriere = corriere;  // Nuovo campo
-        this.mezzoTrasporto = mezzoTrasporto;  // Nuovo campo
-    }
-
-    // Getters
-    public int getIdSpedizione() {
-        return idSpedizione;
+        this.corriere = corriere;
+        this.mezzoTrasporto = mezzoTrasporto;
     }
 
     public String getDestinazione() {
@@ -63,15 +57,6 @@ public class Spedizione {
 
     public String getMezzoTrasporto() {
         return mezzoTrasporto;
-    }
-
-    // Setters
-    public void setCorriere(String corriere) {
-        this.corriere = corriere;
-    }
-
-    public void setMezzoTrasporto(String mezzoTrasporto) {
-        this.mezzoTrasporto = mezzoTrasporto;
     }
 
     @Override

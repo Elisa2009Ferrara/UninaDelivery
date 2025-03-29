@@ -6,16 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import com.uninadelivery.model.dbconnection.DBConnection;
 import com.uninadelivery.model.entities.Operatore;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 
 public class OperatoreDAO {
     private static final Logger LOGGER = Logger.getLogger(OperatoreDAO.class.getName());
 
-    // Metodo per ottenere l'hash MD5 della password, siccome la password è hashata nel database
     private String hashPasswordMD5(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -44,10 +44,9 @@ public class OperatoreDAO {
                 if (rs.next()) {
                     String hashedPassword = rs.getString("password");
 
-                    // Hash della password immessa dall'utente usando MD5
                     String hashedInputPassword = hashPasswordMD5(password);
 
-                    if (hashedPassword.equals(hashedInputPassword)) { // Confronta la password hashata
+                    if (hashedPassword.equals(hashedInputPassword)) {
                         LOGGER.info("Login riuscito per l'email: " + email);
                         return new Operatore(
                                 rs.getString("email_operatore"),

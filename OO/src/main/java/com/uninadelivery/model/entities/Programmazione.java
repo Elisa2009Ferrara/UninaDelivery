@@ -21,17 +21,12 @@ public class Programmazione {
         this.clienteEmail = new SimpleStringProperty(clienteEmail);
     }
 
-    // Getter e Setter con Property
     public IntegerProperty idProgrammazioneProperty() {
         return idProgrammazione;
     }
 
     public int getIdProgrammazione() {
         return idProgrammazione.get();
-    }
-
-    public void setIdProgrammazione(int idProgrammazione) {
-        this.idProgrammazione.set(idProgrammazione);
     }
 
     public ObjectProperty<LocalDate> proxConsegnaProperty() {
@@ -42,10 +37,6 @@ public class Programmazione {
         return proxConsegna.get();
     }
 
-    public void setProxConsegna(LocalDate proxConsegna) {
-        this.proxConsegna.set(proxConsegna);
-    }
-
     public ObjectProperty<LocalDate> dataFineProperty() {
 
         return dataFine;
@@ -54,10 +45,6 @@ public class Programmazione {
     public LocalDate getDataFine() {
 
         return dataFine.get();
-    }
-
-    public void setDataFine(LocalDate dataFine) {
-        this.dataFine.set(dataFine);
     }
 
     public StringProperty orarioProperty() {

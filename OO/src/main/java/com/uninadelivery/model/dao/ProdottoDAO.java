@@ -15,7 +15,6 @@ import com.uninadelivery.model.entities.Prodotto;
 public class ProdottoDAO {
     private static final Logger LOGGER = Logger.getLogger(ProdottoDAO.class.getName());
 
-    // Metodo per recuperare tutti i prodotti dal database
     public List<Prodotto> getAllProdotti() {
         List<Prodotto> prodotti = new ArrayList<>();
         String query = "SELECT id_prodotto, nome_prodotto, dimensioni, peso, quantita_disp, prezzo, id_magazzino FROM prodotto";
@@ -43,7 +42,6 @@ public class ProdottoDAO {
         return prodotti;
     }
 
-    // Metodo per modificare la quantità di prodotti disponibili
     public void updateQuantita(int prodottoId, int nuovaQuantita) {
         String sql = "UPDATE prodotto SET quantita_disp = ? WHERE id_prodotto = ?";
         try (Connection conn = DBConnection.getDBconnection().getConnection();

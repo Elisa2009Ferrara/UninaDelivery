@@ -15,12 +15,9 @@ import com.uninadelivery.model.dao.OperatoreDAO;
 import com.uninadelivery.model.entities.Operatore;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import java.io.File;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.net.URL;
@@ -29,20 +26,12 @@ public class LoginController implements Initializable {
 
     private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
 
-    @FXML
-    private Label loginMessageLabel;
-    @FXML
-    private ImageView brandingImageView;
-    @FXML
-    private ImageView userImageView;
-    @FXML
-    private TextField usernameTextField;
-    @FXML
-    private TextField passwordTextField;
-    @FXML
-    private Label registerMessageLabel;
-    @FXML
-    private Button loginButton;
+    @FXML private Label loginMessageLabel;
+    @FXML private ImageView brandingImageView;
+    @FXML private ImageView userImageView;
+    @FXML private TextField usernameTextField;
+    @FXML private TextField passwordTextField;
+    @FXML private Button loginButton;
 
 
     private final OperatoreDAO operatoreDAO = new OperatoreDAO();
@@ -56,26 +45,21 @@ public class LoginController implements Initializable {
 
     @FXML
     private void loginButtonOnAction(ActionEvent event) {
-        loginMessageLabel.getStyleClass().clear(); // Pulisce gli stili precedenti
+        loginMessageLabel.getStyleClass().clear();
 
         if (!usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank()) {
             if (validateLogin(usernameTextField.getText(), passwordTextField.getText())) {
-                // Login riuscito
                 loginMessageLabel.setText("Accesso riuscito!");
                 loginMessageLabel.getStyleClass().add("label-success");
-                // Passaggio alla schermata principale
                 openMainScreen();
 
-                // Chiudere la finestra di login
                 Stage currentStage = (Stage) loginButton.getScene().getWindow();
                 currentStage.close();
             } else {
-                // Login fallito
                 loginMessageLabel.setText("Username o password errati.");
                 loginMessageLabel.getStyleClass().add("label-error");
             }
         } else {
-            // Se uno dei campi è vuoto
             loginMessageLabel.setText("Per favore, inserisci username e password.");
             loginMessageLabel.getStyleClass().add("label-error");
         }

@@ -7,33 +7,21 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.uninadelivery.model.dao.ProdottoDAO;
 import com.uninadelivery.model.entities.Prodotto;
-
 import java.util.List;
 
 public class InventoryController {
 
-    @FXML
-    private TableView<Prodotto> tableView;
-    @FXML
-    private TableColumn<Prodotto, Integer> idColumn;
-    @FXML
-    private TableColumn<Prodotto, String> nameColumn;
-    @FXML
-    private TableColumn<Prodotto, String> sizeColumn;
-    @FXML
-    private TableColumn<Prodotto, Double> weightColumn;
-    @FXML
-    private TableColumn<Prodotto, Integer> quantityColumn;
-    @FXML
-    private TableColumn<Prodotto, Double> priceColumn;
-    @FXML
-    private TableColumn<Prodotto, Integer> storeColumn;
-    @FXML
-    private TextField searchField;
-    @FXML
-    private Label lblId, lblName, lblSize, lblWeight, lblPrice;
-    @FXML
-    private Spinner<Integer> quantitySpinner;
+    @FXML private TableView<Prodotto> tableView;
+    @FXML private TableColumn<Prodotto, Integer> idColumn;
+    @FXML private TableColumn<Prodotto, String> nameColumn;
+    @FXML private TableColumn<Prodotto, String> sizeColumn;
+    @FXML private TableColumn<Prodotto, Double> weightColumn;
+    @FXML private TableColumn<Prodotto, Integer> quantityColumn;
+    @FXML private TableColumn<Prodotto, Double> priceColumn;
+    @FXML private TableColumn<Prodotto, Integer> storeColumn;
+    @FXML private TextField searchField;
+    @FXML private Label lblId, lblName, lblSize, lblWeight, lblPrice;
+    @FXML private Spinner<Integer> quantitySpinner;
 
     private ObservableList<Prodotto> productList = FXCollections.observableArrayList();
     private ProdottoDAO prodottoDAO = new ProdottoDAO();
@@ -55,9 +43,7 @@ public class InventoryController {
         searchField.textProperty().addListener((observable, oldValue, newValue) -> filterProducts(newValue));
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showProductDetails(newValue));
 
-        // Configurazione dello Spinner
-        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory =
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000, 0);
+        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000, 0);
         quantitySpinner.setValueFactory(valueFactory);
         quantitySpinner.valueProperty().addListener((obs, oldValue, newValue) -> updateQuantity(newValue));
     }
@@ -93,7 +79,6 @@ public class InventoryController {
             lblPrice.setText(String.format("%.2f", prodotto.getPrezzo()));
             quantitySpinner.getValueFactory().setValue(prodotto.getQuantitaDisp());
 
-            // Tooltip: mostra il nome completo del prodotto se è troppo lungo
             Tooltip tooltip = new Tooltip(prodotto.getNomeProdotto());
             Tooltip.install(lblName, tooltip);
         }

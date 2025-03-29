@@ -15,11 +15,9 @@ import com.uninadelivery.model.entities.Spedizione;
 public class SpedizioneDAO {
     private static final Logger LOGGER = Logger.getLogger(SpedizioneDAO.class.getName());
 
-    // Metodo per ottenere tutte le spedizioni create
     public List<Spedizione> getAllSpedizioni() {
         List<Spedizione> spedizioni = new ArrayList<>();
 
-        // La query SQL deve ottenere anche il corriere e il mezzo di trasporto
         String query = "SELECT s.id_spedizione, s.destinazione, s.arrivo_prev, s.societa, s.stato, s.data_sped, " +
                 "s.id_ordine, s.n_telefono_corriere, s.targa " +
                 "FROM spedizione s";

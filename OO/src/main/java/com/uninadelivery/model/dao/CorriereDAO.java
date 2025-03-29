@@ -10,12 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.uninadelivery.model.dbconnection.DBConnection;
-import com.uninadelivery.model.entities.Corriere;
 
 public class CorriereDAO {
     private static final Logger LOGGER = Logger.getLogger(CorriereDAO.class.getName());
 
-    //  Trova il numero di telefono del corriere dato il nome
     public String getNumeroTelefonoByNome(String nomeCorriere) {
         String query = "SELECT n_telefono_corriere FROM Corriere WHERE CONCAT(nome_corriere, ' ', cognome_corriere) = ?";
 

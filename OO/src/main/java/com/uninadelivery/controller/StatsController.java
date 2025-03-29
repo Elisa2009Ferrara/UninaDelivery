@@ -9,7 +9,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-
 import java.time.Month;
 import java.util.Comparator;
 import java.util.List;
@@ -27,7 +26,6 @@ public class StatsController {
 
     @FXML
     public void initialize() {
-        // Popola il ComboBox con i mesi
         monthComboBox.setItems(FXCollections.observableArrayList(
                 "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
                 "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
@@ -53,19 +51,15 @@ public class StatsController {
             return;
         }
 
-        // Numero medio di ordini
         double avgOrders = (double) ordini.size() / Month.of(monthNumber).length(false);
         avgOrdersLabel.setText(String.format("%.2f", avgOrders));
 
-        // Ordine con più prodotti
         Ordine maxOrder = ordini.stream().max(Comparator.comparingInt(Ordine::getNumeroProdotti)).orElse(null);
         maxOrderLabel.setText(maxOrder != null ? "ID: " + maxOrder.getIdOrdine() + " - Prodotti: " + maxOrder.getNumeroProdotti() : "Nessun dato");
 
-        // Ordine con meno prodotti
         Ordine minOrder = ordini.stream().min(Comparator.comparingInt(Ordine::getNumeroProdotti)).orElse(null);
         minOrderLabel.setText(minOrder != null ? "ID: " + minOrder.getIdOrdine() + " - Prodotti: " + minOrder.getNumeroProdotti() : "Nessun dato");
 
-        // Popolare il grafico a barre
         updateBarChart(ordini);
     }
 

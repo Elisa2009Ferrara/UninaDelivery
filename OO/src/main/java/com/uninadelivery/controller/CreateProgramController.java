@@ -23,7 +23,6 @@ public class CreateProgramController {
     @FXML
     public void initialize() {
         comboFrequenza.setItems(FXCollections.observableArrayList("settimanale", "mensile", "trimestrale"));
-
         comboOrario.setItems(FXCollections.observableArrayList("mattina", "pomeriggio"));
     }
 

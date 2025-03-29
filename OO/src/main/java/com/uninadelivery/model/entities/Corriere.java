@@ -15,38 +15,6 @@ public class Corriere {
         this.disponibilita = disponibilita;
     }
 
-    public String getNomeCorriere() {
-        return nomeCorriere;
-    }
-
-    public void setNomeCorriere(String nomeCorriere) {
-        this.nomeCorriere = nomeCorriere;
-    }
-
-    public String getCognomeCorriere() {
-        return cognomeCorriere;
-    }
-
-    public void setCognomeCorriere(String cognomeCorriere) {
-        this.cognomeCorriere = cognomeCorriere;
-    }
-
-    public String getnTelefonoCorriere() {
-        return nTelefonoCorriere;
-    }
-
-    public void setnTelefonoCorriere(String nTelefonoCorriere) {
-        this.nTelefonoCorriere = nTelefonoCorriere;
-    }
-
-    public Boolean getDisponibilita() {
-        return disponibilita;
-    }
-
-    public void setDisponibilita(boolean disponibilita) {
-        this.disponibilita = disponibilita;
-    }
-
     @Override
     public String toString() {
         return nomeCorriere + " " + cognomeCorriere;

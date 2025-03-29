@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.uninadelivery.model.dbconnection.DBConnection;
 import com.uninadelivery.model.entities.Programmazione;
 
 public class ProgrammazioneDAO {
     private static final Logger LOGGER = Logger.getLogger(ProgrammazioneDAO.class.getName());
 
-    // Metodo per verificare se l'email esiste nel database
     public boolean emailClienteEsistente(String email) {
         String query = "SELECT COUNT(*) FROM cliente WHERE email_cliente = ?";
 
@@ -21,7 +21,7 @@ public class ProgrammazioneDAO {
             ps.setString(1, email);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt(1) > 0;  // Se il conteggio è maggiore di 0, l'email esiste
+                    return rs.getInt(1) > 0;
                 }
             }
         } catch (SQLException e) {
@@ -30,7 +30,6 @@ public class ProgrammazioneDAO {
         return false;
     }
 
-    // Metodo per creare una nuova programmazione
     public void createProgrammazione(Programmazione programmazione) {
         String query = "INSERT INTO programmazione (id_programmazione, prox_consegna, data_fine, orario, frequenza, email_cliente)" +
                 "VALUES (?, ?, ?, ?, ?, ?) RETURNING id_programmazione";
@@ -56,7 +55,6 @@ public class ProgrammazioneDAO {
         }
     }
 
-    // Metodo per ottenere tutti gli ordini programmati
     public List<Programmazione> getAllOrdiniProgrammati() throws SQLException {
         String query = "SELECT id_programmazione, prox_consegna, data_fine, orario, frequenza, email_cliente FROM programmazione";
         List<Programmazione> ordini = new ArrayList<>();
@@ -71,7 +69,7 @@ public class ProgrammazioneDAO {
                 LocalDate dataFine = rs.getDate("data_fine").toLocalDate();
                 String orario = rs.getString("orario");
                 String frequenza = rs.getString("frequenza");
-                String clienteEmail = rs.getString("email_cliente");  // Corretto il nome della colonna
+                String clienteEmail = rs.getString("email_cliente");
 
                 Programmazione programmazione = new Programmazione(idProgrammazione, proxConsegna, dataFine, orario, frequenza, clienteEmail);
                 ordini.add(programmazione);
@@ -115,7 +113,6 @@ public class ProgrammazioneDAO {
         return ordini;
     }
 
-    // Metodo per aggiornare un ordine programmato
     public void aggiornaOrdineProgrammato(Programmazione ordine) throws SQLException {
         String query = "UPDATE programmazione SET prox_consegna = ?, data_fine = ?, orario = ?, frequenza = ?, email_cliente = ? WHERE id_programmazione = ?";
 
@@ -137,7 +134,6 @@ public class ProgrammazioneDAO {
         }
     }
 
-    // Metodo per eliminare un ordine programmato
     public void eliminaOrdineProgrammato(int idProgrammazione) throws SQLException {
         String query = "DELETE FROM programmazione WHERE id_programmazione = ?";
 

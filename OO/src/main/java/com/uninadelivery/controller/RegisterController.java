@@ -11,7 +11,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,20 +19,13 @@ public class RegisterController {
 
     private static final Logger LOGGER = Logger.getLogger(RegisterController.class.getName());
 
-    @FXML
-    private ImageView backButtonView;
-    @FXML
-    private TextField EmailTextField;
-    @FXML
-    private PasswordField setPasswordField;
-    @FXML
-    private TextField NomeTextField;
-    @FXML
-    private TextField CognomeTextField;
-    @FXML
-    private TextField NumeroTelTextField;
-    @FXML
-    private PasswordField confirmPasswordField;
+    @FXML private ImageView backButtonView;
+    @FXML private TextField EmailTextField;
+    @FXML private PasswordField setPasswordField;
+    @FXML private TextField NomeTextField;
+    @FXML private TextField CognomeTextField;
+    @FXML private TextField NumeroTelTextField;
+    @FXML private PasswordField confirmPasswordField;
 
     private final OperatoreDAO operatoreDAO = new OperatoreDAO();
 
