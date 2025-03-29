@@ -29,9 +29,7 @@
       </HBox>
    </top>
    <right>
-       <!-- Scheda Prodotto -->
        <VBox alignment="CENTER" prefHeight="400.0" prefWidth="219.0" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
-       <!-- Titolo "Dettagli" -->
        <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10px;" text="Dettagli" />
 
        <HBox prefHeight="400.0" prefWidth="39.0">
@@ -51,7 +49,6 @@
                <Label fx:id="lblSize" text="-" />
                <Label fx:id="lblWeight" text="-" />
                <Label fx:id="lblPrice" text="-" />
-               <!-- Spinner per la quantità -->
                <Spinner fx:id="quantitySpinner" editable="true" prefHeight="0.0" prefWidth="86.0" />
                <padding><Insets left="10.0" /></padding>
            </VBox>
