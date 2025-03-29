@@ -26,7 +26,7 @@ public class Main extends Application {
         Image appIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconaApp.png")));
         primaryStage.getIcons().add(appIcon);
 
-        primaryStage.setResizable(false); // Login e registrazione rimangono fissi
+        primaryStage.setResizable(false);
 
         primaryStage.show();
     }

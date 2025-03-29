@@ -30,9 +30,6 @@ public class OrganizeProgrammedOrdersController {
     @FXML private TableColumn<Programmazione, String> colOrario;
     @FXML private TableColumn<Programmazione, LocalDate> colDataFine;
     @FXML private TextField emailClienteField;
-    @FXML private Button btnModifica;
-    @FXML private Button btnElimina;
-    @FXML private Button btnCrea;
 
     private final ProgrammazioneDAO programmazioneDAO = new ProgrammazioneDAO();
     private final ObservableList<Programmazione> listaOrdini = FXCollections.observableArrayList();
