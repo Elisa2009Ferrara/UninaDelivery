@@ -17,22 +17,16 @@ public class CreateDeliveryController {
 
     @FXML
     private ComboBox<Integer> cbIdOrdine;
-
     @FXML
     private DatePicker dpArrivoPrevisto;
-
     @FXML
     private TextField tfSocieta;
-
     @FXML
-    private ComboBox<String> cbCorriere;  // Cambiato da Corriere a String
-
+    private ComboBox<String> cbCorriere;
     @FXML
     private ComboBox<String> cbMezzoTrasporto;
-
     @FXML
     private Button btnConferma;
-
     @FXML
     private Button btnCancella;
 
@@ -64,7 +58,6 @@ public class CreateDeliveryController {
             return;
         }
 
-        // Mostra finestra di conferma
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma Creazione Spedizione");
         alert.setHeaderText(null);
@@ -105,7 +98,7 @@ public class CreateDeliveryController {
         boolean successo = spedizioneDAO.createSpedizione(nuovaSpedizione);
         if (successo) {
             mostraMessaggio("Spedizione creata con successo!");
-            chiudiFinestra(); // Questo chiuderà la finestra e attiverà il refresh nel DeliveryController
+            chiudiFinestra();
         } else {
             mostraErrore("Errore nella creazione della spedizione.");
         }

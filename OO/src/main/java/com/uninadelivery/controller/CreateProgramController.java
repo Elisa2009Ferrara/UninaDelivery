@@ -90,7 +90,7 @@ public class CreateProgramController {
     private void pulisciCampi() {
         dateProxConsegna.setValue(null);
         dateDataFine.setValue(null);
-        comboOrario.getSelectionModel().clearSelection();  // Pulisce la selezione dell'orario
+        comboOrario.getSelectionModel().clearSelection();
         comboFrequenza.getSelectionModel().clearSelection();
         txtClienteEmail.clear();
     }
