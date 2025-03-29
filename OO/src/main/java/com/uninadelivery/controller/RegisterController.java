@@ -22,7 +22,6 @@ public class RegisterController {
 
     @FXML
     private ImageView backButtonView;
-
     @FXML
     private TextField EmailTextField;
     @FXML

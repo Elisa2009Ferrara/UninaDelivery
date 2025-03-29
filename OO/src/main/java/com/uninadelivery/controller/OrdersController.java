@@ -42,7 +42,6 @@ public class OrdersController {
         loadOrders();
         searchButton.setOnAction(_ -> searchOrders());
 
-        // Aggiornamento automatico della lista mentre l'utente digita
         emailField.textProperty().addListener((_, _, _) -> searchOrders());
     }
 

@@ -139,6 +139,10 @@
     -fx-text-fill: #000000;
 }
 
+.cancelButton:hover {
+    -fx-background-color: #C0392B;
+}
+
 /* BOTTONE CREAZIONE */
 .buttonCreate {
     -fx-background-color: #80b9b2;
@@ -162,17 +166,14 @@
 }
 
 /* STILE DELLE TABELLE */
-/* Colore bianco per l'intestazione */
 .column-header-background {
     -fx-background-color: white;
 }
 
-/* Colore verde per i titoli delle colonne */
 .table-view .column-header .label {
     -fx-text-fill: #31243e;
 }
 
-/* Colore giallo per la riga selezionata e testo nero */
 .table-row-cell:focused {
     -fx-background-color: #80b9b2;
     -fx-text-fill: black;
@@ -182,12 +183,10 @@
     -fx-text-fill: black;
 }
 
-/* Sfondo bianco per tutta la tabella */
 .table-view {
     -fx-background-color: white;
 }
 
-/* Colore grigio chiaro al passaggio del mouse sulle righe */
 .table-row-cell:hover {
     -fx-background-color: lightgray;
 }
@@ -195,8 +194,6 @@
 /* STILE DELLO SPINNER */
 .spinner {
     -fx-border-color: #31243e;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
 }
 
 /* Stile del campo di testo dentro lo spinner */
@@ -214,7 +211,6 @@
     -fx-border-radius: 5px;
 }
 
-
 /* Cambia colore quando il pulsante è premuto */
 .spinner .increment-arrow-button:pressed,
 .spinner .decrement-arrow-button:pressed {
@@ -231,7 +227,6 @@
 .combo-box {
     -fx-background-color: white;
     -fx-border-color: #31243e;
-    -fx-border-radius: 5px;
     -fx-text-fill: #31243e;
 }
 
@@ -253,7 +248,6 @@
 .date-picker {
     -fx-background-color: white;
     -fx-border-color: #31243e;
-    -fx-border-radius: 5px;
     -fx-text-fill: #31243e;
 }
 
@@ -267,7 +261,6 @@
 .date-picker .popup-content {
     -fx-background-color: white;
     -fx-border-color: #31243e;
-    -fx-border-radius: 5px;
 }
 
 .createButton {
@@ -275,4 +268,25 @@
     -fx-font-family: "Segoe UI Historic";
     -fx-font-size: 12px;
     -fx-text-fill: #000000;
+}
+
+/* STILE DEL DIALOG MODIFICA */
+.custom-dialog {
+    -fx-background-color: #ecece7;
+}
+
+.custom-dialog .label {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+
+.custom-dialog .button {
+    -fx-background-color: #80b9b2;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-border-radius: 5px;
+}
+
+.custom-dialog .button:hover {
+    -fx-background-color: #16a085;
 }

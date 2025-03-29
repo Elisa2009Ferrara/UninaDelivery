@@ -25,25 +25,18 @@ public class DeliveryController {
 
     @FXML
     private Button btnCrea;
-
     @FXML
     private TableView<Spedizione> tableView;
-
     @FXML
     private TableColumn<Spedizione, Integer> colIdSpedizione;
-
     @FXML
     private TableColumn<Spedizione, Integer> colIdOrdine;
-
     @FXML
     private TableColumn<Spedizione, String> colSocieta;
-
     @FXML
     private TableColumn<Spedizione, String> colStato;
-
     @FXML
     private TableColumn<Spedizione, String> colCorriere;
-
     @FXML
     private TableColumn<Spedizione, String> colMezzoTrasporto;
 

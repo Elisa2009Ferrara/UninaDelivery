@@ -32,7 +32,7 @@ public class OrganizeProgrammedOrdersController {
     @FXML private TextField emailClienteField;
     @FXML private Button btnModifica;
     @FXML private Button btnElimina;
-    @FXML private Button btnCrea;  // Pulsante per aprire la schermata di creazione
+    @FXML private Button btnCrea;
 
     private final ProgrammazioneDAO programmazioneDAO = new ProgrammazioneDAO();
     private final ObservableList<Programmazione> listaOrdini = FXCollections.observableArrayList();
@@ -41,11 +41,13 @@ public class OrganizeProgrammedOrdersController {
     public void initialize() {
         Platform.runLater(() -> {
             if (tableOrdini.getScene() != null) {
-                // Add the stylesheet
                 tableOrdini.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
             } else {
                 System.err.println("Attenzione: la Scene è ancora null. Lo stylesheet non è stato caricato.");
             }
+            emailClienteField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filtraOrdiniPerEmail();
+            });
         });
 
         colIdOrdine.setCellValueFactory(cellData -> cellData.getValue().idProgrammazioneProperty().asObject());
@@ -71,26 +73,24 @@ public class OrganizeProgrammedOrdersController {
 
     @FXML
     public void filtraOrdiniPerEmail() {
-        String email = emailClienteField.getText().trim(); // Rimuovi gli spazi vuoti
+        String email = emailClienteField.getText().trim();
 
-        listaOrdini.clear(); // Pulisci la lista prima di aggiornarla
+        listaOrdini.clear();
 
         try {
             if (email.isEmpty()) {
-                // Se il campo è vuoto, recupera tutti gli ordini
-                listaOrdini.addAll(programmazioneDAO.getAllOrdiniProgrammati());  // Supponendo che esista un metodo per prendere tutti gli ordini
+                listaOrdini.addAll(programmazioneDAO.getAllOrdiniProgrammati());
             } else {
-                // Se il campo non è vuoto, filtra gli ordini per email
-                listaOrdini.addAll(programmazioneDAO.getOrdiniProgrammatiPerEmail(email));
+                listaOrdini.addAll(programmazioneDAO.getOrdiniProgrammatiPerEmail("%" + email + "%"));
             }
 
-            // Imposta la lista nella table
             tableOrdini.setItems(listaOrdini);
 
         } catch (SQLException e) {
             mostraErrore("Errore nel filtro degli ordini per email.");
         }
     }
+
     @FXML
     private void modificaOrdine(ActionEvent event) {
         Programmazione ordineSelezionato = tableOrdini.getSelectionModel().getSelectedItem();
@@ -104,8 +104,13 @@ public class OrganizeProgrammedOrdersController {
         dialog.setTitle("Modifica Ordine");
         dialog.setHeaderText("Modifica i dettagli dell'ordine selezionato.");
 
+        dialog.getDialogPane().getStyleClass().add("custom-dialog");
+        dialog.getDialogPane().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+
         ButtonType modificaButtonType = new ButtonType("Modifica", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(modificaButtonType, ButtonType.CANCEL);
+
+        dialog.getDialogPane().lookupButton(ButtonType.CANCEL).getStyleClass().add("cancelButton");
 
         ComboBox<String> frequenzaComboBox = new ComboBox<>();
         frequenzaComboBox.getItems().addAll("settimanale", "mensile", "trimestrale");
@@ -113,7 +118,7 @@ public class OrganizeProgrammedOrdersController {
 
         ComboBox<String> orarioComboBox = new ComboBox<>();
         orarioComboBox.getItems().addAll("mattina", "pomeriggio");
-        orarioComboBox.setValue(ordineSelezionato.getOrario());  // Imposta l'orario attuale
+        orarioComboBox.setValue(ordineSelezionato.getOrario());
 
         TextField emailClienteField = new TextField(ordineSelezionato.getClienteEmail());
 
@@ -127,14 +132,13 @@ public class OrganizeProgrammedOrdersController {
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == modificaButtonType) {
-                ordineSelezionato.setFrequenza(frequenzaComboBox.getValue());  // Imposta la frequenza selezionata
-                ordineSelezionato.setOrario(orarioComboBox.getValue());        // Imposta l'orario selezionato
-                ordineSelezionato.setClienteEmail(emailClienteField.getText()); // Imposta l'email
+                ordineSelezionato.setFrequenza(frequenzaComboBox.getValue());
+                ordineSelezionato.setOrario(orarioComboBox.getValue());
+                ordineSelezionato.setClienteEmail(emailClienteField.getText());
 
                 try {
-                    // Aggiorna l'ordine nel database
                     programmazioneDAO.aggiornaOrdineProgrammato(ordineSelezionato);
-                    caricaOrdiniProgrammati(); // Ricarica la lista degli ordini
+                    caricaOrdiniProgrammati();
                 } catch (SQLException e) {
                     mostraErrore("Errore durante l'aggiornamento dell'ordine.");
                 }
@@ -168,7 +172,7 @@ public class OrganizeProgrammedOrdersController {
         if (result.isPresent() && result.get() == buttonTypeYes) {
             try {
                 programmazioneDAO.eliminaOrdineProgrammato(ordineSelezionato.getIdProgrammazione());
-                caricaOrdiniProgrammati(); // Ricarica la lista degli ordini
+                caricaOrdiniProgrammati();
             } catch (SQLException e) {
                 mostraErrore("Errore durante l'eliminazione dell'ordine.");
             }

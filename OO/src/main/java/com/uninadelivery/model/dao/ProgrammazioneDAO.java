@@ -86,18 +86,19 @@ public class ProgrammazioneDAO {
 
     public List<Programmazione> getOrdiniProgrammatiPerEmail(String email) throws SQLException {
         String query = "SELECT id_programmazione, prox_consegna, data_fine, orario, frequenza, email_cliente " +
-                "FROM programmazione WHERE email_cliente = ?";
+                "FROM programmazione WHERE email_cliente LIKE ?";
         List<Programmazione> ordini = new ArrayList<>();
 
         try (Connection conn = DBConnection.getDBconnection().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setString(1, email);
+
+            ps.setString(1, "%" + email + "%");
             try (ResultSet rs = ps.executeQuery()) {
 
                 while (rs.next()) {
                     int idProgrammazione = rs.getInt("id_programmazione");
                     LocalDate proxConsegna = rs.getDate("prox_consegna").toLocalDate();
-                    LocalDate dataFine = rs.getDate("data_fine").toLocalDate();
+                    LocalDate dataFine = rs.getDate("data_fine") != null ? rs.getDate("data_fine").toLocalDate() : null;
                     String orario = rs.getString("orario");
                     String frequenza = rs.getString("frequenza");
                     String clienteEmail = rs.getString("email_cliente");
